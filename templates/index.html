@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ seo.title if seo else 'TEEtimeVN' }}{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="{{ seo.description if seo else '' }}">
+{% endblock %}
+{% block meta_keywords %}
+  <meta name="keywords" content="{{ seo.keywords if seo else '' }}">
+  <meta name="google-site-verification" content="3oogfAcEz1HpTqJ4w13Dxe_op8VTsZhf7Q_wMg08QGU">
+{% endblock %}
+
+{% block content %}
+
+<div class="home-banner">
+  <img src="{{ url_for('static', filename='image/banner.png') }}" alt="TEEtimeVN Banner">
+</div>
+
+<div class="text-center py-3">
+  <h1 class="fw-bold text-success">{{ _('Welcome to TEEtimeVN') }}</h1>
+  <p class="fw-bold" style="color: #d4af37;">
+    {{ _("Explore Vietnam's top golf courses and book tee times in your language.") }}
+  </p>
+</div>
+
+<div class="container px-3 px-md-5 mb-4">
+  <form class="row g-3" method="get" action="#courses">
+    <div class="col-12 col-md-3">
+    <input
+  type="text"
+  class="form-control"
+  name="location"
+  placeholder="{{ _('Location / City') }}"
+  list="locationSuggestions"
+  value="{{ request.args.get('location', '') }}"
+  autocomplete="on"
+>
+<datalist id="locationSuggestions">
+  {% for loc in locations|sort %}
+    {% if loc.strip() %}
+      <option value="{{ loc }}">
+    {% endif %}
+  {% endfor %}
+</datalist>
+
+    </div>
+    <div class="col-12 col-md-3">
+      <select class="form-select" name="discount">
+        <option value="">{{ _('Select Discount') }}</option>
+        {% for val in [5, 10, 15, 20] %}
+          <option value="{{ val }}" {% if request.args.get('discount')|int == val %}selected{% endif %}>≥{{ val }}%</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-12 col-md-3">
+      <select class="form-select" name="rating">
+        <option value="">{{ _('Select Rating') }}</option>
+        {% for val in [7, 8, 9] %}
+          <option value="{{ val }}" {% if request.args.get('rating')|float == val %}selected{% endif %}>≥{{ val }}.0</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-12 col-md-3">
+      <button type="submit" class="filter-btn w-100">{{ _('Filter Courses') }}</button>
+    </div>
+  </form>
+</div>
+
+<div class="container py-4" id="courses">
+  <h2 class="h4 text-center text-success">{{ _('Golf Courses') }}</h2>
+  <div class="row g-4">
+    {% for row in courses %}
+      {% set img_url = url_for('static', filename='media/' ~ row.slug ~ '.jpg') %}
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="ratio ratio-4x3">
+            <img src="{{ img_url }}" class="card-img-top" alt="{{ row.name }}"
+                 onerror="this.src='https://source.unsplash.com/featured/400x300?golf,{{ loop.index }}'"
+                 style="object-fit: cover;">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title mb-0">
+              <a href="{{ url_for('courses.course_detail', lang=lang, slug=row.slug) }}"
+                 class="stretched-link text-decoration-none text-dark">
+                {{ row.name or row.slug }}
+              </a>
+            </h5>
+            {% if row.address %}
+              <p class="mb-1 small text-success d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="me-1" style="width: 1rem; height: 1rem;">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                </svg>
+                <span>{{ row.address }}</span>
+              </p>
+            {% endif %}
+            {% if row.avg_rating %}
+              <p class="mb-0 small text-muted">⭐ {{ row.avg_rating }} / 10</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

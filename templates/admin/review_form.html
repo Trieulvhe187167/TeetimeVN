@@ -1,0 +1,145 @@
+<!-- templates/admin/review_form.html -->
+{% extends 'admin/dashboard.html' %}
+
+{% block title %}
+  {% if review %}{{ _('Edit Review') }}{% else %}{{ _('Create Review') }}{% endif %} - Admin
+{% endblock %}
+
+{% block admin_content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{% if review %}{{ _('Edit Review') }} #{{ review.id }}{% else %}{{ _('Create Review') }}{% endif %}</h2>
+    <a href="{{ url_for('admin.review_list', lang=lang) }}" class="btn btn-secondary">
+      <i class="bi bi-arrow-left"></i> {{ _('Back to List') }}
+    </a>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data">
+            {% if not review %}
+            <!-- Select Course and User for new review -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">{{ _('Golf Course') }} *</label>
+                <select name="course_id" class="form-select" required>
+                  <option value="">{{ _('Select Course') }}</option>
+                  {% for course in courses %}
+                    <option value="{{ course.id }}">{{ course.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">{{ _('User') }} *</label>
+                <select name="user_id" class="form-select" required>
+                  <option value="">{{ _('Select User') }}</option>
+                  {% for user in users %}
+                    <option value="{{ user.id }}">
+                      {{ user.fullname or user.username }} ({{ user.email }})
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            {% else %}
+            <!-- Show course and user info for existing review -->
+            <div class="alert alert-info">
+              <strong>{{ _('Course') }}:</strong> {{ review.course_name }}<br>
+              <strong>{{ _('User') }}:</strong> {{ review.fullname or review.username }} (@{{ review.username }})
+            </div>
+            {% endif %}
+
+            <!-- Rating -->
+            <div class="mb-3">
+              <label class="form-label">{{ _('Rating') }} *</label>
+              <div class="star-rating-input">
+                {% for i in range(1, 6) %}
+                  <input type="radio" name="rating" id="star{{ i }}" value="{{ i }}" 
+                         {% if review and review.rating == i %}checked{% endif %}
+                         {% if not review and i == 5 %}checked{% endif %} required>
+                  <label for="star{{ i }}" class="star-label">
+                    <i class="bi bi-star-fill"></i>
+                  </label>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Comment -->
+            <div class="mb-3">
+              <label class="form-label">{{ _('Review Comment') }} *</label>
+              <textarea name="comment" class="form-control" rows="5" required>{{ review.comment if review else '' }}</textarea>
+            </div>
+
+            <!-- Images (chỉ hiển thị cho edit) -->
+            {% if review and review.images %}
+            <div class="mb-3">
+              <label class="form-label">{{ _('Current Images') }}</label>
+              <div class="d-flex flex-wrap gap-2">
+                {% for img in review.images %}
+                  <div class="position-relative">
+                    <img src="{{ url_for('static', filename='media/reviews/' ~ img) }}" 
+                         class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
+                  </div>
+                {% endfor %}
+              </div>
+              <small class="text-muted">{{ _('Note: Image management is not available in admin edit mode') }}</small>
+            </div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-save"></i> 
+              {% if review %}{{ _('Update Review') }}{% else %}{{ _('Create Review') }}{% endif %}
+            </button>
+            <a href="{{ url_for('admin.review_list', lang=lang) }}" class="btn btn-secondary">
+              {{ _('Cancel') }}
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    {% if review %}
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">{{ _('Review Information') }}</h5>
+        </div>
+        <div class="card-body">
+          <p><strong>{{ _('Created') }}:</strong> {{ review.created_at_formatted }}</p>
+          <p><strong>{{ _('Updated') }}:</strong> {{ review.updated_at_formatted or _('Never') }}</p>
+          <p><strong>{{ _('Helpful Count') }}:</strong> {{ review.helpful_count or 0 }}</p>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <style>
+    .star-rating-input {
+      display: flex;
+      gap: 5px;
+    }
+    
+    .star-rating-input input[type="radio"] {
+      display: none;
+    }
+    
+    .star-label {
+      font-size: 2rem;
+      color: #ddd;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    
+    .star-rating-input input[type="radio"]:checked ~ .star-label,
+    .star-label:hover,
+    .star-rating-input:hover .star-label {
+      color: #ffc107;
+    }
+    
+    .star-rating-input input[type="radio"]:checked ~ .star-label ~ .star-label {
+      color: #ddd;
+    }
+  </style>
+{% endblock %}

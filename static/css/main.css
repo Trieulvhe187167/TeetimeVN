@@ -1,0 +1,756 @@
+/* Giữ cho phần header luôn dính trên cùng khi scroll */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  background-color: #ffffff;
+  /* Giả sử header cao 70px: */
+  height: 70px;
+  /* hoặc nếu bạn không cố định height, hãy đảm bảo tính toán đúng khoảng top của nav bên dưới */
+}
+
+/* Thanh navigation (ví dụ có class .main-nav) */
+nav.main-nav {
+  position: sticky;
+  /* top phải bằng đúng chiều cao của header */
+  top: 70px;
+  z-index: 1010;
+  background: var(--bs-primary);
+}
+
+/* Nếu header có chiều cao khác 60px, hãy điều chỉnh `top` cho nav cho phù hợp */
+
+/* Reset header paddings */
+header.bg-white.shadow-sm {
+  padding: 0;
+}
+header.bg-white.shadow-sm .container {
+  padding: 0;
+}
+/* Đặt logo chiếm 60% chiều ngang container */
+/* ==== CUSTOM LOGO SIZE ==== */
+/* Logo container tự động theo kích thước ảnh */
+.navbar-brand {
+  width: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Kích thước logo bạn muốn: */
+.navbar-brand img {
+  width: 250px !important;  /* <-- thử chỉnh 200px, thay số này cho vừa ý */
+  height: auto !important;
+  object-fit: contain;
+}
+
+/* 1. Bỏ padding dọc cho cả header */
+header.bg-white.shadow-sm {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* 2. Bỏ padding dọc cho container bên trong header */
+header.bg-white.shadow-sm .container {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 3. Bỏ margin / padding dọc cho chính thẻ logo */
+.navbar-brand {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+/* NavLinks */
+.nav-link {
+  color: var(--text-dark) !important;
+  font-weight: 600;
+  margin: 0 1rem;
+}
+.nav-link:hover {
+  color: var(--site-green) !important;
+}
+
+/* Override Bootstrap primary */
+.btn-outline-primary {
+  border-color: var(--site-green);
+  color: var(--site-green);
+}
+.btn-outline-primary:hover {
+  background: var(--site-green);
+  color: #fff;
+}
+
+/* Dropdown toggle */
+.btn-light {
+  border: 1px solid #ddd;
+}
+.btn-light:hover {
+  background: var(--site-green);
+  color: #fff;
+}
+
+/* Cards */
+.card-header.bg-primary {
+  background: var(--site-green) !important;
+}
+
+/* Utility for ratio images */
+.ratio > img {
+  object-fit: cover;
+}
+
+/* Footer */
+footer {
+  background: #fff;
+  color: #666;
+}
+
+/* Adjust containers */
+.container {
+  max-width: 1140px;
+}
+/* Theme colors */
+:root {
+  --site-green: #009933;       /* main green */
+  --site-dark-green: #006400;  /* dark green for header */
+  --site-accent: #22C55E;      /* accent green */
+  --text-dark:  #333333;
+}
+
+/* Main navigation bar: dark green */
+.navbar.main-nav {
+  background: var(--site-dark-green) !important;
+}
+
+/* Navigation links: white, hover accent */
+.nav-link {
+  color: #fff !important;
+  font-weight: 600;
+  margin: 0 1rem;
+}
+.nav-link:hover {
+  color: var(--site-accent) !important;
+}
+
+/* Override primary text (e.g. headings) to main green */
+.text-primary {
+  color: var(--site-green) !important;
+}
+
+/* Course title links in cards */
+.card-title a {
+  color: var(--site-green) !important;
+}
+.card-title a:hover {
+  color: var(--site-dark-green) !important;
+}
+
+/* Buttons */
+.btn-outline-primary {
+  border-color: var(--site-green);
+  color: var(--site-green);
+}
+.btn-outline-primary:hover {
+  background: var(--site-green);
+  color: #fff;
+}
+
+/* Dropdown toggle (language) */
+.btn-outline-secondary {
+  border-color: #ccc;
+  color: var(--text-dark);
+}
+.btn-outline-secondary:hover {
+  background: var(--site-dark-green);
+  color: #fff;
+}
+
+/* Cards header accent */
+.card-header.bg-primary {
+  background: var(--site-green) !important;
+  color: #fff !important;
+}
+
+/* Ratio images */
+.ratio > img {
+  object-fit: cover;
+}
+
+/* Footer */
+footer {
+  background: #fff;
+  color: #666;
+}
+
+/* Container width */
+.container {
+  max-width: 1140px;
+}
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu .dropdown-item:active {
+  background-color: var(--site-green) !important;
+  color: #fff !important;
+}
+
+.text-secondary {
+  color: #006400!important;
+  font-size:large;
+  padding-right: 5px;
+}
+/* static/css/main.css */
+/* Ensure equal‐sized gallery tiles */
+/* Customize 4×3 ratio for embedded map & carousel */
+.ratio-4x3 {
+  --bs-aspect-ratio: 75%;  /* built-in in Bootstrap 5 */
+}
+
+/* (Optional) Increase min-height if you want even taller containers */
+.ratio-4x3,
+.ratio-4x3 > iframe,
+.ratio-4x3 > img {
+  width: 100%;
+  min-height: 250px;
+}
+
+
+/* static/css/main.css */
+
+/* embed-container: fixed height for map */
+.embed-container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+.embed-container iframe {
+  width: 100%;
+  height: 100% !important;
+}
+
+/* gallery-carousel: fixed height for images */
+.gallery-carousel .carousel-inner,
+.gallery-carousel .carousel-item > img {
+  height: 500px;
+  object-fit: cover;
+}
+
+/* Optional: narrow sidebar if you want */
+.col-lg-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+/* ================= Evaluation Card ================= */
+.evaluation-card {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .5rem;
+  overflow: hidden;
+}
+
+.evaluation-card .card-header {
+  background-color: var(--site-green) !important;
+}
+
+.evaluation-list .list-group-item {
+  padding: .75rem 1.25rem;
+  font-size: .94rem;
+}
+
+.evaluation-list .badge {
+  font-size: .85rem;
+  min-width: 2.5rem;
+}
+/* =================================================== */
+/* ================= Course Overview Styling ================= */
+.course-overview {
+  background-color: #f8fafc;
+  border-left: 4px solid var(--site-green);
+  padding: 1.5rem;
+  border-radius: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+.course-overview p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.course-overview p:first-of-type {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--site-dark-green);
+  margin-bottom: 1.25rem;
+}
+
+
+/*css cho cột đổi tiền  */
+  #currencySelect {
+    display: inline-block;
+    width: auto;
+    padding: 4px 28px 4px 10px; /* extra right padding for arrow */
+    border-radius: 6px;
+    border: 1px solid var(--site-green);
+    color: var(--site-green);
+    font-weight: 600;
+    margin-left: 0.5rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23009933' d='M4.646 6.646a.5.5 0 0 1 .708 0L8 9.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E") no-repeat right 10px center/16px 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  #currencySelect:focus {
+    outline: none;
+    border-color: var(--site-dark-green);
+    box-shadow: 0 0 0 0.1rem rgba(0,153,51,.25);
+  }
+  .converted-price {
+    font-weight: 600;
+    color: var(--site-accent);
+  }
+
+/*css buttun filter course*/
+  .filter-btn {
+   display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background-image: linear-gradient(to bottom right, #23c483,#006400);
+  border: none;
+  border-radius: 40px;
+  box-shadow: 0px 4px 0px #04653e;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.filter-btn:hover {
+  background-color: #006400;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-5px);
+}
+
+.filter-btn:active {
+  transform: translateY(-1px);
+}
+
+
+.home-banner {
+  margin-top: -1rem; /* xóa khoảng cách header */
+}
+
+.home-banner img {
+  width: 100%;
+  max-height: 90vh;
+  object-fit: cover;
+  display: block;
+}
+
+
+/*Booking courses*/
+  .time-scroll {
+    max-height: 100px;       /* hoặc chiều cao bạn muốn */
+    overflow-y: auto;
+    padding-right: 8px;      /* cho scrollbar không che chữ */
+  }
+
+ /* Checked state for checkboxes and radios */
+  .form-check-input:checked {
+    background-color: #28a745 !important;
+    border-color:     #28a745 !important;
+  }
+  /* Focus outline */
+  .form-check-input:focus {
+    border-color: #28a745 !important;
+    box-shadow:  0 0 0 .2rem rgba(40,167,69,.25) !important;
+  }
+  /* Replace default primary accent on custom controls */
+  .form-check-input:checked~.form-check-label::before {
+    background-color: #28a745;
+    border-color:     #28a745;
+  }
+
+
+
+  /* ----------------------------------------------------
+   Phần CSS cho các form (login, register, forgot password)
+   ---------------------------------------------------- */
+.form {
+  --bg-light: #efefef;
+  --bg-dark: #707070;
+  --clr: #58bc82;
+  --clr-alpha: #9c9c9c60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.form .input-span {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="text"] {
+  border-radius: 0.5rem;
+  padding: 1rem 0.75rem;
+  width: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--clr-alpha);
+  outline: 2px solid var(--bg-dark);
+}
+
+.form input[type="email"]:focus,
+.form input[type="password"]:focus,
+.form input[type="text"]:focus {
+  outline: 2px solid var(--clr);
+}
+
+.label {
+  align-self: flex-start;
+  color: var(--clr);
+  font-weight: 600;
+}
+
+/* Nút submit/trượt form */
+.form .submit {
+  padding: 1rem 0.75rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 3rem;
+  background-color: var(--bg-dark);
+  color: var(--bg-light);
+  border: none;
+  cursor: pointer;
+  transition: all 300ms;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form .submit:hover {
+  background-color: var(--clr);
+  color: var(--bg-dark);
+}
+
+.span {
+  text-decoration: none;
+  color: var(--bg-dark);
+}
+
+.span a {
+  color: var(--clr);
+}
+
+/* ----------------------------------------------------
+   CSS cho SVG toggle password: căn giữa chiều dọc
+   ---------------------------------------------------- */
+.toggle-password-svg {
+  position: absolute;
+  right: 12px;            /* Khoảng cách từ mép phải của input */
+  top: 50%;               /* Đặt y = 50% của container */
+  transform: translateY(-50%); /* Dịch lên 50% để căn giữa đúng */
+  width: 1.25rem;         /* ~20px, bạn có thể chỉnh lại */
+  height: 1.25rem;
+  cursor: pointer;
+  color: var(--clr);      /* Màu icon mặc định (xanh lá trong ví dụ) */
+  opacity: 0.6;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  z-index: 2;             /* Đảm bảo SVG nằm trên input */
+}
+
+.toggle-password-svg:hover {
+  opacity: 1;
+}
+
+/* Khi input đang show (type="text"), thêm class .visible để đổi màu */
+.toggle-password-svg.visible {
+  color: var(--bg-dark);  /* Màu icon khi đang “mở mắt” */
+  opacity: 1;
+}
+
+/* Tăng padding-right cho input để nhường chỗ cho SVG, tránh ghi đè lên chữ */
+.input-with-icon {
+  position: relative;      /* Container cha cần position: relative */
+}
+
+.input-with-icon input[type="password"],
+.input-with-icon input[type="text"] {
+  padding-right: 2.5rem;   /* Giãn vùng bên phải để SVG không che text */
+}
+
+
+/* ----------------------------------------------------
+   Biểu tượng SVG cỡ 24x24 (class="size-6")
+   ---------------------------------------------------- */
+.size-6 {
+  width: 1.5rem;   /* ~24px */
+  height: 1.5rem;
+  vertical-align: middle;
+  margin-right: 0.5rem; /* Khoảng cách giữa icon và text */
+  color: currentColor;  /* Thừa hưởng color của nút/anchor */
+}
+
+/* ----------------------------------------------------
+   Style cho nút Register: nền trắng – chữ/viền xanh,
+   hover thành nền xanh – chữ trắng
+   ---------------------------------------------------- */
+.btn-register {
+  background-color: #ffffff;
+  color: var(--clr);           /* Giả sử --clr là màu xanh chủ đạo */
+  border: 1px solid var(--clr);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-register:hover {
+  background-color: var(--clr);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Nếu muốn tách riêng biến --clr, bạn có thể đặt ở :root */
+:root {
+  --clr: #28a745;  /* Ví dụ xanh lá; thay thành mã màu bạn muốn */
+}
+
+/* ----------------------------------------------------
+   Flash nhỏ gọn (compact) nằm dưới header, căn phải
+   ---------------------------------------------------- */
+.compact-flash {
+  display: inline-flex !important;       
+  align-items: center !important;        
+  justify-content: space-between !important;
+  padding: 0.25rem 0.75rem !important;    
+  margin: 0 !important;            
+  font-size: 0.9rem !important;           
+  border-radius: 0.25rem !important;      
+  max-width: 320px !important;            
+  width: auto !important;                 /* Ép auto thay vì full */
+  background-color: #d4edda !important;   
+  border: 1px solid #c3e6cb !important;   
+  color: #155724 !important;              
+  position: relative !important;          
+  z-index: 1000 !important;               
+}
+
+.compact-flash .btn-close {
+  position: static !important;
+  margin-left: 0.5rem !important;
+  width: 1rem !important;
+  height: 0.5rem !important;
+  opacity: 0.75 !important;
+  flex-shrink: 0 !important;
+}
+
+.compact-flash .btn-close:hover,
+.compact-flash .btn-close:focus {
+  opacity: 1 !important;
+}
+
+
+  /* ------------------------------------------------------------
+       (A) Style cho flash‐success (“compact” dưới header):
+       ------------------------------------------------------------ */
+    .compact-flash {
+      display: inline-flex;           /* Cho flash co lại vừa chữ và nút */
+      align-items: center;            /* Căn giữa theo chiều dọc */
+      justify-content: space-between; /* Text trái, nút phải */
+      padding: 0.25rem 0.75rem;       /* Thu gọn padding */
+      margin: 0.5rem 0;               /* Cách header 0.5rem, hai bên 0 */
+      font-size: 0.9rem;              /* Chữ nhỏ hơn bình thường */
+      border-radius: 0.25rem;         /* Bo góc nhẹ */
+      max-width: 320px;               /* Giới hạn chiều rộng */
+      width: auto !important;         /* Auto rộng vừa nội dung */
+      background-color: #d4edda;      /* Màu nền alert-success */
+      border: 1px solid #c3e6cb;      /* Border alert-success */
+      color: #155724;                 /* Màu chữ alert-success */
+      position: relative;             /* Để không bị đè bởi thứ khác */
+      z-index: 1000;
+    }
+    .compact-flash .btn-close {
+      position: static !important;    /* Hủy position:absolute của Bootstrap */
+      margin-left: 0.5rem;            /* Cách text một chút */
+      width: 1rem;
+      height: 1rem;
+      opacity: 0.75;
+      flex-shrink: 0;                 /* Không co nhỏ nút × */
+    }
+    .compact-flash .btn-close:hover,
+    .compact-flash .btn-close:focus {
+      opacity: 1;
+    }
+
+    /* ------------------------------------------------------------
+       (B) Style cho flash “inside modal” (login-error hoặc login-success)
+       chỉ hiển thị bên trong modal, không ảnh hưởng ngoài page.
+       Ô này có thể để mặc định của Bootstrap (alert-danger, alert-success).
+       Nếu muốn thu nhỏ, ta thêm margin-bottom:
+       ------------------------------------------------------------ */
+    #loginFlashContainer .alert {
+      margin-bottom: 1rem;
+    }
+
+
+    /* Admin Sidebar Styles - Green Theme */
+
+/* Sidebar container */
+.sidebar {
+  min-height: calc(100vh - 200px);
+  border-right: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
+}
+
+/* Sidebar heading */
+.sidebar .sidebar-heading {
+  color: #006400;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #009933;
+}
+
+/* Nav links - Mặc định màu đen */
+.sidebar .nav-link {
+  color: #000000 !important;  /* Chữ màu đen */
+  padding: 0.75rem 1rem;
+  margin: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Hover state - vẫn giữ chữ đen với background xanh nhạt */
+.sidebar .nav-link:hover {
+  background-color: #e8f5e9;
+  color: #000000 !important;  /* Vẫn giữ chữ đen khi hover */
+  transform: translateX(5px);
+  text-decoration: none;
+}
+
+/* Active nav link - Chữ trắng với nền xanh */
+.sidebar .nav-link.active {
+  background: linear-gradient(135deg, #009933, #006400);
+  color: #ffffff !important;  /* Chữ trắng khi active */
+  box-shadow: 0 4px 10px rgba(0, 153, 51, 0.3);
+}
+
+.sidebar .nav-link.active:hover {
+  background: linear-gradient(135deg, #00b33c, #007a00);
+  color: #ffffff !important;  /* Giữ chữ trắng khi hover active */
+  transform: translateX(5px);
+}
+
+/* Icons - Mặc định màu đen */
+.sidebar .nav-link i {
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+  color: #000000;  /* Icon màu đen */
+}
+
+/* Icon colors for hover state - vẫn đen */
+.sidebar .nav-link:hover i {
+  color: #000000;  /* Icon vẫn đen khi hover */
+}
+
+/* Icon colors for active state - trắng */
+.sidebar .nav-link.active i {
+  color: #ffffff !important;  /* Icon trắng khi active */
+}
+
+/* Add subtle animation */
+.sidebar .nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar .nav-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #009933;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.sidebar .nav-link:hover::before,
+.sidebar .nav-link.active::before {
+  transform: translateX(0);
+}
+
+/* For active link, make the bar white */
+.sidebar .nav-link.active::before {
+  background-color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    z-index: 1050;
+    transition: left 0.3s ease;
+    background-color: white;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .sidebar.show {
+    left: 0;
+  }
+}
+
+/* Admin content area */
+main.col-md-10 {
+  background-color: #fafafa;
+  min-height: calc(100vh - 200px);
+}
+
+/* Stats cards in admin */
+.card.bg-primary {
+  background: linear-gradient(135deg, #009933, #006400) !important;
+  border: none;
+}
+
+.card.bg-success {
+  background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+  border: none;
+}
+
+.card.bg-warning {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b) !important;
+  border: none;
+}
+
+.card.bg-info {
+  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+  border: none;
+}
+
+/* Card hover effects */
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}

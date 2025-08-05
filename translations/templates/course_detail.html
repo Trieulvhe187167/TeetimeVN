@@ -1,0 +1,220 @@
+<!-- templates/course_detail.html -->
+{% extends 'base.html' %}
+{% block title %}{{ text.name }} | TEEtimeVN{% endblock %}
+{% block content %}
+<div class="row g-5">
+  <div class="col-lg-9">
+
+    {% if embed %}
+      <div class="embed-container mb-4">
+        {{ embed|safe }}
+      </div>
+    {% endif %}
+
+    {% if map_link %}
+      <p>
+        <a href="{{ map_link }}"
+           target="_blank"
+           class="btn btn-outline-primary mb-4">
+          {{ _('View on Google Maps') }}
+        </a>
+      </p>
+    {% endif %}
+
+ <h1 class="fw-bold text-primary mb-3">{{ text.name }}</h1>
+
+    {% if images %}
+      <div id="galleryCarousel" class="carousel slide mb-4 gallery-carousel" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          {% for img in images %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+              <img
+                src="{{ url_for('static', filename='media/' ~ course['slug'] ~ '/gallery/' ~ img) }}"
+                class="d-block w-100 rounded shadow-sm"
+                alt="{{ text.name }} image {{ loop.index }}">
+            </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button"
+                data-bs-target="#galleryCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">{{ _('Previous') }}</span>
+        </button>
+        <button class="carousel-control-next" type="button"
+                data-bs-target="#galleryCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">{{ _('Next') }}</span>
+        </button>
+      </div>
+    {% else %}
+      <p class="text-muted">{{ _('No images available.') }}</p>
+    {% endif %}
+
+<h2 class="h4 fw-semibold text-success mb-3">{{ _('Pricing') }}</h2>
+
+<table class="table table-hover align-middle">
+  <thead class="table-success">
+    <tr>
+      <th>{{ _('Tier') }}</th>
+      <th>{{ _('Note') }}</th>
+      <th>{{ _('Original Price') }}</th>
+      <th>{{ _('Discounted Price') }}</th>
+      <th style="vertical-align: middle;">
+  {{ _('Select Currency') }}:
+  <select id="currencySelect" class="form-select form-select-sm" style="width:auto; display:inline-block">
+    <option value="VND">VND</option>
+    <option value="USD">USD</option>
+    <option value="CNY">CNY</option>
+    <option value="JPY">JPY</option>
+    <option value="KRW">KRW</option>
+    <option value="TWD">TWD</option>
+    <option value="EUR">EUR</option>
+  </select>
+</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in prices %}
+      {% set original = p['rack_price_vnd'] %}
+      {% set discount_text = p['discount_note'] or '0%' %}
+      {% set discount_number = discount_text.replace('%', '').replace('-', '') | float %}
+      {% set discount_rate = discount_number / 100 %}
+      {% set discounted = (original - (original * discount_rate)) | round(0, 'floor') %}
+      <tr data-discounted="{{ discounted }}">
+        <td class="text-capitalize">{{ p['tier_type'] }}</td>
+        <td>{{ discount_text }}</td>
+        <td>
+          {% if original %}
+            {% if discount_rate > 0 %}
+              <s class="text-muted">{{ "{:,.0f}".format(original) }} đ</s>
+            {% else %}
+              <span class="text-dark">{{ "{:,.0f}".format(original) }} đ</span>
+            {% endif %}
+          {% else %}
+            {{ _('N/A') }}
+          {% endif %}
+        </td>
+        <td>
+          {% if discount_rate > 0 %}
+            <span class="text-danger fw-bold">{{ "{:,.0f}".format(discounted) }} đ</span>
+          {% else %}
+            <span class="text-dark">{{ "{:,.0f}".format(original) }} đ</span>
+          {% endif %}
+        </td>
+        <td class="converted-price" data-currency="VND">{{ "{:,.0f}".format(discounted) }} đ</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  const fxRates = {
+    VND: 1,
+    USD: 23500,
+    CNY: 3500,
+    JPY: 180,
+    KRW: 19,
+    TWD: 830,
+    EUR: 26000
+  };
+
+  const currencyNames = {
+    VND: 'đ', USD: '$', CNY: '¥', JPY: '¥', KRW: '₩', TWD: 'NT$', EUR: '€'
+  };
+
+  const langToCurrency = {
+    'vi': 'VND', 'en': 'USD', 'zh-CN': 'CNY', 'zh-TW': 'TWD', 'ja': 'JPY', 'ko': 'KRW'
+  };
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const currentLang = '{{ lang }}';
+    const defaultCurrency = langToCurrency[currentLang] || 'VND';
+    const select = document.getElementById('currencySelect');
+    select.value = defaultCurrency;
+    select.dispatchEvent(new Event('change'));
+  });
+
+  document.getElementById('currencySelect').addEventListener('change', function () {
+    const selected = this.value;
+    const rows = document.querySelectorAll('tr[data-discounted]');
+    rows.forEach(row => {
+      const vnd = parseInt(row.getAttribute('data-discounted')) || 0;
+      const rate = fxRates[selected] || 1;
+      const value = vnd / rate;
+      const cell = row.querySelector('.converted-price');
+      cell.textContent = value.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' ' + currencyNames[selected];
+      cell.setAttribute('data-currency', selected);
+    });
+  });
+</script>
+
+{% if course.scorecard_pdf %}
+  <a href="{{ course.scorecard_pdf }}" target="_blank" class="btn btn-outline-success mt-2">
+    {{ _('Download Scorecard') }}
+  </a>
+{% endif %}
+
+<br/>
+<br/>
+<h2 class="h4 fw-semibold text-success mb-3">{{ _('Overview') }}</h2>
+<div class="course-overview">
+  {% for para in text.overview.split('\n\n') %}
+    {% set lines = para.split('\n') %}
+    <p>
+      <strong>{{ lines[0] }}</strong>
+      {% for line in lines[1:] %}
+        <br>{{ line }}
+      {% endfor %}
+    </p>
+  {% endfor %}
+</div>
+</div>
+<aside class="col-lg-3">
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-primary text-white fw-semibold">{{ _('Course Info') }}</div>
+    <ul class="list-group list-group-flush small">
+      <li class="list-group-item">{{ _('Par') }}: {{ course['par'] }}</li>
+      <li class="list-group-item">{{ _('Length') }}: {{ course['length_yards'] }} yards</li>
+      <li class="list-group-item">{{ _('Holes') }}: {{ course['holes'] }}</li>
+      <li class="list-group-item">{{ _('Opened Year') }}: {{ course['opened_year'] }}</li>
+      <li class="list-group-item">{{ _('Designer') }}: {{ text['designer_name'] }}</li>
+    </ul>
+    <div class="card-body text-center">
+      <a href="https://wa.me/84901234567" class="btn btn-success w-100">
+        {{ _('Contact Zalo / WhatsApp') }}
+      </a>
+    </div>
+  </div>
+  <br/>
+  <br/>
+  <div class="card mb-5 evaluation-card">
+    <div class="card-header bg-success text-white">
+      <h6 class="mb-0">{{ _('Evaluation Scores') }}</h6>
+    </div>
+    {% set eval_items = [
+      ('design_layout', _('Design & Layout')),
+      ('turf_maintenance', _('Turf Maintenance')),
+      ('facilities_services', _('Facilities & Services')),
+      ('landscape_environment', _('Landscape & Environment')),
+      ('playability_access', _('Playability & Access'))
+    ] %}
+    <ul class="list-group list-group-flush evaluation-list">
+      {% if evaluation %}
+        {% for key, label in eval_items %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>{{ label }}</span>
+          <span class="badge bg-success rounded-pill">
+            {{ evaluation[key] }} / 10
+          </span>
+        </li>
+        {% endfor %}
+      {% else %}
+        <li class="list-group-item text-center text-muted">
+          {{ _('No evaluation data available.') }}
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</aside>
+</div>
+{% endblock %}

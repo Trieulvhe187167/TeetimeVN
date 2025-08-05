@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Booking Detail') }} #{{ booking.id }} | TEEtimeVN{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- Booking Success Alert -->
+      {% if 'Booking successful' in get_flashed_messages() %}
+      <div class="alert alert-success text-center mb-4">
+        <i class="bi bi-check-circle-fill me-2" style="font-size: 1.5rem;"></i>
+        <h5 class="d-inline">{{ _('Booking Confirmed!') }}</h5>
+      </div>
+      {% endif %}
+
+      <!-- Booking Card -->
+      <div class="card shadow">
+        <div class="card-header {% if booking.status == 'cancelled' %}bg-danger{% else %}bg-success{% endif %} text-white">
+          <h4 class="mb-0">{{ _('Booking Detail') }} #{{ booking.id }}</h4>
+        </div>
+        
+        <div class="card-body">
+          <!-- Course Information -->
+          <h5 class="border-bottom pb-2 mb-3">
+            <i class="bi bi-geo-alt"></i> {{ _('Golf Course Information') }}
+          </h5>
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <p class="mb-2"><strong>{{ _('Course Name') }}:</strong> {{ booking.course_name }}</p>
+              <p class="mb-2"><strong>{{ _('Address') }}:</strong> {{ booking.address }}</p>
+              <p class="mb-2"><strong>{{ _('Designer') }}:</strong> {{ booking.designer_name }}</p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-2"><strong>{{ _('Par') }}:</strong> {{ booking.par }}</p>
+              <p class="mb-2"><strong>{{ _('Holes') }}:</strong> {{ booking.holes }}</p>
+              <p class="mb-2"><strong>{{ _('Length') }}:</strong> {{ booking.length_yards }} yards</p>
+            </div>
+          </div>
+
+          <!-- Booking Information -->
+          <h5 class="border-bottom pb-2 mb-3">
+            <i class="bi bi-calendar-check"></i> {{ _('Booking Information') }}
+          </h5>
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <p class="mb-2">
+                <strong>{{ _('Play Date') }}:</strong> 
+                <span class="text-primary">{{ booking.play_date }}</span>
+              </p>
+              <p class="mb-2">
+                <strong>{{ _('Tee Time') }}:</strong> 
+                <span class="text-primary">{{ booking.play_time }}</span>
+              </p>
+              <p class="mb-2">
+                <strong>{{ _('Number of Players') }}:</strong> 
+                <span class="badge bg-info">{{ booking.players }}</span>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-2">
+                <strong>{{ _('Status') }}:</strong>
+                <span class="badge 
+                  {% if booking.status == 'confirmed' %}bg-success
+                  {% elif booking.status == 'pending' %}bg-warning text-dark
+                  {% elif booking.status == 'cancelled' %}bg-danger
+                  {% else %}bg-secondary{% endif %} ms-2">
+                  {{ _(booking.status.title()) }}
+                </span>
+              </p>
+              <p class="mb-2">
+                <strong>{{ _('Booking Date') }}:</strong> 
+                {{ booking.created_at_display }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <h5 class="border-bottom pb-2 mb-3">
+            <i class="bi bi-list-check"></i> {{ _('Services Included') }}
+          </h5>
+          <div class="row mb-4">
+            <div class="col-md-12">
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  {% if booking.has_caddy %}
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                  {% else %}
+                    <i class="bi bi-x-circle text-muted"></i>
+                  {% endif %}
+                  {{ _('Caddy Service') }}
+                </li>
+                <li class="mb-2">
+                  {% if booking.has_cart %}
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                  {% else %}
+                    <i class="bi bi-x-circle text-muted"></i>
+                  {% endif %}
+                  {{ _('Golf Cart') }}
+                </li>
+                <li class="mb-2">
+                  {% if booking.has_rent_clubs %}
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                  {% else %}
+                    <i class="bi bi-x-circle text-muted"></i>
+                  {% endif %}
+                  {{ _('Golf Club Rental') }}
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Pricing Details -->
+          <h5 class="border-bottom pb-2 mb-3">
+            <i class="bi bi-receipt"></i> {{ _('Pricing Details') }}
+          </h5>
+          <div class="table-responsive mb-4">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>{{ _('Green Fee') }}</td>
+                  <td class="text-end">{{ "{:,.0f}".format(booking.green_fee) }} VND</td>
+                </tr>
+                <tr>
+                  <td>{{ _('Additional Services') }}</td>
+                  <td class="text-end">{{ "{:,.0f}".format(booking.services_fee) }} VND</td>
+                </tr>
+                <tr>
+                  <td>{{ _('Insurance') }}</td>
+                  <td class="text-end">{{ "{:,.0f}".format(booking.insurance_fee) }} VND</td>
+                </tr>
+                <tr class="table-success">
+                  <th>{{ _('Total Amount') }}</th>
+                  <th class="text-end">{{ "{:,.0f}".format(booking.total_amount) }} VND</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Customer Information -->
+          <h5 class="border-bottom pb-2 mb-3">
+            <i class="bi bi-person"></i> {{ _('Customer Information') }}
+          </h5>
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <p class="mb-2"><strong>{{ _('Name') }}:</strong> {{ booking.fullname or booking.username }}</p>
+              <p class="mb-2"><strong>{{ _('Email') }}:</strong> {{ booking.email }}</p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-2"><strong>{{ _('Phone') }}:</strong> {{ booking.phone or _('Not provided') }}</p>
+              <p class="mb-2"><strong>{{ _('Username') }}:</strong> {{ booking.username }}</p>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          {% if booking.notes %}
+          <h5 class="border-bottom pb-2 mb-3">
+            <i class="bi bi-chat-text"></i> {{ _('Notes') }}
+          </h5>
+          <p class="mb-4">{{ booking.notes }}</p>
+          {% endif %}
+        </div>
+
+        <div class="card-footer bg-light">
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="{{ url_for('booking.my_bookings', lang=lang) }}" class="btn btn-secondary">
+              <i class="bi bi-arrow-left"></i> {{ _('Back to My Bookings') }}
+            </a>
+            <div>
+              <a href="{{ url_for('courses.course_detail', lang=lang, slug=booking.slug) }}" 
+                 class="btn btn-outline-success">
+                {{ _('View Course') }}
+              </a>
+              {% if booking.status == 'pending' or booking.status == 'confirmed' %}
+                <!-- Cancel Button with Modal -->
+                <button type="button" class="btn btn-danger ms-2" 
+                        data-bs-toggle="modal" data-bs-target="#cancelModal">
+                  <i class="bi bi-x-circle"></i> {{ _('Cancel Booking') }}
+                </button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="text-center mt-4 text-muted">
+        <p>{{ _('Need help? Contact us at') }} 
+          <a href="mailto:support@teetimevn.com">support@teetimevn.com</a> 
+          {{ _('or call') }} <a href="tel:+84901234567">+84 90 123 4567</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel Confirmation Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="cancelModalLabel">
+          <i class="bi bi-exclamation-triangle"></i> {{ _('Cancel Booking Confirmation') }}
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ _('Are you sure you want to cancel this booking?') }}</p>
+        <div class="alert alert-warning">
+          <i class="bi bi-info-circle"></i> 
+          <strong>{{ _('Important:') }}</strong>
+          <ul class="mb-0 mt-2">
+            <li>{{ _('Bookings cannot be cancelled less than 24 hours before play time.') }}</li>
+            <li>{{ _('This action cannot be undone.') }}</li>
+            <li>{{ _('You will receive a confirmation email after cancellation.') }}</li>
+          </ul>
+        </div>
+        <div class="bg-light p-3 rounded">
+          <h6>{{ _('Booking Details:') }}</h6>
+          <p class="mb-1"><strong>{{ _('Course:') }}</strong> {{ booking.course_name }}</p>
+          <p class="mb-1"><strong>{{ _('Date:') }}</strong> {{ booking.play_date }}</p>
+          <p class="mb-1"><strong>{{ _('Time:') }}</strong> {{ booking.play_time }}</p>
+          <p class="mb-0"><strong>{{ _('Total Amount:') }}</strong> {{ "{:,.0f}".format(booking.total_amount) }} VND</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          {{ _('Keep Booking') }}
+        </button>
+        <form method="post" action="{{ url_for('booking.cancel_booking', lang=lang, booking_id=booking.id) }}" style="display: inline;">
+          <button type="submit" class="btn btn-danger">
+            <i class="bi bi-x-circle"></i> {{ _('Yes, Cancel Booking') }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+Failed to find attribute 'app' in 'app'.
+Failed to find attribute 'app' in 'app'.
+Failed to find attribute 'app' in 'app'.
+Failed to find attribute 'app' in 'app'.
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 208, in run
+    self.sleep()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 359, in sleep
+    ready = select.select([self.PIPE[0]], [], [], 1.0)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+    self.reap_workers()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 532, in reap_workers
+    raise HaltServer(reason, self.APP_LOAD_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'App failed to load.' 4>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/bin/gunicorn", line 8, in <module>
+    sys.exit(run())
+             ^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 66, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/app/base.py", line 235, in run
+    super().run()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/app/base.py", line 71, in run
+    Arbiter(self).run()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 228, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 341, in halt
+    self.stop()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 395, in stop
+    time.sleep(0.1)
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+    self.reap_workers()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 532, in reap_workers
+    raise HaltServer(reason, self.APP_LOAD_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'App failed to load.' 4>
+Failed to find attribute 'app' in 'app'.
+Failed to find attribute 'app' in 'app'.
+Failed to find attribute 'app' in 'app'.
+Failed to find attribute 'app' in 'app'.
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 208, in run
+    self.sleep()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 359, in sleep
+    ready = select.select([self.PIPE[0]], [], [], 1.0)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+    self.reap_workers()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 532, in reap_workers
+    raise HaltServer(reason, self.APP_LOAD_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'App failed to load.' 4>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/bin/gunicorn", line 8, in <module>
+    sys.exit(run())
+             ^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 66, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/app/base.py", line 235, in run
+    super().run()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/app/base.py", line 71, in run
+    Arbiter(self).run()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 228, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 341, in halt
+    self.stop()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 395, in stop
+    time.sleep(0.1)
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+    self.reap_workers()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 532, in reap_workers
+    raise HaltServer(reason, self.APP_LOAD_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'App failed to load.' 4>

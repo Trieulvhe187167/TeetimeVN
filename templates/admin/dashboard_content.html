@@ -1,0 +1,218 @@
+{% extends 'admin/dashboard.html' %}
+
+{% block title %}{{ _('Admin Dashboard') }} | TEEtimeVN{% endblock %}
+
+{% block admin_content %}
+  <h1 class="mb-4">{{ _('Admin Dashboard') }}</h1>
+  
+  <!-- Statistics Cards -->
+  <div class="row mb-4">
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                {{ _('Total Bookings') }}
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_bookings or 0 }}</div>
+            </div>
+            <div class="col-auto">
+              <i class="bi bi-calendar-check fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                {{ _('Total Courses') }}
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_courses or 0 }}</div>
+            </div>
+            <div class="col-auto">
+              <i class="bi bi-flag fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                {{ _('Pending Bookings') }}
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ pending_bookings or 0 }}</div>
+            </div>
+            <div class="col-auto">
+              <i class="bi bi-hourglass-split fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                {{ _('Revenue This Month') }}
+              </div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">
+                {{ "{:,.0f}".format(monthly_revenue or 0) }} VND
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="bi bi-cash-stack fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Bookings Table -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+      <h6 class="m-0 font-weight-bold text-primary">{{ _('Recent Bookings') }}</h6>
+      <a href="{{ url_for('admin.booking_list', lang=lang) }}" class="btn btn-sm btn-primary">
+        {{ _('View All') }} <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>{{ _('ID') }}</th>
+              <th>{{ _('Customer') }}</th>
+              <th>{{ _('Course') }}</th>
+              <th>{{ _('Play Date') }}</th>
+              <th>{{ _('Status') }}</th>
+              <th>{{ _('Actions') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for booking in recent_bookings %}
+            <tr>
+              <td>#{{ booking.id }}</td>
+              <td>{{ booking.customer_name }}</td>
+              <td>{{ booking.course_name }}</td>
+              <td>{{ booking.play_date }}</td>
+              <td>
+                <span class="badge 
+                  {% if booking.status == 'confirmed' %}bg-success
+                  {% elif booking.status == 'pending' %}bg-warning text-dark
+                  {% else %}bg-secondary{% endif %}">
+                  {{ _(booking.status.title()) }}
+                </span>
+              </td>
+              <td>
+                <a href="{{ url_for('admin.booking_detail_admin', lang=lang, booking_id=booking.id) }}" 
+                   class="btn btn-sm btn-primary">
+                  <i class="bi bi-eye"></i> {{ _('View') }}
+                </a>
+              </td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="6" class="text-center text-muted py-4">
+                <i class="bi bi-inbox fa-2x mb-2"></i>
+                <p>{{ _('No recent bookings') }}</p>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">{{ _('Quick Actions') }}</h6>
+        </div>
+        <div class="card-body">
+          <a href="{{ url_for('admin.course_create', lang=lang) }}" class="btn btn-success btn-icon-split mb-2">
+            <span class="icon text-white-50">
+              <i class="bi bi-plus-circle"></i>
+            </span>
+            <span class="text">{{ _('Add New Course') }}</span>
+          </a>
+          <br>
+          <a href="{{ url_for('admin.price_create', lang=lang) }}" class="btn btn-info btn-icon-split mb-2">
+            <span class="icon text-white-50">
+              <i class="bi bi-tag"></i>
+            </span>
+            <span class="text">{{ _('Add New Price') }}</span>
+          </a>
+          <br>
+          <a href="{{ url_for('admin.booking_list', lang=lang) }}" class="btn btn-warning btn-icon-split">
+            <span class="icon text-white-50">
+              <i class="bi bi-list-check"></i>
+            </span>
+            <span class="text">{{ _('Manage Bookings') }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+<style>
+/* Dashboard specific styles */
+.border-left-primary {
+  border-left: 4px solid #4e73df;
+}
+.border-left-success {
+  border-left: 4px solid #1cc88a;
+}
+.border-left-info {
+  border-left: 4px solid #36b9cc;
+}
+.border-left-warning {
+  border-left: 4px solid #f6c23e;
+}
+.text-xs {
+  font-size: .7rem;
+}
+.text-gray-300 {
+  color: #dddfeb;
+}
+.text-gray-800 {
+  color: #5a5c69;
+}
+.fa-2x {
+  font-size: 2em;
+}
+.btn-icon-split {
+  padding: 0;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: center;
+}
+.btn-icon-split .icon {
+  background: rgba(0,0,0,.15);
+  display: inline-block;
+  padding: .375rem .75rem;
+}
+.btn-icon-split .text {
+  display: inline-block;
+  padding: .375rem .75rem;
+}
+</style>

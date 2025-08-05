@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h1>{{ _('Prices') }}</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>{{ _('ID') }}</th>
+        <th>{{ _('Course') }}</th>
+        <th>{{ _('Tier') }}</th>
+        <th>{{ _('Rack Price (VND)') }}</th>
+        <th>{{ _('Discount Price (VND)') }}</th>
+        <th>{{ _('Actions') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.course_id }}</td>
+        <td>{{ _(r.tier_type|title) }}</td>
+        <td>{{ r.rack_price_vnd }}</td>
+        <td>{{ r.discount_price_vnd }}</td>
+        <td>
+          <a href="{{ url_for('admin.price_edit', lang=lang, id=r.id) }}"
+             class="btn btn-sm btn-secondary">{{ _('Edit') }}</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

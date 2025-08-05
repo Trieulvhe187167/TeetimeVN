@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Cấm truy cập thư mục nhạy cảm nếu có
+Disallow: /admin/
+Disallow: /static/
+Disallow: /__pycache__/
+
+# Cho phép truy cập các thư mục quan trọng nếu cần
+Allow: /static/css/
+Allow: /static/media/
+Allow: /static/image/
+
+# Crawl delay nhẹ nhàng nếu server yếu (tùy chọn)
+# Crawl-delay: 5
+
+# Sitemap
+Sitemap: https://teetimevn.com/sitemap.xml

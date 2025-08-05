@@ -1,0 +1,157 @@
+<!-- templates/admin/review_detail.html -->
+{% extends 'admin/dashboard.html' %}
+
+{% block title %}{{ _('Review') }} #{{ review.id }} - Admin{% endblock %}
+
+{% block admin_content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{{ _('Review Detail') }} #{{ review.id }}</h2>
+    <div>
+      <a href="{{ url_for('admin.review_edit', lang=lang, review_id=review.id) }}" class="btn btn-warning">
+        <i class="bi bi-pencil"></i> {{ _('Edit') }}
+      </a>
+      <a href="{{ url_for('admin.review_list', lang=lang) }}" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> {{ _('Back to List') }}
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">{{ _('Review Content') }}</h5>
+        </div>
+        <div class="card-body">
+          <!-- Rating -->
+          <div class="mb-3">
+            <strong>{{ _('Rating') }}:</strong>
+            <span class="text-warning ms-2">
+              {% for i in range(review.rating) %}⭐{% endfor %}
+            </span>
+            <span class="text-muted">({{ review.rating }}/5)</span>
+          </div>
+
+          <!-- Comment -->
+          <div class="mb-3">
+            <strong>{{ _('Comment') }}:</strong>
+            <p class="mt-2">{{ review.comment }}</p>
+          </div>
+
+          <!-- Images -->
+          {% if review.images %}
+          <div class="mb-3">
+            <strong>{{ _('Images') }}:</strong>
+            <div class="row g-2 mt-2">
+              {% for img in review.images %}
+                <div class="col-md-4">
+                  <img src="{{ url_for('static', filename='media/reviews/' ~ img) }}" 
+                       class="img-fluid rounded shadow-sm" 
+                       style="cursor: pointer;"
+                       onclick="showImageModal('{{ url_for('static', filename='media/reviews/' ~ img) }}')"
+                       alt="Review image">
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Helpful Users -->
+      {% if helpful_users %}
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">{{ _('Users who found this helpful') }} ({{ helpful_users|length }})</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>{{ _('User') }}</th>
+                  <th>{{ _('Date') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in helpful_users %}
+                <tr>
+                  <td>{{ user.fullname or user.username }}</td>
+                  <td>{{ user.created_at }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="col-lg-4">
+      <!-- Review Info -->
+      <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+          <h5 class="mb-0">{{ _('Review Information') }}</h5>
+        </div>
+        <div class="card-body">
+          <p><strong>{{ _('ID') }}:</strong> #{{ review.id }}</p>
+          <p><strong>{{ _('Created') }}:</strong> {{ review.created_at_formatted }}</p>
+          <p><strong>{{ _('Updated') }}:</strong> {{ review.updated_at_formatted or _('Never') }}</p>
+          <p><strong>{{ _('Helpful Count') }}:</strong> {{ review.helpful_count or 0 }}</p>
+        </div>
+      </div>
+
+      <!-- User Info -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="mb-0">{{ _('User Information') }}</h5>
+        </div>
+        <div class="card-body">
+          <p><strong>{{ _('Name') }}:</strong> {{ review.fullname or review.username }}</p>
+          <p><strong>{{ _('Username') }}:</strong> @{{ review.username }}</p>
+          <p><strong>{{ _('Email') }}:</strong> <a href="mailto:{{ review.email }}">{{ review.email }}</a></p>
+          {% if review.phone %}
+          <p><strong>{{ _('Phone') }}:</strong> {{ review.phone }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Course Info -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">{{ _('Course Information') }}</h5>
+        </div>
+        <div class="card-body">
+          <p><strong>{{ _('Course') }}:</strong> {{ review.course_name }}</p>
+          <p><strong>{{ _('Address') }}:</strong> {{ review.address }}</p>
+          <a href="{{ url_for('courses.course_detail', lang=lang, slug=review.slug) }}" 
+             class="btn btn-sm btn-outline-primary" target="_blank">
+            <i class="bi bi-box-arrow-up-right"></i> {{ _('View Course') }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img id="modalImage" src="" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showImageModal(src) {
+      document.getElementById('modalImage').src = src;
+      new bootstrap.Modal(document.getElementById('imageModal')).show();
+    }
+  </script>
+{% endblock %}

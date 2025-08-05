@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h1>{{ _('Edit Price') }}</h1>
+  <form method="post">
+    {% for field in [
+      ('Course ID','course_id'),('Tier Type','tier_type'),
+      ('Rack Price VND','rack_price_vnd'),('Discount Price VND','discount_price_vnd'),
+      ('Discount Note','discount_note'),('Include Caddie','inc_caddie'),
+      ('Include Cart','inc_cart'),('Include Tax','inc_tax')
+    ] %}
+    <div class="mb-3">
+      <label class="form-label">{{ _(field[0]) }}</label>
+      <input name="{{ field[1] }}" class="form-control"
+             value="{{ row[field[1]] }}"
+             {% if field[1] in ['rack_price_vnd', 'discount_note', 'discount_price_vnd'] %}
+             id="{{ field[1] }}"
+             {% endif %}>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">{{ _('Save') }}</button>
+    <a href="{{ url_for('admin.price_list', lang=lang) }}"
+       class="btn btn-secondary">{{ _('Cancel') }}</a>
+  </form>
+</div>
+
+<script>
+  function updateDiscountedPrice() {
+    const rackInput = document.getElementById("rack_price_vnd");
+    const discountNoteInput = document.getElementById("discount_note");
+    const discountPriceInput = document.getElementById("discount_price_vnd");
+
+    const rack = parseFloat(rackInput.value.replace(/,/g, '')) || 0;
+    const discountText = discountNoteInput.value || "0%";
+    const discountMatch = discountText.match(/-?(\d+(\.\d+)?)%/);
+    const discountRate = discountMatch ? parseFloat(discountMatch[1]) / 100 : 0;
+
+    const discounted = Math.floor(rack - (rack * discountRate));
+    discountPriceInput.value = discounted.toLocaleString("en-US");
+  }
+
+  document.getElementById("rack_price_vnd").addEventListener("input", updateDiscountedPrice);
+  document.getElementById("discount_note").addEventListener("input", updateDiscountedPrice);
+</script>
+{% endblock %}

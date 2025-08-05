@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}{{ _('Admin Dashboard') }} | TEEtimeVN{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h1 class="mb-4">{{ _('Admin Dashboard') }}</h1>
+  <div class="row g-4">
+    {% for item in [
+      ('admin.course_list', _('Manage Courses')),
+      ('admin.i18n_list', _('Manage Translations')),
+      ('admin.price_list', _('Manage Prices')),
+      ('admin.fx_list', _('Manage FX Rates'))
+    ] %}
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ item[1] }}</h5>
+          <a href="{{ url_for(item[0], lang=lang) }}"
+             class="btn btn-primary mt-2">{{ _('Go') }}</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

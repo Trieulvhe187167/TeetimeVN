@@ -1,0 +1,280 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+  .time-scroll { max-height:200px; overflow-y:auto; padding-right:8px; }
+  .form-check-input:checked {
+    background-color: #28a745 !important;
+    border-color:     #28a745 !important;
+  }
+  .form-check-input:focus {
+    border-color: #28a745 !important;
+    box-shadow: 0 0 0 .2rem rgba(40,167,69,.25) !important;
+  }
+  .login-prompt {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-header bg-success text-white">
+        <h5 class="mb-0">{{ _('Booking Courses') }}</h5>
+      </div>
+      <div class="card-body">
+        {% if session.get('user_id') and session.get('role') != 'admin' %}
+          <!-- Form booking cho user đã login -->
+          <form id="booking-form" method="post">
+            <!-- Play Date -->
+            <div class="mb-3">
+              <label class="form-label">{{ _('Play Date') }}</label>
+              <input type="date" id="play_date" name="play_date"
+                     class="form-control" required>
+            </div>
+
+            <!-- Course Select -->
+            <div class="mb-3">
+              <label class="form-label">{{ _('Course') }}</label>
+              <select id="course-select" name="course_id" class="form-select" required>
+                {% for c in courses %}
+                <option value="{{ c.id }}">{{ c.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- Time Slots -->
+            <div class="mb-3">
+              <label class="form-label">{{ _('Time Slot') }}</label>
+              <div class="time-scroll border rounded p-2">
+                {% for t in time_slots %}
+                <div class="form-check">
+                  <input class="form-check-input" type="radio"
+                         name="play_time" id="time-{{ t }}" value="{{ t }}"
+                         {% if loop.first %}checked{% endif %}>
+                  <label class="form-check-label" for="time-{{ t }}">{{ t }}</label>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Players -->
+            <div class="mb-3">
+              <label class="form-label">{{ _('Players') }}</label>
+              <select id="players-select" name="players" class="form-select">
+                {% for n in range(1,5) %}
+                <option value="{{ n }}">{{ n }} {{ _('people') }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- Amenities -->
+            <div class="mb-3">
+              <label class="form-label">{{ _('Amenities') }}</label>
+              <div class="form-check">
+                <input class="form-check-input svc-checkbox" type="checkbox"
+                       id="rent_clubs" name="rent_clubs" value="rent_clubs" checked>
+                <label class="form-check-label" for="rent_clubs">{{ _('Rent golf clubs') }}</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input svc-checkbox" type="checkbox"
+                       id="caddy" name="caddy" value="caddy" checked>
+                <label class="form-check-label" for="caddy">{{ _('Caddy') }}</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input svc-checkbox" type="checkbox"
+                       id="cart" name="cart" value="cart" checked>
+                <label class="form-check-label" for="cart">{{ _('Golf cart') }}</label>
+              </div>
+            </div>
+          </form>
+
+          <!-- Summary -->
+          <div id="booking-summary" class="card border-0 shadow-sm p-3">
+            <div class="d-flex justify-content-between"><span>{{ _('Green fee') }}</span><span id="sum-green">0 đ</span></div>
+            <div class="d-flex justify-content-between"><span>{{ _('Caddy') }} (<span id="sum-caddy-count">0</span>)</span><span id="sum-caddy">0 đ</span></div>
+            <div class="d-flex justify-content-between"><span>{{ _('Rent golf clubs') }} (<span id="sum-rent-count">0</span>)</span><span id="sum-rent">0 đ</span></div>
+            <div class="d-flex justify-content-between"><span>{{ _('Golf cart') }} (<span id="sum-cart-count">0</span>)</span><span id="sum-cart">0 đ</span></div>
+            <div class="d-flex justify-content-between"><span>{{ _('Insurance') }}</span><span id="sum-insurance">0 đ</span></div>
+            <hr>
+            <div class="d-flex justify-content-between"><strong>{{ _('Total') }}</strong><strong id="sum-total">0 đ</strong></div>
+            <button form="booking-form" type="submit" class="btn btn-success w-100 mt-3">{{ _('Book now') }}</button>
+          </div>
+        {% elif session.get('role') == 'admin' %}
+          <!-- Admin không được booking -->
+          <div class="login-prompt text-center">
+            <i class="bi bi-shield-lock-fill" style="font-size: 4rem; color: #dc3545;"></i>
+            <h4 class="mt-3 mb-3">{{ _('Admin Access Restricted') }}</h4>
+            <p class="text-muted mb-4">{{ _('Administrators cannot make bookings. Please use a regular user account.') }}</p>
+            <a href="{{ url_for('admin.dashboard', lang=lang) }}" class="btn btn-primary">
+              <i class="bi bi-speedometer2 me-2"></i>
+              {{ _('Go to Admin Dashboard') }}
+            </a>
+          </div>
+        {% else %}
+          <!-- Hiển thị yêu cầu đăng nhập cho guest -->
+          <div class="login-prompt text-center">
+            <i class="bi bi-calendar-check" style="font-size: 4rem; color: #28a745;"></i>
+            <h4 class="mt-3 mb-3">{{ _('Login Required') }}</h4>
+            <p class="text-muted mb-4">{{ _('Please login to access our booking system and reserve your tee time.') }}</p>
+            <button type="button" class="btn btn-success btn-lg px-5" 
+                    data-bs-toggle="modal" data-bs-target="#loginModal">
+              <i class="bi bi-box-arrow-in-right me-2"></i>
+              {{ _('Login to Continue') }}
+            </button>
+            <p class="mt-4 small text-muted">
+              {{ _("Don't have an account?") }} 
+              <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" 
+                 class="text-decoration-none text-success fw-semibold">
+                {{ _('Register here') }}
+              </a>
+            </p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if session.get('user_id') and session.get('role') != 'admin' %}
+<script>
+  const tierData   = {{ tier_prices_by_course|tojson }};
+  const servicePrices = {{ service_prices|tojson }};
+  const currencySymbol = ' đ';
+
+  function fmt(x){ return x.toLocaleString('vi')+currencySymbol; }
+
+  function updateSummary(){
+    const dateV = document.getElementById('play_date').value;
+    const timeV = document.querySelector('input[name="play_time"]:checked').value;
+    const cid   = +document.getElementById('course-select').value;
+    const players = +document.getElementById('players-select').value;
+
+    // determine tier
+    const dt = new Date(dateV+'T'+timeV);
+    const d = dt.getDay();  //0=Sun,6=Sat
+    let tier = (d===6||d===0)?'weekend':'weekday';
+    if (dt.getHours()>=14) tier='twilight';
+
+    // green fee
+    const greenUnit = (tierData[cid]||{})[tier] || 0;
+    const green = greenUnit * players;
+    document.getElementById('sum-green').textContent = fmt(green);
+
+    // caddy
+    const ccount = document.getElementById('caddy').checked ? players : 0;
+    const cfee   = servicePrices.caddy * ccount;
+    document.getElementById('sum-caddy-count').textContent = ccount;
+    document.getElementById('sum-caddy').textContent = fmt(cfee);
+
+    // rent clubs
+    const rcount = document.getElementById('rent_clubs').checked ? players : 0;
+    const rfee   = servicePrices.rent_clubs * rcount;
+    document.getElementById('sum-rent-count').textContent = rcount;
+    document.getElementById('sum-rent').textContent = fmt(rfee);
+
+    // cart
+    const cartCount = document.getElementById('cart').checked ? players : 0;
+    const cartFee   = servicePrices.cart * cartCount;
+    document.getElementById('sum-cart-count').textContent = cartCount;
+    document.getElementById('sum-cart').textContent = fmt(cartFee);
+
+    // insurance
+    const insFee = servicePrices.insurance * players;
+    document.getElementById('sum-insurance').textContent = fmt(insFee);
+
+    // total
+    const total = green + cfee + rfee + cartFee + insFee;
+    document.getElementById('sum-total').textContent = fmt(total);
+  }
+
+  // Function để update time slots dựa trên ngày được chọn
+  function updateTimeSlots() {
+    const dateInput = document.getElementById('play_date');
+    const selectedDate = dateInput.value;
+    const today = new Date().toISOString().split('T')[0];
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    
+    // Lấy tất cả radio buttons của time slots
+    const timeRadios = document.querySelectorAll('input[name="play_time"]');
+    let hasAvailableSlot = false;
+    let firstAvailableSlot = null;
+    
+    timeRadios.forEach(radio => {
+      const time = radio.value;
+      const [hour, minute] = time.split(':').map(Number);
+      const label = radio.nextElementSibling;
+      
+      // Nếu chọn ngày hôm nay
+      if (selectedDate === today) {
+        // Disable nếu giờ đã qua (thêm 30 phút buffer để chuẩn bị)
+        if (hour < currentHour || (hour === currentHour && minute <= currentMinute + 30)) {
+          radio.disabled = true;
+          label.style.opacity = '0.5';
+          label.style.textDecoration = 'line-through';
+        } else {
+          radio.disabled = false;
+          label.style.opacity = '1';
+          label.style.textDecoration = 'none';
+          hasAvailableSlot = true;
+          if (!firstAvailableSlot) firstAvailableSlot = radio;
+        }
+      } else {
+        // Ngày tương lai - enable tất cả
+        radio.disabled = false;
+        label.style.opacity = '1';
+        label.style.textDecoration = 'none';
+        hasAvailableSlot = true;
+        if (!firstAvailableSlot) firstAvailableSlot = radio;
+      }
+    });
+    
+    // Nếu không có slot nào available, hiển thị thông báo
+    if (!hasAvailableSlot && selectedDate === today) {
+      alert('{{ _("No available time slots for today. Please select another date.") }}');
+      // Chuyển sang ngày mai
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      dateInput.value = tomorrow.toISOString().split('T')[0];
+      updateTimeSlots(); // Gọi lại để update
+    } else if (firstAvailableSlot) {
+      // Auto select slot available đầu tiên
+      firstAvailableSlot.checked = true;
+    }
+  }
+
+  // set default date + wire events
+  const dateInput = document.getElementById('play_date');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.value = today;
+    dateInput.min = today; // Chỉ cho phép chọn từ hôm nay trở đi
+    
+    // Update time slots khi load và khi thay đổi ngày
+    updateTimeSlots();
+    dateInput.addEventListener('change', () => {
+      updateTimeSlots();
+      updateSummary();
+    });
+  }
+  ['change','click'].forEach(e => {
+    if (dateInput) dateInput.addEventListener(e, () => { updateTimeSlots(); updateSummary(); });
+    document.getElementById('course-select').addEventListener('change',updateSummary);
+    document.querySelectorAll('input[name="play_time"]').forEach(i=>i.addEventListener('change',updateSummary));
+    document.getElementById('players-select').addEventListener('change',updateSummary);
+    document.querySelectorAll('.svc-checkbox').forEach(i=>i.addEventListener('change',updateSummary));
+  });
+
+  // initial
+  updateSummary();
+</script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,206 @@
+{% extends 'admin/dashboard.html' %}
+
+{% block title %}{{ _('Booking') }} #{{ booking.id }} - Admin{% endblock %}
+
+{% block admin_content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{{ _('Booking Detail') }} #{{ booking.id }}</h2>
+    <a href="{{ url_for('admin.booking_list', lang=lang) }}" class="btn btn-secondary">
+      <i class="bi bi-arrow-left"></i> {{ _('Back to List') }}
+    </a>
+  </div>
+
+  <div class="row">
+    <!-- Main Booking Info -->
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">{{ _('Booking Information') }}</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <h6 class="text-muted">{{ _('Customer Information') }}</h6>
+              <p><strong>{{ _('Name') }}:</strong> {{ booking.fullname or booking.username }}</p>
+              <p><strong>{{ _('Email') }}:</strong> <a href="mailto:{{ booking.email }}">{{ booking.email }}</a></p>
+              <p><strong>{{ _('Phone') }}:</strong> {{ booking.phone or _('Not provided') }}</p>
+              <p><strong>{{ _('Username') }}:</strong> {{ booking.username }}</p>
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-muted">{{ _('Course Information') }}</h6>
+              <p><strong>{{ _('Course') }}:</strong> {{ booking.course_name }}</p>
+              <p><strong>{{ _('Address') }}:</strong> {{ booking.address }}</p>
+              <p><strong>{{ _('Par/Holes') }}:</strong> {{ booking.par }} / {{ booking.holes }}</p>
+              <p><strong>{{ _('Length') }}:</strong> {{ booking.length_yards }} yards</p>
+            </div>
+          </div>
+          
+          <hr>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <h6 class="text-muted">{{ _('Booking Details') }}</h6>
+              <p><strong>{{ _('Play Date') }}:</strong> <span class="text-primary">{{ booking.play_date }}</span></p>
+              <p><strong>{{ _('Tee Time') }}:</strong> <span class="text-primary">{{ booking.play_time }}</span></p>
+              <p><strong>{{ _('Players') }}:</strong> {{ booking.players }}</p>
+              <p><strong>{{ _('Created') }}:</strong> {{ booking.created_at_formatted }}</p>
+              <p><strong>{{ _('Updated') }}:</strong> {{ booking.updated_at_formatted or _('Never') }}</p>
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-muted">{{ _('Services') }}</h6>
+              <ul class="list-unstyled">
+                <li>
+                  {% if booking.has_caddy %}
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                  {% else %}
+                    <i class="bi bi-x-circle text-muted"></i>
+                  {% endif %}
+                  {{ _('Caddy Service') }}
+                </li>
+                <li>
+                  {% if booking.has_cart %}
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                  {% else %}
+                    <i class="bi bi-x-circle text-muted"></i>
+                  {% endif %}
+                  {{ _('Golf Cart') }}
+                </li>
+                <li>
+                  {% if booking.has_rent_clubs %}
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                  {% else %}
+                    <i class="bi bi-x-circle text-muted"></i>
+                  {% endif %}
+                  {{ _('Golf Club Rental') }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <hr>
+          
+          <!-- Pricing -->
+          <h6 class="text-muted">{{ _('Pricing Details') }}</h6>
+          <table class="table table-sm">
+            <tbody>
+              <tr>
+                <td>{{ _('Green Fee') }}</td>
+                <td class="text-end">{{ "{:,.0f}".format(booking.green_fee) }} VND</td>
+              </tr>
+              <tr>
+                <td>{{ _('Additional Services') }}</td>
+                <td class="text-end">{{ "{:,.0f}".format(booking.services_fee) }} VND</td>
+              </tr>
+              <tr>
+                <td>{{ _('Insurance') }}</td>
+                <td class="text-end">{{ "{:,.0f}".format(booking.insurance_fee) }} VND</td>
+              </tr>
+              <tr class="table-success">
+                <th>{{ _('Total Amount') }}</th>
+                <th class="text-end">{{ "{:,.0f}".format(booking.total_amount) }} VND</th>
+              </tr>
+            </tbody>
+          </table>
+          
+          <!-- Notes -->
+          {% if booking.notes %}
+          <hr>
+          <h6 class="text-muted">{{ _('Notes') }}</h6>
+          <p class="mb-0">{{ booking.notes }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Status & Actions -->
+    <div class="col-lg-4">
+      <!-- Current Status -->
+      <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+          <h5 class="mb-0">{{ _('Status Management') }}</h5>
+        </div>
+        <div class="card-body">
+          <p class="mb-3">
+            <strong>{{ _('Current Status') }}:</strong>
+            <span class="badge fs-6
+              {% if booking.status == 'confirmed' %}bg-success
+              {% elif booking.status == 'pending' %}bg-warning text-dark
+              {% else %}bg-secondary{% endif %}">
+              {{ _(booking.status.title()) }}
+            </span>
+          </p>
+          
+          <form method="post" action="{{ url_for('admin.update_booking_status', lang=lang, booking_id=booking.id) }}">
+            <div class="mb-3">
+              <label class="form-label">{{ _('Change Status') }}</label>
+              <select name="status" class="form-select" required>
+                <option value="">{{ _('Select Status') }}</option>
+                <option value="pending" {% if booking.status == 'pending' %}selected{% endif %}>{{ _('Pending') }}</option>
+                <option value="confirmed" {% if booking.status == 'confirmed' %}selected{% endif %}>{{ _('Confirmed') }}</option>
+                <option value="cancelled" {% if booking.status == 'cancelled' %}selected{% endif %}>{{ _('Cancelled') }}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">{{ _('Notes (will be sent to customer)') }}</label>
+              <textarea name="notes" class="form-control" rows="3" 
+                        placeholder="{{ _('Optional message for customer') }}"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+              <i class="bi bi-check-circle"></i> {{ _('Update Status') }}
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Add Note -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="mb-0">{{ _('Add/Update Note') }}</h5>
+        </div>
+        <div class="card-body">
+          <form method="post" action="{{ url_for('admin.add_booking_note', lang=lang, booking_id=booking.id) }}">
+            <div class="mb-3">
+              <textarea name="notes" class="form-control" rows="3" 
+                        placeholder="{{ _('Internal notes (not sent to customer)') }}">{{ booking.notes or '' }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary w-100">
+              <i class="bi bi-pencil"></i> {{ _('Save Note') }}
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Status History -->
+      {% if status_history %}
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">{{ _('Status History') }}</h5>
+        </div>
+        <div class="card-body">
+          <div class="timeline">
+            {% for history in status_history %}
+            <div class="mb-3">
+              <small class="text-muted">{{ history.created_at }}</small>
+              <p class="mb-1">
+                <span class="badge bg-secondary">{{ history.old_status }}</span>
+                <i class="bi bi-arrow-right mx-2"></i>
+                <span class="badge 
+                  {% if history.new_status == 'confirmed' %}bg-success
+                  {% elif history.new_status == 'pending' %}bg-warning text-dark
+                  {% else %}bg-secondary{% endif %}">
+                  {{ history.new_status }}
+                </span>
+              </p>
+              <small>{{ _('By') }}: {{ history.changed_by }}</small>
+              {% if history.notes %}
+                <br><small class="text-muted">{{ history.notes }}</small>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

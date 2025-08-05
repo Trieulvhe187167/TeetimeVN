@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}TEEtimeVN{% endblock %}</title>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-78ENV9BPR2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-78ENV9BPR2');
+  </script>
+
+  <!-- Bootstrap & Font -->
+  <link href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+  <style>
+    :root { --bs-primary: #38BDF8; --bs-success: #22C55E; }
+    body { background: #f8fafc; font-family: 'Poppins', sans-serif; }
+    .main-nav .nav-link { font-size: 1.1rem; font-weight: 600; }
+    .dropdown-toggle::after { margin-left: 0.5rem; }
+  </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- Header chung -->
+  <header class="bg-white shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center py-3">
+      <a href="{{ url_for('index', lang=lang) }}" class="navbar-brand p-0">
+        <img src="{{ url_for('static', filename='image/Logo.png') }}" alt="TEEtimeVN Logo">
+      </a>
+      <div class="d-flex align-items-center">
+        <span class="text-secondary">{{ _('Language') }}</span>
+        <div class="dropdown ms-2">
+          {% set langs = [
+            ('zh-CN', _('中文'), 'cn'),
+            ('en', _('English'), 'us'),
+            ('ko', _('한국어'), 'kr'),
+            ('vi', _('Tiếng Việt'), 'vn'),
+            ('ja', _('日本語'), 'jp'),
+            ('zh-TW', _('繁體'), 'tw')
+          ] %}
+          {% set current = langs | selectattr('0','equalto',lang) | list | first %}
+          <button class="btn btn-light dropdown-toggle d-flex align-items-center"
+                  type="button" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ url_for('static', filename='flags/' ~ current[2] ~ '.svg') }}"
+                 alt="{{ current[1] }} flag" width="20" class="me-2">
+            <span>{{ current[1] }}</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+            {% for code,label,flag in langs %}
+            <li>
+              <a class="dropdown-item d-flex align-items-center {% if code==lang %}active{% endif %}"
+                 href="{{ switch_lang(code) }}">
+                <img src="{{ url_for('static', filename='flags/' ~ flag ~ '.svg') }}"
+                     alt="{{ label }} flag" width="20" class="me-2">
+                <span>{{ label }}</span>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Thanh điều hướng chung -->
+  <nav class="navbar navbar-expand-lg main-nav" style="background: var(--bs-primary);">
+    <div class="container">
+      <ul class="navbar-nav mx-auto justify-content-center mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ url_for('index', lang=lang) }}">{{ _('Home') }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ url_for('courses.course_list', lang=lang) }}">{{ _('Courses') }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white-50" href="#">{{ _('Booking') }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white-50" href="#">{{ _('Help') }}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Nội dung trang -->
+  <main class="container py-5 flex-grow-1">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer chung -->
+  <footer class="bg-white border-top py-4 text-center small text-muted mt-auto">
+    © 2025 TEEtimeVN. {{ _('All rights reserved') }}
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

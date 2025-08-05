@@ -1,0 +1,1395 @@
+# Chinese (Simplified, China) translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-06-01 17:22+0700\n"
+"PO-Revision-Date: 2025-05-10 21:56+0700\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_Hans_CN\n"
+"Language-Team: zh_Hans_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: modules/admin.py:22
+msgid "You do not have permission to access the Admin area."
+msgstr "您没有权限访问管理区域。"
+
+#: modules/admin.py:118
+msgid "Translation not found"
+msgstr "未找到翻译"
+
+#: modules/admin.py:134
+msgid "Translation updated"
+msgstr "翻译已更新"
+
+#: modules/admin.py:151
+msgid "FX rate not found"
+msgstr "未找到汇率"
+
+#: modules/admin.py:163
+msgid "FX rate updated"
+msgstr "汇率已更新"
+
+#: modules/admin.py:200
+msgid "Course created successfully"
+msgstr "球场创建成功"
+
+#: modules/admin.py:203 modules/admin.py:241
+#, python-format
+msgid "Error: %(error)s"
+msgstr "错误：%(error)s"
+
+#: modules/admin.py:213
+msgid "Course not found"
+msgstr "未找到球场"
+
+#: modules/admin.py:238
+msgid "Course updated successfully"
+msgstr "球场更新成功"
+
+#: modules/admin.py:260
+msgid "Course deleted"
+msgstr "球场已删除"
+
+#: modules/admin.py:297
+msgid "Price created"
+msgstr "价格创建成功"
+
+#: modules/admin.py:305
+msgid "Price not found"
+msgstr "未找到价格"
+
+#: modules/admin.py:333
+msgid "Price updated"
+msgstr "价格已更新"
+
+#: modules/admin.py:341
+msgid "Price deleted"
+msgstr "价格已删除"
+
+#: modules/admin.py:360
+msgid "Evaluation not found"
+msgstr "未找到评价"
+
+#: modules/admin.py:379
+msgid "Evaluation updated"
+msgstr "评价已更新"
+
+#: modules/admin.py:388
+msgid "Evaluation deleted"
+msgstr "评价已删除"
+
+#: modules/admin.py:477 modules/admin.py:515
+msgid "Booking not found"
+msgstr "未找到预订"
+
+#: modules/admin.py:499
+msgid "Invalid status"
+msgstr "无效状态"
+
+#: modules/admin.py:540
+msgid "Booking status updated successfully"
+msgstr "预订状态更新成功"
+
+#: modules/admin.py:544
+#, python-format
+msgid "Error updating booking status: %(error)s"
+msgstr "更新预订状态时出错：%(error)s"
+
+#: modules/admin.py:561
+msgid "Note added successfully"
+msgstr "备注添加成功"
+
+#: modules/admin.py:564
+#, python-format
+msgid "Error adding note: %(error)s"
+msgstr "添加备注时出错：%(error)s"
+
+#: modules/admin.py:578
+msgid "Your booking has been confirmed!"
+msgstr "您的预订已确认！"
+
+#: modules/admin.py:579
+msgid "Your booking has been cancelled."
+msgstr "您的预订已取消。"
+
+#: modules/admin.py:580
+msgid "Your booking is pending review."
+msgstr "您的预订正在等待审核。"
+
+#: modules/auth.py:84
+msgid "Logged in successfully!"
+msgstr "登录成功！"
+
+#: modules/auth.py:92
+msgid "Invalid username or password"
+msgstr "用户名或密码无效"
+
+#: modules/auth.py:126
+msgid "Email or username already exists."
+msgstr "电子邮件或用户名已存在。"
+
+#: modules/auth.py:136
+msgid "Registration successful! You can now log in."
+msgstr "注册成功！您现在可以登录。"
+
+#: modules/auth.py:147
+msgid "You have been logged out."
+msgstr "您已登出"
+
+#: modules/booking.py:77
+msgid "Please login to access this page."
+msgstr "请登录以访问此页面。"
+
+#: modules/booking.py:133
+msgid "Please login to book a tee time."
+msgstr "请登录以预订开球时间。"
+
+#: modules/booking.py:138
+msgid "Administrators cannot make bookings."
+msgstr "管理员不能进行预订。"
+
+#: modules/booking.py:157
+msgid "Cannot book for past time. Please select a future time."
+msgstr "不能预订过去的时间。请选择未来的时间。"
+
+#: modules/booking.py:163
+msgid "Please book at least 30 minutes in advance."
+msgstr "请至少提前30分钟预订。"
+
+#: modules/booking.py:244
+msgid "Booking successful! We have sent a confirmation to our team."
+msgstr "预订成功！我们已向团队发送确认信息。"
+
+#: modules/booking.py:246
+msgid ""
+"Booking successful! However, there was an issue sending the notification "
+"email."
+msgstr "预订成功！但是发送通知邮件时出现问题。"
+
+#: modules/booking.py:253
+msgid "An error occurred while processing your booking. Please try again."
+msgstr "处理您的预订时出错。请重试。"
+
+#: modules/booking.py:312
+msgid "Booking not found or you do not have permission to view it."
+msgstr "未找到预订或您没有权限查看。"
+
+#: modules/booking.py:341
+msgid "Booking not found or you do not have permission to cancel it."
+msgstr "未找到预订或您没有权限取消。"
+
+#: modules/booking.py:346
+msgid "This booking has already been cancelled."
+msgstr "此预订已经取消。"
+
+#: modules/booking.py:355
+msgid ""
+"Cannot cancel booking less than 24 hours before play time. Please contact"
+" us directly."
+msgstr "开球时间前24小时内无法取消预订。请直接联系我们。"
+
+#: modules/booking.py:369
+msgid "Your booking has been cancelled successfully."
+msgstr "您的预订已成功取消。"
+
+#: modules/booking.py:373
+msgid "An error occurred while cancelling your booking. Please try again."
+msgstr "取消预订时出错。请重试。"
+
+#: modules/courses.py:218 templates/booking.html:83 templates/booking.html:102
+#: templates/course_detail.html:295 templates/course_detail.html:346
+msgid "Rent golf clubs"
+msgstr "租借高尔夫球杆"
+
+#: modules/courses.py:219 templates/booking.html:88 templates/booking.html:101
+#: templates/course_detail.html:290 templates/course_detail.html:342
+msgid "Caddy"
+msgstr "球童"
+
+#: modules/courses.py:220 templates/booking.html:93 templates/booking.html:103
+#: templates/course_detail.html:300 templates/course_detail.html:350
+msgid "Golf cart"
+msgstr "高尔夫球车"
+
+#: templates/admin/i18n_form.html:9 templates/admin/i18n_list.html:12
+#: templates/base.html:64
+msgid "Language"
+msgstr "语言"
+
+#: templates/base.html:67
+msgid "中文"
+msgstr "中文"
+
+#: templates/base.html:68
+msgid "English"
+msgstr "英语"
+
+#: templates/base.html:69
+msgid "한국어"
+msgstr "韩语"
+
+#: templates/base.html:70
+msgid "Tiếng Việt"
+msgstr "越南语"
+
+#: templates/base.html:71
+msgid "日本語"
+msgstr "日语"
+
+#: templates/base.html:72
+msgid "繁體"
+msgstr "繁体"
+
+#: templates/base.html:105 templates/base.html:216
+msgid "Home"
+msgstr "首页"
+
+#: templates/base.html:112 templates/booking_detail.html:3
+#: templates/booking_detail.html:7
+msgid "My Bookings"
+msgstr "我的预订"
+
+#: templates/admin/dashboard_content.html:3
+#: templates/admin/dashboard_content.html:6 templates/base.html:120
+msgid "Admin Dashboard"
+msgstr "管理仪表板"
+
+#: templates/base.html:139
+msgid "Logout"
+msgstr "退出登录"
+
+#: templates/auth/login.html:2 templates/auth/login.html:20
+#: templates/base.html:160
+msgid "Login"
+msgstr "登录"
+
+#: templates/auth/register.html:3 templates/auth/register.html:41
+#: templates/base.html:179
+msgid "Register"
+msgstr "注册"
+
+#: templates/admin/course_list.html:3 templates/admin/course_list.html:6
+#: templates/admin/dashboard.html:26 templates/base.html:219
+msgid "Courses"
+msgstr "球场"
+
+#: templates/admin/booking_detail.html:3 templates/base.html:222
+msgid "Booking"
+msgstr "预订"
+
+#: templates/base.html:225
+msgid "Help"
+msgstr "帮助"
+
+#: templates/base.html:238
+msgid "Login to Your Account"
+msgstr "登录您的账户"
+
+#: templates/base.html:239 templates/base.html:260 templates/base.html:277
+msgid "Close"
+msgstr "关闭"
+
+#: templates/base.html:259
+msgid "Create a New Account"
+msgstr "创建新账户"
+
+#: templates/base.html:276
+msgid "Forgot Password"
+msgstr "忘记密码"
+
+#: templates/base.html:297
+msgid "All rights reserved"
+msgstr "版权所有"
+
+#: templates/booking.html:29 templates/course_detail.html:243
+msgid "Booking Courses"
+msgstr "预订球场"
+
+#: templates/admin/booking_detail.html:43 templates/admin/booking_list.html:58
+#: templates/admin/booking_list.html:93
+#: templates/admin/dashboard_content.html:101 templates/booking.html:37
+#: templates/booking_detail_single.html:48 templates/course_detail.html:254
+msgid "Play Date"
+msgstr "打球日期"
+
+#: templates/admin/booking_detail.html:31 templates/admin/booking_list.html:92
+#: templates/admin/dashboard_content.html:100
+#: templates/admin/price_list.html:13 templates/booking.html:44
+msgid "Course"
+msgstr "球场"
+
+#: templates/booking.html:54
+msgid "Time Slot"
+msgstr "时间段"
+
+#: templates/admin/booking_detail.html:45 templates/admin/booking_list.html:95
+#: templates/booking.html:69 templates/booking_detail.html:28
+msgid "Players"
+msgstr "人数"
+
+#: templates/booking.html:72 templates/course_detail.html:278
+msgid "people"
+msgstr "人"
+
+#: templates/booking.html:79 templates/course_detail.html:286
+msgid "Amenities"
+msgstr "设施"
+
+#: templates/booking.html:100 templates/course_detail.html:339
+msgid "Green fee"
+msgstr "果岭费"
+
+#: templates/admin/booking_detail.html:95 templates/booking.html:104
+#: templates/booking_detail_single.html:129 templates/course_detail.html:354
+msgid "Insurance"
+msgstr "保险"
+
+#: templates/admin/booking_list.html:96 templates/booking.html:106
+#: templates/booking_detail.html:32 templates/course_detail.html:358
+msgid "Total"
+msgstr "总计"
+
+#: templates/booking.html:107
+msgid "Book now"
+msgstr "立即预订"
+
+#: templates/booking.html:113
+msgid "Admin Access Restricted"
+msgstr "管理员访问受限"
+
+#: templates/booking.html:114
+msgid "Administrators cannot make bookings. Please use a regular user account."
+msgstr "管理员不能进行预订。请使用普通用户账户。"
+
+#: templates/booking.html:117
+msgid "Go to Admin Dashboard"
+msgstr "前往管理仪表板"
+
+#: templates/booking.html:124
+msgid "Login Required"
+msgstr "需要登录"
+
+#: templates/booking.html:125
+msgid "Please login to access our booking system and reserve your tee time."
+msgstr "请登录以访问我们的预订系统并预订您的开球时间。"
+
+#: templates/booking.html:129
+msgid "Login to Continue"
+msgstr "登录以继续"
+
+#: templates/auth/_login_form.html:52 templates/booking.html:132
+#: templates/course_detail.html:324
+msgid "Don't have an account?"
+msgstr "还没有账户？"
+
+#: templates/booking.html:135 templates/course_detail.html:327
+msgid "Register here"
+msgstr "在此注册"
+
+#: templates/booking.html:242 templates/course_detail.html:419
+msgid "No available time slots for today. Please select another date."
+msgstr "今天没有可用的时间段。请选择其他日期。"
+
+#: templates/admin/fx_form.html:8 templates/admin/fx_list.html:11
+#: templates/booking_detail.html:20
+msgid "Date"
+msgstr "日期"
+
+#: templates/admin/booking_list.html:94 templates/booking_detail.html:24
+msgid "Time"
+msgstr "时间"
+
+#: templates/booking_detail.html:50
+msgid "Booked"
+msgstr "已预订"
+
+#: templates/booking_detail.html:54
+msgid "View Details"
+msgstr "查看详情"
+
+#: templates/booking_detail.html:65
+msgid "Booking Status Legend:"
+msgstr "预订状态说明："
+
+#: templates/admin/booking_detail.html:138 templates/admin/booking_list.html:21
+#: templates/admin/booking_list.html:52 templates/booking_detail.html:67
+msgid "Pending"
+msgstr "待处理"
+
+#: templates/booking_detail.html:67
+msgid "Waiting for confirmation"
+msgstr "等待确认"
+
+#: templates/admin/booking_detail.html:139 templates/admin/booking_list.html:29
+#: templates/admin/booking_list.html:53 templates/booking_detail.html:68
+msgid "Confirmed"
+msgstr "已确认"
+
+#: templates/booking_detail.html:68
+msgid "Your booking is confirmed"
+msgstr "您的预订已确认"
+
+#: templates/admin/booking_detail.html:140 templates/admin/booking_list.html:54
+#: templates/booking_detail.html:69
+msgid "Cancelled"
+msgstr "已取消"
+
+#: templates/booking_detail.html:69
+msgid "Booking has been cancelled"
+msgstr "预订已被取消"
+
+#: templates/admin/booking_list.html:137 templates/booking_detail.html:75
+msgid "No bookings found"
+msgstr "未找到预订"
+
+#: templates/booking_detail.html:76
+msgid "You have not made any bookings yet."
+msgstr "您还没有任何预订。"
+
+#: templates/booking_detail.html:78
+msgid "Browse Golf Courses"
+msgstr "浏览高尔夫球场"
+
+#: templates/admin/booking_detail.html:7 templates/booking_detail_single.html:3
+#: templates/booking_detail_single.html:20
+msgid "Booking Detail"
+msgstr "预订详情"
+
+#: templates/booking_detail_single.html:13
+msgid "Booking Confirmed!"
+msgstr "预订已确认！"
+
+#: templates/booking_detail_single.html:26
+msgid "Golf Course Information"
+msgstr "高尔夫球场信息"
+
+#: templates/booking_detail_single.html:30
+msgid "Course Name"
+msgstr "球场名称"
+
+#: templates/admin/booking_detail.html:32 templates/admin/i18n_form.html:12
+#: templates/booking_detail_single.html:31
+msgid "Address"
+msgstr "地址"
+
+#: templates/booking_detail_single.html:32 templates/course_detail.html:196
+msgid "Designer"
+msgstr "设计师"
+
+#: templates/admin/course_form.html:19 templates/admin/course_list.html:16
+#: templates/booking_detail_single.html:35 templates/course_detail.html:192
+msgid "Par"
+msgstr "标准杆"
+
+#: templates/admin/course_form.html:15 templates/admin/course_list.html:15
+#: templates/booking_detail_single.html:36 templates/course_detail.html:194
+msgid "Holes"
+msgstr "洞数"
+
+#: templates/admin/booking_detail.html:34
+#: templates/booking_detail_single.html:37 templates/course_detail.html:193
+msgid "Length"
+msgstr "长度"
+
+#: templates/admin/booking_detail.html:18
+#: templates/booking_detail_single.html:43
+msgid "Booking Information"
+msgstr "预订信息"
+
+#: templates/admin/booking_detail.html:44
+#: templates/booking_detail_single.html:52
+msgid "Tee Time"
+msgstr "开球时间"
+
+#: templates/booking_detail_single.html:56
+msgid "Number of Players"
+msgstr "球员人数"
+
+#: templates/admin/booking_list.html:49 templates/admin/booking_list.html:97
+#: templates/admin/dashboard_content.html:102
+#: templates/booking_detail_single.html:62
+msgid "Status"
+msgstr "状态"
+
+#: templates/booking_detail_single.html:72
+msgid "Booking Date"
+msgstr "预订日期"
+
+#: templates/booking_detail_single.html:80
+msgid "Services Included"
+msgstr "包含的服务"
+
+#: templates/admin/booking_detail.html:58
+#: templates/booking_detail_single.html:91
+msgid "Caddy Service"
+msgstr "球童服务"
+
+#: templates/admin/booking_detail.html:66
+#: templates/booking_detail_single.html:99
+msgid "Golf Cart"
+msgstr "高尔夫球车"
+
+#: templates/admin/booking_detail.html:74
+#: templates/booking_detail_single.html:107
+msgid "Golf Club Rental"
+msgstr "高尔夫球杆租赁"
+
+#: templates/admin/booking_detail.html:83
+#: templates/booking_detail_single.html:115
+msgid "Pricing Details"
+msgstr "价格详情"
+
+#: templates/admin/booking_detail.html:87
+#: templates/booking_detail_single.html:121
+msgid "Green Fee"
+msgstr "果岭费"
+
+#: templates/admin/booking_detail.html:91
+#: templates/booking_detail_single.html:125
+msgid "Additional Services"
+msgstr "附加服务"
+
+#: templates/admin/booking_detail.html:99
+#: templates/booking_detail_single.html:133
+msgid "Total Amount"
+msgstr "总金额"
+
+#: templates/admin/booking_detail.html:23
+#: templates/booking_detail_single.html:142
+msgid "Customer Information"
+msgstr "客户信息"
+
+#: templates/admin/booking_detail.html:24 templates/admin/course_list.html:13
+#: templates/admin/i18n_form.html:10 templates/admin/i18n_list.html:13
+#: templates/booking_detail_single.html:146
+msgid "Name"
+msgstr "名称"
+
+#: templates/admin/booking_detail.html:25
+#: templates/auth/_forgot_password_form.html:4
+#: templates/auth/_register_form.html:49 templates/auth/forgot_password.html:4
+#: templates/auth/register.html:15 templates/booking_detail_single.html:147
+msgid "Email"
+msgstr "电子邮件"
+
+#: templates/admin/booking_detail.html:26
+#: templates/booking_detail_single.html:150
+msgid "Phone"
+msgstr "电话"
+
+#: templates/admin/booking_detail.html:26
+#: templates/booking_detail_single.html:150
+msgid "Not provided"
+msgstr "未提供"
+
+#: templates/admin/booking_detail.html:27 templates/auth/_login_form.html:4
+#: templates/auth/_register_form.html:4 templates/auth/login.html:13
+#: templates/auth/register.html:23 templates/booking_detail_single.html:151
+msgid "Username"
+msgstr "用户名"
+
+#: templates/admin/booking_detail.html:108
+#: templates/booking_detail_single.html:158
+msgid "Notes"
+msgstr "备注"
+
+#: templates/booking_detail_single.html:167
+msgid "Back to My Bookings"
+msgstr "返回我的预订"
+
+#: templates/booking_detail_single.html:172
+msgid "View Course"
+msgstr "查看球场"
+
+#: templates/booking_detail_single.html:178
+msgid "Cancel Booking"
+msgstr "取消预订"
+
+#: templates/booking_detail_single.html:188
+msgid "Need help? Contact us at"
+msgstr "需要帮助？请联系我们"
+
+#: templates/booking_detail_single.html:190
+msgid "or call"
+msgstr "或致电"
+
+#: templates/booking_detail_single.html:203
+msgid "Cancel Booking Confirmation"
+msgstr "确认取消预订"
+
+#: templates/booking_detail_single.html:208
+msgid "Are you sure you want to cancel this booking?"
+msgstr "您确定要取消此预订吗？"
+
+#: templates/booking_detail_single.html:211
+msgid "Important:"
+msgstr "重要："
+
+#: templates/booking_detail_single.html:213
+msgid "Bookings cannot be cancelled less than 24 hours before play time."
+msgstr "开球时间前24小时内无法取消预订。"
+
+#: templates/booking_detail_single.html:214
+msgid "This action cannot be undone."
+msgstr "此操作无法撤销。"
+
+#: templates/booking_detail_single.html:215
+msgid "You will receive a confirmation email after cancellation."
+msgstr "取消后您将收到确认邮件。"
+
+#: templates/booking_detail_single.html:219
+msgid "Booking Details:"
+msgstr "预订详情："
+
+#: templates/booking_detail_single.html:220
+msgid "Course:"
+msgstr "球场："
+
+#: templates/booking_detail_single.html:221
+msgid "Date:"
+msgstr "日期："
+
+#: templates/booking_detail_single.html:222
+msgid "Time:"
+msgstr "时间："
+
+#: templates/booking_detail_single.html:223
+msgid "Total Amount:"
+msgstr "总金额："
+
+#: templates/booking_detail_single.html:228
+msgid "Keep Booking"
+msgstr "保留预订"
+
+#: templates/booking_detail_single.html:232
+msgid "Yes, Cancel Booking"
+msgstr "是的，取消预订"
+
+#: templates/course_detail.html:37
+msgid "View on Google Maps"
+msgstr "在 Google 地图查看"
+
+#: templates/course_detail.html:60
+msgid "Previous"
+msgstr "上一张"
+
+#: templates/course_detail.html:65
+msgid "Next"
+msgstr "下一张"
+
+#: templates/course_detail.html:69
+msgid "No images available."
+msgstr "暂无可用图片。"
+
+#: templates/course_detail.html:72
+msgid "Pricing"
+msgstr "定价"
+
+#: templates/admin/price_list.html:14 templates/course_detail.html:77
+msgid "Tier"
+msgstr "等级"
+
+#: templates/course_detail.html:78
+msgid "Note"
+msgstr "说明"
+
+#: templates/course_detail.html:79
+msgid "Original Price"
+msgstr "原价"
+
+#: templates/course_detail.html:80
+msgid "Discounted Price"
+msgstr "优惠价"
+
+#: templates/course_detail.html:82
+msgid "Select Currency"
+msgstr "选择货币"
+
+#: templates/course_detail.html:113
+msgid "N/A"
+msgstr "不适用"
+
+#: templates/course_detail.html:168
+msgid "Download Scorecard"
+msgstr "下载记分卡"
+
+#: templates/admin/i18n_form.html:16 templates/course_detail.html:174
+msgid "Overview"
+msgstr "概述"
+
+#: templates/course_detail.html:190
+msgid "Course Info"
+msgstr "球场信息"
+
+#: templates/admin/course_form.html:28 templates/course_detail.html:195
+msgid "Opened Year"
+msgstr "开业年份"
+
+#: templates/course_detail.html:200
+msgid "Contact Zalo / WhatsApp"
+msgstr "联系 Zalo / WhatsApp"
+
+#: templates/course_detail.html:209
+msgid "Evaluation Scores"
+msgstr "评估分数"
+
+#: templates/admin/evaluation_form.html:13
+#: templates/admin/evaluation_list.html:12 templates/course_detail.html:212
+msgid "Design & Layout"
+msgstr "设计与布局"
+
+#: templates/admin/evaluation_form.html:18
+#: templates/admin/evaluation_list.html:13 templates/course_detail.html:213
+msgid "Turf Maintenance"
+msgstr "草坪维护"
+
+#: templates/admin/evaluation_form.html:23
+#: templates/admin/evaluation_list.html:14 templates/course_detail.html:214
+msgid "Facilities & Services"
+msgstr "设施与服务"
+
+#: templates/admin/evaluation_form.html:28
+#: templates/admin/evaluation_list.html:15 templates/course_detail.html:215
+msgid "Landscape & Environment"
+msgstr "景观与环境"
+
+#: templates/admin/evaluation_form.html:33
+#: templates/admin/evaluation_list.html:16 templates/course_detail.html:216
+msgid "Playability & Access"
+msgstr "可玩性与可达性"
+
+#: templates/course_detail.html:230
+msgid "No evaluation data available."
+msgstr "暂无评估数据。"
+
+#: templates/course_detail.html:260
+msgid "time_slots"
+msgstr "时间段"
+
+#: templates/course_detail.html:275
+msgid "players"
+msgstr "人数"
+
+#: templates/course_detail.html:308
+msgid "Administrators cannot make bookings"
+msgstr "管理员不能进行预订"
+
+#: templates/course_detail.html:310
+msgid "Please use a regular user account to make bookings"
+msgstr "请使用普通用户账户进行预订"
+
+#: templates/course_detail.html:317
+msgid "Please login to book a tee time"
+msgstr "请登录以预订开球时间"
+
+#: templates/course_detail.html:321
+msgid "Login to Book"
+msgstr "登录以预订"
+
+#: templates/course_detail.html:361
+msgid "Booking Teetime"
+msgstr "预订开球时间"
+
+#: templates/courses.html:2
+msgid "Course List"
+msgstr "球场列表"
+
+#: templates/courses.html:13 templates/index.html:32
+msgid "Location / City"
+msgstr "位置 / 城市"
+
+#: templates/courses.html:26 templates/index.html:48
+msgid "Select Discount"
+msgstr "选择折扣"
+
+#: templates/courses.html:35 templates/index.html:56
+msgid "Select Rating"
+msgstr "选择评分"
+
+#: templates/courses.html:44 templates/index.html:63
+msgid "Filter Courses"
+msgstr "筛选球场"
+
+#: templates/index.html:19
+msgid "Welcome to TEEtimeVN"
+msgstr "欢迎来到 TEEtimeVN"
+
+#: templates/index.html:21
+msgid "Explore Vietnam's top golf courses and book tee times in your language."
+msgstr "以您的语言探索越南顶级高尔夫球场并预订开球时间。"
+
+#: templates/index.html:69
+msgid "Golf Courses"
+msgstr "高尔夫球场"
+
+#: templates/admin/booking_detail.html:9
+msgid "Back to List"
+msgstr "返回列表"
+
+#: templates/admin/booking_detail.html:30
+msgid "Course Information"
+msgstr "球场信息"
+
+#: templates/admin/booking_detail.html:33
+msgid "Par/Holes"
+msgstr "标准杆/洞数"
+
+#: templates/admin/booking_detail.html:42
+msgid "Booking Details"
+msgstr "预订详情"
+
+#: templates/admin/booking_detail.html:46 templates/admin/booking_list.html:98
+msgid "Created"
+msgstr "创建时间"
+
+#: templates/admin/booking_detail.html:47
+msgid "Updated"
+msgstr "更新时间"
+
+#: templates/admin/booking_detail.html:47
+msgid "Never"
+msgstr "从未"
+
+#: templates/admin/booking_detail.html:50
+msgid "Services"
+msgstr "服务"
+
+#: templates/admin/booking_detail.html:120
+msgid "Status Management"
+msgstr "状态管理"
+
+#: templates/admin/booking_detail.html:124
+msgid "Current Status"
+msgstr "当前状态"
+
+#: templates/admin/booking_detail.html:135
+msgid "Change Status"
+msgstr "更改状态"
+
+#: templates/admin/booking_detail.html:137
+msgid "Select Status"
+msgstr "选择状态"
+
+#: templates/admin/booking_detail.html:144
+msgid "Notes (will be sent to customer)"
+msgstr "备注（将发送给客户）"
+
+#: templates/admin/booking_detail.html:146
+msgid "Optional message for customer"
+msgstr "给客户的可选留言"
+
+#: templates/admin/booking_detail.html:149
+msgid "Update Status"
+msgstr "更新状态"
+
+#: templates/admin/booking_detail.html:158
+msgid "Add/Update Note"
+msgstr "添加/更新备注"
+
+#: templates/admin/booking_detail.html:164
+msgid "Internal notes (not sent to customer)"
+msgstr "内部备注（不发送给客户）"
+
+#: templates/admin/booking_detail.html:167
+msgid "Save Note"
+msgstr "保存备注"
+
+#: templates/admin/booking_detail.html:177
+msgid "Status History"
+msgstr "状态历史"
+
+#: templates/admin/booking_detail.html:194
+msgid "By"
+msgstr "操作人"
+
+#: templates/admin/booking_list.html:3 templates/admin/booking_list.html:6
+msgid "Booking Management"
+msgstr "预订管理"
+
+#: templates/admin/booking_list.html:13
+#: templates/admin/dashboard_content.html:16
+msgid "Total Bookings"
+msgstr "预订总数"
+
+#: templates/admin/booking_list.html:37
+msgid "Total Revenue"
+msgstr "总收入"
+
+#: templates/admin/booking_list.html:51
+msgid "All Status"
+msgstr "所有状态"
+
+#: templates/admin/booking_list.html:62
+msgid "Golf Course"
+msgstr "高尔夫球场"
+
+#: templates/admin/booking_list.html:64
+msgid "All Courses"
+msgstr "所有球场"
+
+#: templates/admin/booking_list.html:75
+msgid "Filter"
+msgstr "筛选"
+
+#: templates/admin/booking_list.html:76
+msgid "Clear"
+msgstr "清除"
+
+#: templates/admin/booking_list.html:90 templates/admin/course_list.html:12
+#: templates/admin/dashboard_content.html:98
+#: templates/admin/evaluation_list.html:10 templates/admin/fx_list.html:10
+#: templates/admin/i18n_list.html:10 templates/admin/price_list.html:12
+msgid "ID"
+msgstr "编号"
+
+#: templates/admin/booking_list.html:91
+#: templates/admin/dashboard_content.html:99
+msgid "Customer"
+msgstr "客户"
+
+#: templates/admin/booking_list.html:99 templates/admin/course_list.html:17
+#: templates/admin/dashboard_content.html:103
+#: templates/admin/evaluation_list.html:17 templates/admin/fx_list.html:14
+#: templates/admin/i18n_list.html:14 templates/admin/price_list.html:17
+msgid "Actions"
+msgstr "操作"
+
+#: templates/admin/booking_list.html:127
+#: templates/admin/dashboard_content.html:124
+msgid "View"
+msgstr "查看"
+
+#: templates/admin/course_form.html:3 templates/admin/course_form.html:7
+msgid "Edit Course"
+msgstr "编辑球场"
+
+#: templates/admin/course_form.html:3 templates/admin/course_form.html:7
+msgid "New Course"
+msgstr "新建球场"
+
+#: templates/admin/course_form.html:10 templates/admin/course_list.html:14
+msgid "Slug"
+msgstr "标识"
+
+#: templates/admin/course_form.html:24
+msgid "Length (yards)"
+msgstr "长度（码）"
+
+#: templates/admin/course_form.html:32
+msgid "Embed Code"
+msgstr "嵌入代码"
+
+#: templates/admin/course_form.html:34
+msgid "Paste your embed HTML/JS code here."
+msgstr "在此粘贴您的嵌入 HTML/JS 代码。"
+
+#: templates/admin/course_form.html:37
+msgid "Scorecard PDF"
+msgstr "记分卡 PDF"
+
+#: templates/admin/course_form.html:40 templates/admin/evaluation_form.html:37
+#: templates/admin/fx_form.html:27 templates/admin/i18n_form.html:31
+#: templates/admin/price_form.html:21
+msgid "Save"
+msgstr "保存"
+
+#: templates/admin/course_form.html:41 templates/admin/evaluation_form.html:39
+#: templates/admin/fx_form.html:29 templates/admin/i18n_form.html:33
+#: templates/admin/price_form.html:23
+msgid "Cancel"
+msgstr "取消"
+
+#: templates/admin/course_list.html:8
+msgid "Create New Course"
+msgstr "创建新球场"
+
+#: templates/admin/course_list.html:30 templates/admin/evaluation_list.html:32
+#: templates/admin/fx_list.html:26 templates/admin/i18n_list.html:26
+#: templates/admin/price_list.html:30
+msgid "Edit"
+msgstr "编辑"
+
+#: templates/admin/course_list.html:36 templates/admin/evaluation_list.html:37
+msgid "Delete"
+msgstr "删除"
+
+#: templates/admin/dashboard.html:9
+msgid "Admin Menu"
+msgstr "管理菜单"
+
+#: templates/admin/dashboard.html:14
+msgid "Dashboard"
+msgstr "仪表板"
+
+#: templates/admin/dashboard.html:20
+msgid "Bookings"
+msgstr "预订"
+
+#: templates/admin/dashboard.html:32 templates/admin/price_list.html:3
+#: templates/admin/price_list.html:6
+msgid "Prices"
+msgstr "价格"
+
+#: templates/admin/dashboard.html:38 templates/admin/i18n_list.html:3
+#: templates/admin/i18n_list.html:6
+msgid "Translations"
+msgstr "翻译"
+
+#: templates/admin/dashboard.html:44 templates/admin/evaluation_list.html:3
+#: templates/admin/evaluation_list.html:6
+msgid "Evaluations"
+msgstr "评价"
+
+#: templates/admin/dashboard.html:50 templates/admin/fx_list.html:3
+#: templates/admin/fx_list.html:6
+msgid "FX Rates"
+msgstr "汇率"
+
+#: templates/admin/dashboard_content.html:34
+msgid "Total Courses"
+msgstr "球场总数"
+
+#: templates/admin/dashboard_content.html:52
+msgid "Pending Bookings"
+msgstr "待处理预订"
+
+#: templates/admin/dashboard_content.html:70
+msgid "Revenue This Month"
+msgstr "本月收入"
+
+#: templates/admin/dashboard_content.html:88
+msgid "Recent Bookings"
+msgstr "最近预订"
+
+#: templates/admin/dashboard_content.html:90
+msgid "View All"
+msgstr "查看全部"
+
+#: templates/admin/dashboard_content.html:132
+msgid "No recent bookings"
+msgstr "暂无最近预订"
+
+#: templates/admin/dashboard_content.html:147
+msgid "Quick Actions"
+msgstr "快速操作"
+
+#: templates/admin/dashboard_content.html:154
+msgid "Add New Course"
+msgstr "添加新球场"
+
+#: templates/admin/dashboard_content.html:161
+msgid "Add New Price"
+msgstr "添加新价格"
+
+#: templates/admin/dashboard_content.html:168
+msgid "Manage Bookings"
+msgstr "管理预订"
+
+#: templates/admin/evaluation_form.html:2
+#: templates/admin/evaluation_form.html:5
+msgid "Edit Evaluation"
+msgstr "编辑评价"
+
+#: templates/admin/evaluation_form.html:8
+#: templates/admin/evaluation_list.html:11 templates/admin/i18n_form.html:8
+#: templates/admin/i18n_list.html:11
+msgid "Course ID"
+msgstr "球场编号"
+
+#: templates/admin/evaluation_list.html:35
+msgid "Are you sure you want to delete this evaluation?"
+msgstr "您确定要删除此评价吗？"
+
+#: templates/admin/fx_form.html:2 templates/admin/fx_form.html:5
+msgid "Edit FX Rate"
+msgstr "编辑汇率"
+
+#: templates/admin/fx_form.html:13 templates/admin/fx_list.html:12
+msgid "Currency"
+msgstr "货币"
+
+#: templates/admin/fx_form.html:18 templates/admin/fx_list.html:13
+msgid "Rate to VND"
+msgstr "兑越南盾汇率"
+
+#: templates/admin/fx_form.html:23
+msgid "Source"
+msgstr "来源"
+
+#: templates/admin/i18n_form.html:2 templates/admin/i18n_form.html:5
+msgid "Edit Translation"
+msgstr "编辑翻译"
+
+#: templates/admin/i18n_form.html:11
+msgid "Designer Name"
+msgstr "设计师名称"
+
+#: templates/admin/i18n_form.html:13
+msgid "SEO Title"
+msgstr "SEO 标题"
+
+#: templates/admin/i18n_form.html:14
+msgid "SEO Description"
+msgstr "SEO 描述"
+
+#: templates/admin/i18n_form.html:15
+msgid "Meta Keywords"
+msgstr "Meta 关键字"
+
+#: templates/admin/i18n_form.html:17
+msgid "Content"
+msgstr "内容"
+
+#: templates/admin/i18n_form.html:18
+msgid "Fee Note"
+msgstr "费用说明"
+
+#: templates/admin/i18n_form.html:19
+msgid "Best Season"
+msgstr "最佳季节"
+
+#: templates/admin/i18n_form.html:20
+msgid "Tips Note"
+msgstr "提示说明"
+
+#: templates/admin/price_form.html:4
+msgid "Edit Price"
+msgstr "编辑价格"
+
+#: templates/admin/price_list.html:8
+msgid "Create New Price"
+msgstr "创建新价格"
+
+#: templates/admin/price_list.html:15
+msgid "Rack Price (VND)"
+msgstr "挂牌价（越南盾）"
+
+#: templates/admin/price_list.html:16
+msgid "Discount Price (VND)"
+msgstr "优惠价（越南盾）"
+
+#: templates/auth/_forgot_password_form.html:5
+#: templates/auth/forgot_password.html:10
+msgid "Enter your email"
+msgstr "请输入您的电子邮件"
+
+#: templates/auth/_forgot_password_form.html:8
+#: templates/auth/forgot_password.html:13
+msgid "Remembered your password?"
+msgstr "记得密码了吗？"
+
+#: templates/auth/_forgot_password_form.html:12
+#: templates/auth/_login_form.html:49 templates/auth/_register_form.html:72
+#: templates/auth/forgot_password.html:17
+msgid "Log in"
+msgstr "登录"
+
+#: templates/auth/_forgot_password_form.html:14
+#: templates/auth/forgot_password.html:19 templates/auth/reset_password.html:2
+#: templates/auth/reset_password.html:9 templates/auth/reset_password.html:67
+msgid "Reset Password"
+msgstr "重置密码"
+
+#: templates/auth/_login_form.html:10 templates/auth/login.html:14
+msgid "Enter your username"
+msgstr "请输入您的用户名"
+
+#: templates/auth/_login_form.html:15 templates/auth/_register_form.html:14
+#: templates/auth/login.html:17 templates/auth/register.html:27
+msgid "Password"
+msgstr "密码"
+
+#: templates/auth/_login_form.html:21 templates/auth/login.html:18
+msgid "Enter your password"
+msgstr "请输入您的密码"
+
+#: templates/auth/_login_form.html:46
+msgid "Forgot password?"
+msgstr "忘记密码？"
+
+#: templates/auth/_login_form.html:56 templates/auth/_register_form.html:75
+msgid "Sign up"
+msgstr "注册"
+
+#: templates/auth/_register_form.html:10 templates/auth/register.html:24
+msgid "Choose a username"
+msgstr "选择用户名"
+
+#: templates/auth/_register_form.html:20 templates/auth/register.html:28
+msgid "Choose a password"
+msgstr "选择密码"
+
+#: templates/auth/_register_form.html:40 templates/auth/register.html:31
+msgid "Full Name"
+msgstr "全名"
+
+#: templates/auth/_register_form.html:45 templates/auth/register.html:32
+msgid "Your full name"
+msgstr "请输入您的全名"
+
+#: templates/auth/_register_form.html:55 templates/auth/register.html:16
+msgid "you@example.com"
+msgstr "you@example.com"
+
+#: templates/auth/_register_form.html:59 templates/auth/register.html:19
+msgid "Phone Number"
+msgstr "电话号码"
+
+#: templates/auth/_register_form.html:64 templates/auth/register.html:20
+msgid "Optional"
+msgstr "可选"
+
+#: templates/auth/_register_form.html:68
+msgid "Already have an account?"
+msgstr "已经有账户？"
+
+#: templates/auth/login.html:8
+msgid "Sign In"
+msgstr "登录"
+
+#: templates/auth/login.html:23
+msgid "Forgot Password?"
+msgstr "忘记密码？"
+
+#: templates/auth/login.html:24
+msgid "Don't have an account? Register"
+msgstr "还没有账户？注册"
+
+#: templates/auth/register.html:10
+msgid "Create an Account"
+msgstr "创建账户"
+
+#: templates/auth/register.html:35
+msgid "Role"
+msgstr "角色"
+
+#: templates/auth/register.html:37
+msgid "User"
+msgstr "用户"
+
+#: templates/auth/register.html:38
+msgid "Admin"
+msgstr "管理员"
+
+#: templates/auth/register.html:44
+msgid "Already have an account? Sign in"
+msgstr "已有账户？请登录"
+
+#: templates/auth/reset_password.html:16
+msgid "New Password"
+msgstr "新密码"
+
+#: templates/auth/reset_password.html:22
+msgid "Enter new password"
+msgstr "输入新密码"
+
+#: templates/auth/reset_password.html:42
+msgid "Confirm Password"
+msgstr "确认密码"
+
+#: templates/auth/reset_password.html:48
+msgid "Re-enter new password"
+msgstr "重新输入新密码"
+
+#: templates/auth/reset_password.html:70
+msgid "Back to Home"
+msgstr "返回首页"
+
+#: templates/auth/email/password_reset_email.html:5
+msgid "Password Reset Request"
+msgstr "密码重置请求"
+
+#: templates/auth/email/password_reset_email.html:8
+msgid "Hello"
+msgstr "您好"
+
+#: templates/auth/email/password_reset_email.html:9
+msgid "You requested a password reset for your TEEtimeVN account."
+msgstr "您已请求重置您的 TEEtimeVN 账户密码。"
+
+#: templates/auth/email/password_reset_email.html:10
+msgid ""
+"Click the link below to reset your password. This link is valid for 30 "
+"minutes:"
+msgstr "点击以下链接重置您的密码。该链接在30分钟内有效："
+
+#: templates/auth/email/password_reset_email.html:13
+msgid "If you did not make this request, simply ignore this email."
+msgstr "如果您没有发起此请求，请忽略此邮件。"
+
+#: templates/auth/email/password_reset_email.html:15
+msgid "Thank you,"
+msgstr "谢谢，"
+
+#: templates/auth/email/password_reset_email.html:16
+msgid "The TEEtimeVN Team"
+msgstr "TEEtimeVN 团队"
+
+#~ msgid "Course deleted"
+#~ msgstr "球场已删除"
+
+#~ msgid "Translation entry not found"
+#~ msgstr "未找到翻译条目"
+
+#~ msgid "Translation updated"
+#~ msgstr "翻译已更新"
+
+#~ msgid "Price entry not found"
+#~ msgstr "未找到价格条目"
+
+#~ msgid "Price updated"
+#~ msgstr "价格已更新"
+
+#~ msgid "FX entry not found"
+#~ msgstr "未找到汇率条目"
+
+#~ msgid "FX rate updated"
+#~ msgstr "汇率已更新"
+
+#~ msgid "Translation created"
+#~ msgstr "翻译已创建"
+
+#~ msgid "Translation not found"
+#~ msgstr "未找到翻译"
+
+#~ msgid "Translation deleted"
+#~ msgstr "翻译已删除"
+
+#~ msgid "FX rate created"
+#~ msgstr "汇率已创建"
+
+#~ msgid "FX rate not found"
+#~ msgstr "未找到汇率"
+
+#~ msgid "FX rate deleted"
+#~ msgstr "汇率已删除"
+
+#~ msgid "Price (VND)"
+#~ msgstr "价格（越南盾）"
+
+#~ msgid "Converted Price"
+#~ msgstr "换算价格"
+
+#~ msgid "Manage Courses"
+#~ msgstr "管理球场"
+
+#~ msgid "Manage Translations"
+#~ msgstr "管理翻译"
+
+#~ msgid "Manage FX Rates"
+#~ msgstr "管理汇率"
+
+#~ msgid "Manage Evaluations"
+#~ msgstr "管理评价"
+
+#~ msgid "Go"
+#~ msgstr "前往"

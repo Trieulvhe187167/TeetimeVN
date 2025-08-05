@@ -1,0 +1,1390 @@
+# Japanese translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-06-01 17:22+0700\n"
+"PO-Revision-Date: 2025-05-10 21:56+0700\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+#: modules/admin.py:22
+msgid "You do not have permission to access the Admin area."
+msgstr "管理エリアにアクセスする権限がありません。"
+
+#: modules/admin.py:118
+msgid "Translation not found"
+msgstr "翻訳が見つかりません"
+
+#: modules/admin.py:134
+msgid "Translation updated"
+msgstr "翻訳が更新されました"
+
+#: modules/admin.py:151
+msgid "FX rate not found"
+msgstr "為替レートが見つかりません"
+
+#: modules/admin.py:163
+msgid "FX rate updated"
+msgstr "為替レートが更新されました"
+
+#: modules/admin.py:200
+msgid "Course created successfully"
+msgstr "ゴルフコースが正常に作成されました"
+
+#: modules/admin.py:203 modules/admin.py:241
+#, python-format
+msgid "Error: %(error)s"
+msgstr "エラー：%(error)s"
+
+#: modules/admin.py:213
+msgid "Course not found"
+msgstr "ゴルフコースが見つかりません"
+
+#: modules/admin.py:238
+msgid "Course updated successfully"
+msgstr "ゴルフコースが正常に更新されました"
+
+#: modules/admin.py:260
+msgid "Course deleted"
+msgstr "ゴルフコースが削除されました"
+
+#: modules/admin.py:297
+msgid "Price created"
+msgstr "価格が作成されました"
+
+#: modules/admin.py:305
+msgid "Price not found"
+msgstr "価格が見つかりません"
+
+#: modules/admin.py:333
+msgid "Price updated"
+msgstr "価格が更新されました"
+
+#: modules/admin.py:341
+msgid "Price deleted"
+msgstr "価格が削除されました"
+
+#: modules/admin.py:360
+msgid "Evaluation not found"
+msgstr "評価が見つかりません"
+
+#: modules/admin.py:379
+msgid "Evaluation updated"
+msgstr "評価が更新されました"
+
+#: modules/admin.py:388
+msgid "Evaluation deleted"
+msgstr "評価が削除されました"
+
+#: modules/admin.py:477 modules/admin.py:515
+msgid "Booking not found"
+msgstr "予約が見つかりません"
+
+#: modules/admin.py:499
+msgid "Invalid status"
+msgstr "無効なステータス"
+
+#: modules/admin.py:540
+msgid "Booking status updated successfully"
+msgstr "予約ステータスが正常に更新されました"
+
+#: modules/admin.py:544
+#, python-format
+msgid "Error updating booking status: %(error)s"
+msgstr "予約ステータスの更新エラー：%(error)s"
+
+#: modules/admin.py:561
+msgid "Note added successfully"
+msgstr "メモが正常に追加されました"
+
+#: modules/admin.py:564
+#, python-format
+msgid "Error adding note: %(error)s"
+msgstr "メモの追加エラー：%(error)s"
+
+#: modules/admin.py:578
+msgid "Your booking has been confirmed!"
+msgstr "予約が確定しました！"
+
+#: modules/admin.py:579
+msgid "Your booking has been cancelled."
+msgstr "予約がキャンセルされました。"
+
+#: modules/admin.py:580
+msgid "Your booking is pending review."
+msgstr "予約は審査待ちです。"
+
+#: modules/auth.py:84
+msgid "Logged in successfully!"
+msgstr "ログインに成功しました！"
+
+#: modules/auth.py:92
+msgid "Invalid username or password"
+msgstr "ユーザー名またはパスワードが無効です"
+
+#: modules/auth.py:126
+msgid "Email or username already exists."
+msgstr "メールアドレスまたはユーザー名は既に存在します。"
+
+#: modules/auth.py:136
+msgid "Registration successful! You can now log in."
+msgstr "登録が完了しました！これでログインできます。"
+
+#: modules/auth.py:147
+msgid "You have been logged out."
+msgstr "ログアウトしました。"
+
+#: modules/booking.py:77
+msgid "Please login to access this page."
+msgstr "このページにアクセスするにはログインしてください。"
+
+#: modules/booking.py:133
+msgid "Please login to book a tee time."
+msgstr "ティータイムを予約するにはログインしてください。"
+
+#: modules/booking.py:138
+msgid "Administrators cannot make bookings."
+msgstr "管理者は予約を行うことができません。"
+
+#: modules/booking.py:157
+msgid "Cannot book for past time. Please select a future time."
+msgstr "過去の時間には予約できません。将来の時間を選択してください。"
+
+#: modules/booking.py:163
+msgid "Please book at least 30 minutes in advance."
+msgstr "少なくとも30分前までに予約してください。"
+
+#: modules/booking.py:244
+msgid "Booking successful! We have sent a confirmation to our team."
+msgstr "予約が成功しました！チームに確認を送信しました。"
+
+#: modules/booking.py:246
+msgid "Booking successful! However, there was an issue sending the notification email."
+msgstr "予約は成功しましたが、通知メールの送信に問題が発生しました。"
+
+#: modules/booking.py:253
+msgid "An error occurred while processing your booking. Please try again."
+msgstr "予約の処理中にエラーが発生しました。もう一度お試しください。"
+
+#: modules/booking.py:312
+msgid "Booking not found or you do not have permission to view it."
+msgstr "予約が見つからないか、表示する権限がありません。"
+
+#: modules/booking.py:341
+msgid "Booking not found or you do not have permission to cancel it."
+msgstr "予約が見つからないか、キャンセルする権限がありません。"
+
+#: modules/booking.py:346
+msgid "This booking has already been cancelled."
+msgstr "この予約はすでにキャンセルされています。"
+
+#: modules/booking.py:355
+msgid "Cannot cancel booking less than 24 hours before play time. Please contact us directly."
+msgstr "プレー時間の24時間以内の予約はキャンセルできません。直接お問い合わせください。"
+
+#: modules/booking.py:369
+msgid "Your booking has been cancelled successfully."
+msgstr "予約が正常にキャンセルされました。"
+
+#: modules/booking.py:373
+msgid "An error occurred while cancelling your booking. Please try again."
+msgstr "予約のキャンセル中にエラーが発生しました。もう一度お試しください。"
+
+#: modules/courses.py:218 templates/booking.html:83 templates/booking.html:102
+#: templates/course_detail.html:295 templates/course_detail.html:346
+msgid "Rent golf clubs"
+msgstr "ゴルフクラブレンタル"
+
+#: modules/courses.py:219 templates/booking.html:88 templates/booking.html:101
+#: templates/course_detail.html:290 templates/course_detail.html:342
+msgid "Caddy"
+msgstr "キャディ"
+
+#: modules/courses.py:220 templates/booking.html:93 templates/booking.html:103
+#: templates/course_detail.html:300 templates/course_detail.html:350
+msgid "Golf cart"
+msgstr "ゴルフカート"
+
+#: templates/admin/i18n_form.html:9 templates/admin/i18n_list.html:12
+#: templates/base.html:64
+msgid "Language"
+msgstr "言語"
+
+#: templates/base.html:67
+msgid "中文"
+msgstr "中国語（簡体字）"
+
+#: templates/base.html:68
+msgid "English"
+msgstr "英語"
+
+#: templates/base.html:69
+msgid "한국어"
+msgstr "韓国語"
+
+#: templates/base.html:70
+msgid "Tiếng Việt"
+msgstr "ベトナム語"
+
+#: templates/base.html:71
+msgid "日本語"
+msgstr "日本語"
+
+#: templates/base.html:72
+msgid "繁體"
+msgstr "中国語（繁体字）"
+
+#: templates/base.html:105 templates/base.html:216
+msgid "Home"
+msgstr "ホーム"
+
+#: templates/base.html:112 templates/booking_detail.html:3
+#: templates/booking_detail.html:7
+msgid "My Bookings"
+msgstr "マイ予約"
+
+#: templates/admin/dashboard_content.html:3
+#: templates/admin/dashboard_content.html:6 templates/base.html:120
+msgid "Admin Dashboard"
+msgstr "管理ダッシュボード"
+
+#: templates/base.html:139
+msgid "Logout"
+msgstr "ログアウト"
+
+#: templates/auth/login.html:2 templates/auth/login.html:20
+#: templates/base.html:160
+msgid "Login"
+msgstr "ログイン"
+
+#: templates/auth/register.html:3 templates/auth/register.html:41
+#: templates/base.html:179
+msgid "Register"
+msgstr "登録"
+
+#: templates/admin/course_list.html:3 templates/admin/course_list.html:6
+#: templates/admin/dashboard.html:26 templates/base.html:219
+msgid "Courses"
+msgstr "ゴルフコース一覧"
+
+#: templates/admin/booking_detail.html:3 templates/base.html:222
+msgid "Booking"
+msgstr "予約"
+
+#: templates/base.html:225
+msgid "Help"
+msgstr "ヘルプ"
+
+#: templates/base.html:238
+msgid "Login to Your Account"
+msgstr "あなたのアカウントにログイン"
+
+#: templates/base.html:239 templates/base.html:260 templates/base.html:277
+msgid "Close"
+msgstr "閉じる"
+
+#: templates/base.html:259
+msgid "Create a New Account"
+msgstr "新規アカウントを作成"
+
+#: templates/base.html:276
+msgid "Forgot Password"
+msgstr "パスワードをお忘れですか？"
+
+#: templates/base.html:297
+msgid "All rights reserved"
+msgstr "無断転載を禁じます"
+
+#: templates/booking.html:29 templates/course_detail.html:243
+msgid "Booking Courses"
+msgstr "ゴルフコース予約"
+
+#: templates/admin/booking_detail.html:43 templates/admin/booking_list.html:58
+#: templates/admin/booking_list.html:93
+#: templates/admin/dashboard_content.html:101 templates/booking.html:37
+#: templates/booking_detail_single.html:48 templates/course_detail.html:254
+msgid "Play Date"
+msgstr "プレー日"
+
+#: templates/admin/booking_detail.html:31 templates/admin/booking_list.html:92
+#: templates/admin/dashboard_content.html:100
+#: templates/admin/price_list.html:13 templates/booking.html:44
+msgid "Course"
+msgstr "ゴルフコース"
+
+#: templates/booking.html:54
+msgid "Time Slot"
+msgstr "時間帯"
+
+#: templates/admin/booking_detail.html:45 templates/admin/booking_list.html:95
+#: templates/booking.html:69 templates/booking_detail.html:28
+msgid "Players"
+msgstr "人数"
+
+#: templates/booking.html:72 templates/course_detail.html:278
+msgid "people"
+msgstr "人"
+
+#: templates/booking.html:79 templates/course_detail.html:286
+msgid "Amenities"
+msgstr "設備"
+
+#: templates/booking.html:100 templates/course_detail.html:339
+msgid "Green fee"
+msgstr "グリーンフィー"
+
+#: templates/admin/booking_detail.html:95 templates/booking.html:104
+#: templates/booking_detail_single.html:129 templates/course_detail.html:354
+msgid "Insurance"
+msgstr "保険"
+
+#: templates/admin/booking_list.html:96 templates/booking.html:106
+#: templates/booking_detail.html:32 templates/course_detail.html:358
+msgid "Total"
+msgstr "合計"
+
+#: templates/booking.html:107
+msgid "Book now"
+msgstr "今すぐ予約"
+
+#: templates/booking.html:113
+msgid "Admin Access Restricted"
+msgstr "管理者アクセス制限"
+
+#: templates/booking.html:114
+msgid "Administrators cannot make bookings. Please use a regular user account."
+msgstr "管理者は予約を行えません。通常のユーザーアカウントを使用してください。"
+
+#: templates/booking.html:117
+msgid "Go to Admin Dashboard"
+msgstr "管理ダッシュボードへ"
+
+#: templates/booking.html:124
+msgid "Login Required"
+msgstr "ログインが必要です"
+
+#: templates/booking.html:125
+msgid "Please login to access our booking system and reserve your tee time."
+msgstr "予約システムにアクセスしてティータイムを予約するにはログインしてください。"
+
+#: templates/booking.html:129
+msgid "Login to Continue"
+msgstr "続行するにはログインしてください"
+
+#: templates/auth/_login_form.html:52 templates/booking.html:132
+#: templates/course_detail.html:324
+msgid "Don't have an account?"
+msgstr "アカウントをお持ちでないですか？"
+
+#: templates/booking.html:135 templates/course_detail.html:327
+msgid "Register here"
+msgstr "こちらで登録"
+
+#: templates/booking.html:242 templates/course_detail.html:419
+msgid "No available time slots for today. Please select another date."
+msgstr "本日は利用可能な時間帯がありません。他の日を選択してください。"
+
+#: templates/admin/fx_form.html:8 templates/admin/fx_list.html:11
+#: templates/booking_detail.html:20
+msgid "Date"
+msgstr "日付"
+
+#: templates/admin/booking_list.html:94 templates/booking_detail.html:24
+msgid "Time"
+msgstr "時間"
+
+#: templates/booking_detail.html:50
+msgid "Booked"
+msgstr "予約済み"
+
+#: templates/booking_detail.html:54
+msgid "View Details"
+msgstr "詳細を見る"
+
+#: templates/booking_detail.html:65
+msgid "Booking Status Legend:"
+msgstr "予約ステータスの凡例:"
+
+#: templates/admin/booking_detail.html:138 templates/admin/booking_list.html:21
+#: templates/admin/booking_list.html:52 templates/booking_detail.html:67
+msgid "Pending"
+msgstr "保留中"
+
+#: templates/booking_detail.html:67
+msgid "Waiting for confirmation"
+msgstr "確認待ち"
+
+#: templates/admin/booking_detail.html:139 templates/admin/booking_list.html:29
+#: templates/admin/booking_list.html:53 templates/booking_detail.html:68
+msgid "Confirmed"
+msgstr "承認済み"
+
+#: templates/booking_detail.html:68
+msgid "Your booking is confirmed"
+msgstr "予約が確定しました"
+
+#: templates/admin/booking_detail.html:140 templates/admin/booking_list.html:54
+#: templates/booking_detail.html:69
+msgid "Cancelled"
+msgstr "キャンセル済み"
+
+#: templates/booking_detail.html:69
+msgid "Booking has been cancelled"
+msgstr "予約はキャンセルされました"
+
+#: templates/admin/booking_list.html:137 templates/booking_detail.html:75
+msgid "No bookings found"
+msgstr "予約が見つかりません"
+
+#: templates/booking_detail.html:76
+msgid "You have not made any bookings yet."
+msgstr "まだ予約がありません。"
+
+#: templates/booking_detail.html:78
+msgid "Browse Golf Courses"
+msgstr "ゴルフコースを閲覧"
+
+#: templates/admin/booking_detail.html:7 templates/booking_detail_single.html:3
+#: templates/booking_detail_single.html:20
+msgid "Booking Detail"
+msgstr "予約の詳細"
+
+#: templates/booking_detail_single.html:13
+msgid "Booking Confirmed!"
+msgstr "予約が確定しました！"
+
+#: templates/booking_detail_single.html:26
+msgid "Golf Course Information"
+msgstr "ゴルフコース情報"
+
+#: templates/booking_detail_single.html:30
+msgid "Course Name"
+msgstr "コース名"
+
+#: templates/admin/booking_detail.html:32 templates/admin/i18n_form.html:12
+#: templates/booking_detail_single.html:31
+msgid "Address"
+msgstr "住所"
+
+#: templates/booking_detail_single.html:32 templates/course_detail.html:196
+msgid "Designer"
+msgstr "デザイナー"
+
+#: templates/admin/course_form.html:19 templates/admin/course_list.html:16
+#: templates/booking_detail_single.html:35 templates/course_detail.html:192
+msgid "Par"
+msgstr "パー"
+
+#: templates/admin/course_form.html:15 templates/admin/course_list.html:15
+#: templates/booking_detail_single.html:36 templates/course_detail.html:194
+msgid "Holes"
+msgstr "ホール数"
+
+#: templates/admin/booking_detail.html:34
+#: templates/booking_detail_single.html:37 templates/course_detail.html:193
+msgid "Length"
+msgstr "距離"
+
+#: templates/admin/booking_detail.html:18
+#: templates/booking_detail_single.html:43
+msgid "Booking Information"
+msgstr "予約情報"
+
+#: templates/admin/booking_detail.html:44
+#: templates/booking_detail_single.html:52
+msgid "Tee Time"
+msgstr "ティータイム"
+
+#: templates/booking_detail_single.html:56
+msgid "Number of Players"
+msgstr "プレーヤー数"
+
+#: templates/admin/booking_list.html:49 templates/admin/booking_list.html:97
+#: templates/admin/dashboard_content.html:102
+#: templates/booking_detail_single.html:62
+msgid "Status"
+msgstr "ステータス"
+
+#: templates/booking_detail_single.html:72
+msgid "Booking Date"
+msgstr "予約日"
+
+#: templates/booking_detail_single.html:80
+msgid "Services Included"
+msgstr "含まれるサービス"
+
+#: templates/admin/booking_detail.html:58
+#: templates/booking_detail_single.html:91
+msgid "Caddy Service"
+msgstr "キャディサービス"
+
+#: templates/admin/booking_detail.html:66
+#: templates/booking_detail_single.html:99
+msgid "Golf Cart"
+msgstr "ゴルフカート"
+
+#: templates/admin/booking_detail.html:74
+#: templates/booking_detail_single.html:107
+msgid "Golf Club Rental"
+msgstr "ゴルフクラブレンタル"
+
+#: templates/admin/booking_detail.html:83
+#: templates/booking_detail_single.html:115
+msgid "Pricing Details"
+msgstr "価格の詳細"
+
+#: templates/admin/booking_detail.html:87
+#: templates/booking_detail_single.html:121
+msgid "Green Fee"
+msgstr "グリーンフィー"
+
+#: templates/admin/booking_detail.html:91
+#: templates/booking_detail_single.html:125
+msgid "Additional Services"
+msgstr "追加サービス"
+
+#: templates/admin/booking_detail.html:99
+#: templates/booking_detail_single.html:133
+msgid "Total Amount"
+msgstr "合計金額"
+
+#: templates/admin/booking_detail.html:23
+#: templates/booking_detail_single.html:142
+msgid "Customer Information"
+msgstr "顧客情報"
+
+#: templates/admin/booking_detail.html:24 templates/admin/course_list.html:13
+#: templates/admin/i18n_form.html:10 templates/admin/i18n_list.html:13
+#: templates/booking_detail_single.html:146
+msgid "Name"
+msgstr "名前"
+
+#: templates/admin/booking_detail.html:25
+#: templates/auth/_forgot_password_form.html:4
+#: templates/auth/_register_form.html:49 templates/auth/forgot_password.html:4
+#: templates/auth/register.html:15 templates/booking_detail_single.html:147
+msgid "Email"
+msgstr "メールアドレス"
+
+#: templates/admin/booking_detail.html:26
+#: templates/booking_detail_single.html:150
+msgid "Phone"
+msgstr "電話番号"
+
+#: templates/admin/booking_detail.html:26
+#: templates/booking_detail_single.html:150
+msgid "Not provided"
+msgstr "未提供"
+
+#: templates/admin/booking_detail.html:27 templates/auth/_login_form.html:4
+#: templates/auth/_register_form.html:4 templates/auth/login.html:13
+#: templates/auth/register.html:23 templates/booking_detail_single.html:151
+msgid "Username"
+msgstr "ユーザー名"
+
+#: templates/admin/booking_detail.html:108
+#: templates/booking_detail_single.html:158
+msgid "Notes"
+msgstr "備考"
+
+#: templates/booking_detail_single.html:167
+msgid "Back to My Bookings"
+msgstr "マイ予約に戻る"
+
+#: templates/booking_detail_single.html:172
+msgid "View Course"
+msgstr "コースを見る"
+
+#: templates/booking_detail_single.html:178
+msgid "Cancel Booking"
+msgstr "予約をキャンセル"
+
+#: templates/booking_detail_single.html:188
+msgid "Need help? Contact us at"
+msgstr "サポートが必要ですか？こちらまでご連絡ください："
+
+#: templates/booking_detail_single.html:190
+msgid "or call"
+msgstr "またはお電話で"
+
+#: templates/booking_detail_single.html:203
+msgid "Cancel Booking Confirmation"
+msgstr "予約キャンセル確認"
+
+#: templates/booking_detail_single.html:208
+msgid "Are you sure you want to cancel this booking?"
+msgstr "この予約をキャンセルしてもよろしいですか？"
+
+#: templates/booking_detail_single.html:211
+msgid "Important:"
+msgstr "重要："
+
+#: templates/booking_detail_single.html:213
+msgid "Bookings cannot be cancelled less than 24 hours before play time."
+msgstr "プレー時間の24時間前以内の予約はキャンセルできません。"
+
+#: templates/booking_detail_single.html:214
+msgid "This action cannot be undone."
+msgstr "この操作は取り消せません。"
+
+#: templates/booking_detail_single.html:215
+msgid "You will receive a confirmation email after cancellation."
+msgstr "キャンセル後に確認メールが送信されます。"
+
+#: templates/booking_detail_single.html:219
+msgid "Booking Details:"
+msgstr "予約詳細："
+
+#: templates/booking_detail_single.html:220
+msgid "Course:"
+msgstr "コース："
+
+#: templates/booking_detail_single.html:221
+msgid "Date:"
+msgstr "日付："
+
+#: templates/booking_detail_single.html:222
+msgid "Time:"
+msgstr "時間："
+
+#: templates/booking_detail_single.html:223
+msgid "Total Amount:"
+msgstr "合計金額："
+
+#: templates/booking_detail_single.html:228
+msgid "Keep Booking"
+msgstr "予約を継続"
+
+#: templates/booking_detail_single.html:232
+msgid "Yes, Cancel Booking"
+msgstr "はい、予約をキャンセルします"
+
+#: templates/course_detail.html:37
+msgid "View on Google Maps"
+msgstr "Google マップで表示"
+
+#: templates/course_detail.html:60
+msgid "Previous"
+msgstr "前へ"
+
+#: templates/course_detail.html:65
+msgid "Next"
+msgstr "次へ"
+
+#: templates/course_detail.html:69
+msgid "No images available."
+msgstr "画像はありません。"
+
+#: templates/course_detail.html:72
+msgid "Pricing"
+msgstr "価格情報"
+
+#: templates/admin/price_list.html:14 templates/course_detail.html:77
+msgid "Tier"
+msgstr "ティア"
+
+#: templates/course_detail.html:78
+msgid "Note"
+msgstr "備考"
+
+#: templates/course_detail.html:79
+msgid "Original Price"
+msgstr "元の価格"
+
+#: templates/course_detail.html:80
+msgid "Discounted Price"
+msgstr "割引価格"
+
+#: templates/course_detail.html:82
+msgid "Select Currency"
+msgstr "通貨を選択"
+
+#: templates/course_detail.html:113
+msgid "N/A"
+msgstr "該当なし"
+
+#: templates/course_detail.html:168
+msgid "Download Scorecard"
+msgstr "スコアカードをダウンロード"
+
+#: templates/admin/i18n_form.html:16 templates/course_detail.html:174
+msgid "Overview"
+msgstr "概要"
+
+#: templates/course_detail.html:190
+msgid "Course Info"
+msgstr "ゴルフコース情報"
+
+#: templates/admin/course_form.html:28 templates/course_detail.html:195
+msgid "Opened Year"
+msgstr "開業年"
+
+#: templates/course_detail.html:200
+msgid "Contact Zalo / WhatsApp"
+msgstr "Zalo / WhatsAppで連絡"
+
+#: templates/course_detail.html:209
+msgid "Evaluation Scores"
+msgstr "評価スコア"
+
+#: templates/admin/evaluation_form.html:13
+#: templates/admin/evaluation_list.html:12 templates/course_detail.html:212
+msgid "Design & Layout"
+msgstr "デザイン＆レイアウト"
+
+#: templates/admin/evaluation_form.html:18
+#: templates/admin/evaluation_list.html:13 templates/course_detail.html:213
+msgid "Turf Maintenance"
+msgstr "芝生メンテナンス"
+
+#: templates/admin/evaluation_form.html:23
+#: templates/admin/evaluation_list.html:14 templates/course_detail.html:214
+msgid "Facilities & Services"
+msgstr "施設＆サービス"
+
+#: templates/admin/evaluation_form.html:28
+#: templates/admin/evaluation_list.html:15 templates/course_detail.html:215
+msgid "Landscape & Environment"
+msgstr "景観＆環境"
+
+#: templates/admin/evaluation_form.html:33
+#: templates/admin/evaluation_list.html:16 templates/course_detail.html:216
+msgid "Playability & Access"
+msgstr "プレイアビリティ＆アクセス"
+
+#: templates/course_detail.html:230
+msgid "No evaluation data available."
+msgstr "評価データがありません。"
+
+#: templates/course_detail.html:260
+msgid "time_slots"
+msgstr "時間帯"
+
+#: templates/course_detail.html:275
+msgid "players"
+msgstr "人数"
+
+#: templates/course_detail.html:308
+msgid "Administrators cannot make bookings"
+msgstr "管理者は予約を行うことができません"
+
+#: templates/course_detail.html:310
+msgid "Please use a regular user account to make bookings"
+msgstr "予約するには一般ユーザーアカウントを使用してください"
+
+#: templates/course_detail.html:317
+msgid "Please login to book a tee time"
+msgstr "ティータイムを予約するにはログインしてください"
+
+#: templates/course_detail.html:321
+msgid "Login to Book"
+msgstr "ログインして予約"
+
+#: templates/course_detail.html:361
+msgid "Booking Teetime"
+msgstr "ティータイム予約"
+
+#: templates/courses.html:2
+msgid "Course List"
+msgstr "ゴルフコース一覧"
+
+#: templates/courses.html:13 templates/index.html:32
+msgid "Location / City"
+msgstr "場所 / 都市"
+
+#: templates/courses.html:26 templates/index.html:48
+msgid "Select Discount"
+msgstr "割引を選択"
+
+#: templates/courses.html:35 templates/index.html:56
+msgid "Select Rating"
+msgstr "評価を選択"
+
+#: templates/courses.html:44 templates/index.html:63
+msgid "Filter Courses"
+msgstr "ゴルフコースを絞り込む"
+
+#: templates/index.html:19
+msgid "Welcome to TEEtimeVN"
+msgstr "TEEtimeVNへようこそ"
+
+#: templates/index.html:21
+msgid "Explore Vietnam's top golf courses and book tee times in your language."
+msgstr "あなたの言語でベトナムのトップゴルフコースを探索し、ティータイムを予約しましょう。"
+
+#: templates/index.html:69
+msgid "Golf Courses"
+msgstr "ゴルフコース一覧"
+
+#: templates/admin/booking_detail.html:9
+msgid "Back to List"
+msgstr "一覧に戻る"
+
+#: templates/admin/booking_detail.html:30
+msgid "Course Information"
+msgstr "コース情報"
+
+#: templates/admin/booking_detail.html:33
+msgid "Par/Holes"
+msgstr "パー／ホール数"
+
+#: templates/admin/booking_detail.html:42
+msgid "Booking Details"
+msgstr "予約詳細"
+
+#: templates/admin/booking_detail.html:46 templates/admin/booking_list.html:98
+msgid "Created"
+msgstr "作成日"
+
+#: templates/admin/booking_detail.html:47
+msgid "Updated"
+msgstr "更新日"
+
+#: templates/admin/booking_detail.html:47
+msgid "Never"
+msgstr "なし"
+
+#: templates/admin/booking_detail.html:50
+msgid "Services"
+msgstr "サービス"
+
+#: templates/admin/booking_detail.html:120
+msgid "Status Management"
+msgstr "ステータス管理"
+
+#: templates/admin/booking_detail.html:124
+msgid "Current Status"
+msgstr "現在のステータス"
+
+#: templates/admin/booking_detail.html:135
+msgid "Change Status"
+msgstr "ステータスを変更"
+
+#: templates/admin/booking_detail.html:137
+msgid "Select Status"
+msgstr "ステータスを選択"
+
+#: templates/admin/booking_detail.html:144
+msgid "Notes (will be sent to customer)"
+msgstr "メモ（顧客に送信されます）"
+
+#: templates/admin/booking_detail.html:146
+msgid "Optional message for customer"
+msgstr "顧客への任意メッセージ"
+
+#: templates/admin/booking_detail.html:149
+msgid "Update Status"
+msgstr "ステータスを更新"
+
+#: templates/admin/booking_detail.html:158
+msgid "Add/Update Note"
+msgstr "メモを追加/更新"
+
+#: templates/admin/booking_detail.html:164
+msgid "Internal notes (not sent to customer)"
+msgstr "内部メモ（顧客には送信されません）"
+
+#: templates/admin/booking_detail.html:167
+msgid "Save Note"
+msgstr "メモを保存"
+
+#: templates/admin/booking_detail.html:177
+msgid "Status History"
+msgstr "ステータス履歴"
+
+#: templates/admin/booking_detail.html:194
+msgid "By"
+msgstr "担当者"
+
+#: templates/admin/booking_list.html:3 templates/admin/booking_list.html:6
+msgid "Booking Management"
+msgstr "予約管理"
+
+#: templates/admin/booking_list.html:13 templates/admin/dashboard_content.html:16
+msgid "Total Bookings"
+msgstr "総予約数"
+
+#: templates/admin/booking_list.html:37
+msgid "Total Revenue"
+msgstr "総収益"
+
+#: templates/admin/booking_list.html:51
+msgid "All Status"
+msgstr "全てのステータス"
+
+#: templates/admin/booking_list.html:62
+msgid "Golf Course"
+msgstr "ゴルフコース"
+
+#: templates/admin/booking_list.html:64
+msgid "All Courses"
+msgstr "全てのコース"
+
+#: templates/admin/booking_list.html:75
+msgid "Filter"
+msgstr "フィルター"
+
+#: templates/admin/booking_list.html:76
+msgid "Clear"
+msgstr "クリア"
+
+#: templates/admin/booking_list.html:90 templates/admin/course_list.html:12
+#: templates/admin/dashboard_content.html:98
+#: templates/admin/evaluation_list.html:10 templates/admin/fx_list.html:10
+#: templates/admin/i18n_list.html:10 templates/admin/price_list.html:12
+msgid "ID"
+msgstr "ID"
+
+#: templates/admin/booking_list.html:91
+#: templates/admin/dashboard_content.html:99
+msgid "Customer"
+msgstr "顧客"
+
+#: templates/admin/booking_list.html:99 templates/admin/course_list.html:17
+#: templates/admin/dashboard_content.html:103
+#: templates/admin/evaluation_list.html:17 templates/admin/fx_list.html:14
+#: templates/admin/i18n_list.html:14 templates/admin/price_list.html:17
+msgid "Actions"
+msgstr "操作"
+
+#: templates/admin/booking_list.html:127
+#: templates/admin/dashboard_content.html:124
+msgid "View"
+msgstr "表示"
+
+#: templates/admin/course_form.html:3 templates/admin/course_form.html:7
+msgid "Edit Course"
+msgstr "ゴルフコースを編集"
+
+#: templates/admin/course_form.html:3 templates/admin/course_form.html:7
+msgid "New Course"
+msgstr "新規ゴルフコース"
+
+#: templates/admin/course_form.html:10 templates/admin/course_list.html:14
+msgid "Slug"
+msgstr "スラグ"
+
+#: templates/admin/course_form.html:24
+msgid "Length (yards)"
+msgstr "距離（ヤード）"
+
+#: templates/admin/course_form.html:32
+msgid "Embed Code"
+msgstr "埋め込みコード"
+
+#: templates/admin/course_form.html:34
+msgid "Paste your embed HTML/JS code here."
+msgstr "ここに埋め込み用のHTML/JSコードを貼り付けてください。"
+
+#: templates/admin/course_form.html:37
+msgid "Scorecard PDF"
+msgstr "スコアカードPDF"
+
+#: templates/admin/course_form.html:40 templates/admin/evaluation_form.html:37
+#: templates/admin/fx_form.html:27 templates/admin/i18n_form.html:31
+#: templates/admin/price_form.html:21
+msgid "Save"
+msgstr "保存"
+
+#: templates/admin/course_form.html:41 templates/admin/evaluation_form.html:39
+#: templates/admin/fx_form.html:29 templates/admin/i18n_form.html:33
+#: templates/admin/price_form.html:23
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: templates/admin/course_list.html:8
+msgid "Create New Course"
+msgstr "新規ゴルフコースを作成"
+
+#: templates/admin/course_list.html:30 templates/admin/evaluation_list.html:32
+#: templates/admin/fx_list.html:26 templates/admin/i18n_list.html:26
+#: templates/admin/price_list.html:30
+msgid "Edit"
+msgstr "編集"
+
+#: templates/admin/course_list.html:36 templates/admin/evaluation_list.html:37
+msgid "Delete"
+msgstr "削除"
+
+#: templates/admin/dashboard.html:9
+msgid "Admin Menu"
+msgstr "管理メニュー"
+
+#: templates/admin/dashboard.html:14
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+#: templates/admin/dashboard.html:20
+msgid "Bookings"
+msgstr "予約"
+
+#: templates/admin/dashboard.html:32 templates/admin/price_list.html:3
+#: templates/admin/price_list.html:6
+msgid "Prices"
+msgstr "価格一覧"
+
+#: templates/admin/dashboard.html:38 templates/admin/i18n_list.html:3
+#: templates/admin/i18n_list.html:6
+msgid "Translations"
+msgstr "翻訳一覧"
+
+#: templates/admin/dashboard.html:44 templates/admin/evaluation_list.html:3
+#: templates/admin/evaluation_list.html:6
+msgid "Evaluations"
+msgstr "評価"
+
+#: templates/admin/dashboard.html:50 templates/admin/fx_list.html:3
+#: templates/admin/fx_list.html:6
+msgid "FX Rates"
+msgstr "為替レート"
+
+#: templates/admin/dashboard_content.html:34
+msgid "Total Courses"
+msgstr "合計コース数"
+
+#: templates/admin/dashboard_content.html:52
+msgid "Pending Bookings"
+msgstr "保留中の予約"
+
+#: templates/admin/dashboard_content.html:70
+msgid "Revenue This Month"
+msgstr "今月の収益"
+
+#: templates/admin/dashboard_content.html:88
+msgid "Recent Bookings"
+msgstr "最近の予約"
+
+#: templates/admin/dashboard_content.html:90
+msgid "View All"
+msgstr "すべてを見る"
+
+#: templates/admin/dashboard_content.html:132
+msgid "No recent bookings"
+msgstr "最近の予約はありません"
+
+#: templates/admin/dashboard_content.html:147
+msgid "Quick Actions"
+msgstr "クイックアクション"
+
+#: templates/admin/dashboard_content.html:154
+msgid "Add New Course"
+msgstr "新しいコースを追加"
+
+#: templates/admin/dashboard_content.html:161
+msgid "Add New Price"
+msgstr "新しい価格を追加"
+
+#: templates/admin/dashboard_content.html:168
+msgid "Manage Bookings"
+msgstr "予約管理"
+
+#: templates/admin/evaluation_form.html:2
+#: templates/admin/evaluation_form.html:5
+msgid "Edit Evaluation"
+msgstr "評価を編集"
+
+#: templates/admin/evaluation_form.html:8
+#: templates/admin/evaluation_list.html:11 templates/admin/i18n_form.html:8
+#: templates/admin/i18n_list.html:11
+msgid "Course ID"
+msgstr "ゴルフコースID"
+
+#: templates/admin/evaluation_list.html:35
+msgid "Are you sure you want to delete this evaluation?"
+msgstr "この評価を削除してもよろしいですか？"
+
+#: templates/admin/fx_form.html:2 templates/admin/fx_form.html:5
+msgid "Edit FX Rate"
+msgstr "為替レートを編集"
+
+#: templates/admin/fx_form.html:13 templates/admin/fx_list.html:12
+msgid "Currency"
+msgstr "通貨"
+
+#: templates/admin/fx_form.html:18 templates/admin/fx_list.html:13
+msgid "Rate to VND"
+msgstr "VNDへのレート"
+
+#: templates/admin/fx_form.html:23
+msgid "Source"
+msgstr "ソース"
+
+#: templates/admin/i18n_form.html:2 templates/admin/i18n_form.html:5
+msgid "Edit Translation"
+msgstr "翻訳を編集"
+
+#: templates/admin/i18n_form.html:11
+msgid "Designer Name"
+msgstr "デザイナー名"
+
+#: templates/admin/i18n_form.html:13
+msgid "SEO Title"
+msgstr "SEOタイトル"
+
+#: templates/admin/i18n_form.html:14
+msgid "SEO Description"
+msgstr "SEO説明"
+
+#: templates/admin/i18n_form.html:15
+msgid "Meta Keywords"
+msgstr "メタキーワード"
+
+#: templates/admin/i18n_form.html:17
+msgid "Content"
+msgstr "コンテンツ"
+
+#: templates/admin/i18n_form.html:18
+msgid "Fee Note"
+msgstr "料金備考"
+
+#: templates/admin/i18n_form.html:19
+msgid "Best Season"
+msgstr "最適なシーズン"
+
+#: templates/admin/i18n_form.html:20
+msgid "Tips Note"
+msgstr "ヒント"
+
+#: templates/admin/price_form.html:4
+msgid "Edit Price"
+msgstr "価格を編集"
+
+#: templates/admin/price_list.html:8
+msgid "Create New Price"
+msgstr "新規価格を作成"
+
+#: templates/admin/price_list.html:15
+msgid "Rack Price (VND)"
+msgstr "定価（VND）"
+
+#: templates/admin/price_list.html:16
+msgid "Discount Price (VND)"
+msgstr "割引価格（VND）"
+
+#: templates/auth/_forgot_password_form.html:5
+#: templates/auth/forgot_password.html:10
+msgid "Enter your email"
+msgstr "メールアドレスを入力してください"
+
+#: templates/auth/_forgot_password_form.html:8
+#: templates/auth/forgot_password.html:13
+msgid "Remembered your password?"
+msgstr "パスワードを思い出しましたか？"
+
+#: templates/auth/_forgot_password_form.html:12
+#: templates/auth/_login_form.html:49 templates/auth/_register_form.html:72
+#: templates/auth/forgot_password.html:17
+msgid "Log in"
+msgstr "ログイン"
+
+#: templates/auth/_forgot_password_form.html:14
+#: templates/auth/forgot_password.html:19 templates/auth/reset_password.html:2
+#: templates/auth/reset_password.html:9 templates/auth/reset_password.html:67
+msgid "Reset Password"
+msgstr "パスワードをリセット"
+
+#: templates/auth/_login_form.html:10 templates/auth/login.html:14
+msgid "Enter your username"
+msgstr "ユーザー名を入力してください"
+
+#: templates/auth/_login_form.html:15 templates/auth/_register_form.html:14
+#: templates/auth/login.html:17 templates/auth/register.html:27
+msgid "Password"
+msgstr "パスワード"
+
+#: templates/auth/_login_form.html:21 templates/auth/login.html:18
+msgid "Enter your password"
+msgstr "パスワードを入力してください"
+
+#: templates/auth/_login_form.html:46
+msgid "Forgot password?"
+msgstr "パスワードをお忘れですか？"
+
+#: templates/auth/_login_form.html:56 templates/auth/_register_form.html:75
+msgid "Sign up"
+msgstr "サインアップ"
+
+#: templates/auth/_register_form.html:10 templates/auth/register.html:24
+msgid "Choose a username"
+msgstr "ユーザー名を選択"
+
+#: templates/auth/_register_form.html:20 templates/auth/register.html:28
+msgid "Choose a password"
+msgstr "パスワードを選択"
+
+#: templates/auth/_register_form.html:40 templates/auth/register.html:31
+msgid "Full Name"
+msgstr "氏名"
+
+#: templates/auth/_register_form.html:45 templates/auth/register.html:32
+msgid "Your full name"
+msgstr "あなたの氏名を入力してください"
+
+#: templates/auth/_register_form.html:55 templates/auth/register.html:16
+msgid "you@example.com"
+msgstr "you@example.com"
+
+#: templates/auth/_register_form.html:59 templates/auth/register.html:19
+msgid "Phone Number"
+msgstr "電話番号"
+
+#: templates/auth/_register_form.html:64 templates/auth/register.html:20
+msgid "Optional"
+msgstr "任意"
+
+#: templates/auth/_register_form.html:68
+msgid "Already have an account?"
+msgstr "すでにアカウントをお持ちですか？"
+
+#: templates/auth/login.html:8
+msgid "Sign In"
+msgstr "サインイン"
+
+#: templates/auth/login.html:23
+msgid "Forgot Password?"
+msgstr "パスワードをお忘れですか？"
+
+#: templates/auth/login.html:24
+msgid "Don't have an account? Register"
+msgstr "アカウントをお持ちでないですか？登録"
+
+#: templates/auth/register.html:10
+msgid "Create an Account"
+msgstr "アカウントを作成"
+
+#: templates/auth/register.html:35
+msgid "Role"
+msgstr "役割"
+
+#: templates/auth/register.html:37
+msgid "User"
+msgstr "ユーザー"
+
+#: templates/auth/register.html:38
+msgid "Admin"
+msgstr "管理者"
+
+#: templates/auth/register.html:44
+msgid "Already have an account? Sign in"
+msgstr "既にアカウントをお持ちですか？サインイン"
+
+#: templates/auth/reset_password.html:16
+msgid "New Password"
+msgstr "新しいパスワード"
+
+#: templates/auth/reset_password.html:22
+msgid "Enter new password"
+msgstr "新しいパスワードを入力してください"
+
+#: templates/auth/reset_password.html:42
+msgid "Confirm Password"
+msgstr "パスワードの確認"
+
+#: templates/auth/reset_password.html:48
+msgid "Re-enter new password"
+msgstr "新しいパスワードを再入力してください"
+
+#: templates/auth/reset_password.html:70
+msgid "Back to Home"
+msgstr "ホームに戻る"
+
+#: templates/auth/email/password_reset_email.html:5
+msgid "Password Reset Request"
+msgstr "パスワードリセットのリクエスト"
+
+#: templates/auth/email/password_reset_email.html:8
+msgid "Hello"
+msgstr "こんにちは"
+
+#: templates/auth/email/password_reset_email.html:9
+msgid "You requested a password reset for your TEEtimeVN account."
+msgstr "TEEtimeVNアカウントのパスワードリセットをリクエストされました。"
+
+#: templates/auth/email/password_reset_email.html:10
+msgid ""
+"Click the link below to reset your password. This link is valid for 30 "
+"minutes:"
+msgstr "以下のリンクをクリックしてパスワードをリセットしてください。このリンクは30分間有効です："
+
+#: templates/auth/email/password_reset_email.html:13
+msgid "If you did not make this request, simply ignore this email."
+msgstr "もしこのリクエストに覚えがない場合は、このメールを無視してください。"
+
+#: templates/auth/email/password_reset_email.html:15
+msgid "Thank you,"
+msgstr "よろしくお願いいたします。"
+
+#: templates/auth/email/password_reset_email.html:16
+msgid "The TEEtimeVN Team"
+msgstr "TEEtimeVNチーム"
+
+#~ msgid "Course deleted"
+#~ msgstr "ゴルフコースが削除されました"
+
+#~ msgid "Translation entry not found"
+#~ msgstr "翻訳エントリが見つかりません"
+
+#~ msgid "Translation updated"
+#~ msgstr "翻訳が更新されました"
+
+#~ msgid "Price entry not found"
+#~ msgstr "価格エントリが見つかりません"
+
+#~ msgid "Price updated"
+#~ msgstr "価格が更新されました"
+
+#~ msgid "FX entry not found"
+#~ msgstr "為替レートエントリが見つかりません"
+
+#~ msgid "FX rate updated"
+#~ msgstr "為替レートが更新されました"
+
+#~ msgid "Translation created"
+#~ msgstr "翻訳が作成されました"
+
+#~ msgid "Translation not found"
+#~ msgstr "翻訳が見つかりません"
+
+#~ msgid "Translation deleted"
+#~ msgstr "翻訳が削除されました"
+
+#~ msgid "FX rate created"
+#~ msgstr "為替レートが作成されました"
+
+#~ msgid "FX rate not found"
+#~ msgstr "為替レートが見つかりません"
+
+#~ msgid "FX rate deleted"
+#~ msgstr "為替レートが削除されました"
+
+#~ msgid "Price (VND)"
+#~ msgstr "価格（VND）"
+
+#~ msgid "Converted Price"
+#~ msgstr "換算価格"
+
+#~ msgid "Manage Courses"
+#~ msgstr "ゴルフコース管理"
+
+#~ msgid "Manage Translations"
+#~ msgstr "翻訳管理"
+
+#~ msgid "Manage FX Rates"
+#~ msgstr "為替レート管理"
+
+#~ msgid "Manage Evaluations"
+#~ msgstr "評価管理"
+
+#~ msgid "Go"
+#~ msgstr "実行"

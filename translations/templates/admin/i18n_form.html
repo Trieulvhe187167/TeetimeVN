@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}{{ _('Edit Translation') }} | Admin{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h1>{{ _('Edit Translation') }}</h1>
+  <form method="post">
+    {% for label, field in [
+      (_('Course ID'), 'course_id'),
+      (_('Language'), 'lang'),
+      (_('Name'), 'name'),
+      (_('Designer Name'), 'designer_name'),
+      (_('Address'), 'address'),
+      (_('SEO Title'), 'seo_title'),
+      (_('SEO Description'), 'seo_description'),
+      (_('Meta Keywords'), 'meta_keywords'),
+      (_('Overview'), 'overview'),
+      (_('Content'), 'content'),
+      (_('Fee Note'), 'fee_note'),
+      (_('Best Season'), 'best_season'),
+      (_('Tips Note'), 'tips_note')
+    ] %}
+    <div class="mb-3">
+      <label class="form-label">{{ label }}</label>
+      {% if field in ['overview','content','fee_note','tips_note'] %}
+      <textarea name="{{ field }}" class="form-control" rows="3">{{ row[field] }}</textarea>
+      {% else %}
+      <input type="text" name="{{ field }}" class="form-control" value="{{ row[field] }}">
+      {% endif %}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">{{ _('Save') }}</button>
+    <a href="{{ url_for('admin.i18n_list', lang=lang) }}"
+       class="btn btn-secondary">{{ _('Cancel') }}</a>
+  </form>
+</div>
+{% endblock %}

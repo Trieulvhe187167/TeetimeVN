@@ -1,0 +1,557 @@
+nohup: ignoring input
+[2025-06-25 16:14:50 +0800] [480138] [INFO] Starting gunicorn 23.0.0
+[2025-06-25 16:14:50 +0800] [480138] [INFO] Listening at: http://127.0.0.1:8000 (480138)
+[2025-06-25 16:14:50 +0800] [480138] [INFO] Using worker: sync
+[2025-06-25 16:14:50 +0800] [480139] [INFO] Booting worker with pid: 480139
+[2025-06-25 16:14:50 +0800] [480140] [INFO] Booting worker with pid: 480140
+[2025-06-25 16:14:50 +0800] [480141] [INFO] Booting worker with pid: 480141
+[2025-06-25 16:14:50 +0800] [480142] [INFO] Booting worker with pid: 480142
+[2025-06-25 16:15:21 +0800] [480138] [ERROR] Worker (pid:480141) was sent SIGHUP!
+[2025-06-25 16:15:21 +0800] [480138] [ERROR] Worker (pid:480142) was sent SIGHUP!
+[2025-06-25 16:15:21 +0800] [480138] [ERROR] Worker (pid:480140) was sent SIGHUP!
+[2025-06-25 16:15:21 +0800] [480143] [INFO] Booting worker with pid: 480143
+[2025-06-25 16:15:21 +0800] [480144] [INFO] Booting worker with pid: 480144
+[2025-06-25 16:15:21 +0800] [480138] [ERROR] Worker (pid:480139) was sent SIGHUP!
+[2025-06-25 16:15:21 +0800] [480138] [INFO] Handling signal: hup
+[2025-06-25 16:15:21 +0800] [480138] [INFO] Hang up: Master
+[2025-06-25 16:15:22 +0800] [480146] [INFO] Booting worker with pid: 480146
+[2025-06-25 16:15:22 +0800] [480145] [INFO] Booting worker with pid: 480145
+[2025-06-25 16:15:22 +0800] [480147] [INFO] Booting worker with pid: 480147
+[2025-06-25 16:15:22 +0800] [480148] [INFO] Booting worker with pid: 480148
+[2025-06-25 16:15:22 +0800] [480143] [INFO] Worker exiting (pid: 480143)
+[2025-06-25 16:15:22 +0800] [480144] [INFO] Worker exiting (pid: 480144)
+[2025-06-25 16:15:23 +0800] [480138] [ERROR] Worker (pid:480144) was sent SIGTERM!
+[2025-06-26 11:55:05,110] ERROR in app: Exception on /zh-tw/courses/vinpearl-phu-quoc/ [GET]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/courses.py", line 372, in course_detail
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/linuxuser/teetimevn/templates/course_detail.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/home/linuxuser/teetimevn/templates/base.html", line 77, in top-level template code
+    <img src="{{ url_for('static', filename='flags/' ~ current[2] ~ '.svg') }}"
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 471, in getitem
+    return obj[argument]
+           ~~~^^^^^^^^^^
+jinja2.exceptions.UndefinedError: No first item, sequence was empty.
+[2025-07-02 00:06:59,831] ERROR in app: Exception on /en/auth/forgot-password/ [POST]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/auth.py", line 198, in forgot_password
+    send_email(
+  File "/home/linuxuser/teetimevn/modules/auth.py", line 58, in send_email
+    mail.send(msg)
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 539, in send
+    with self.connect() as connection:
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 127, in __enter__
+    self.host = self.configure_host()
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 144, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 827, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+[2025-07-02 03:24:16,000] ERROR in app: Exception on /en/auth/forgot-password/ [POST]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/auth.py", line 198, in forgot_password
+    send_email(
+  File "/home/linuxuser/teetimevn/modules/auth.py", line 58, in send_email
+    mail.send(msg)
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 539, in send
+    with self.connect() as connection:
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 127, in __enter__
+    self.host = self.configure_host()
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 144, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 827, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+[2025-07-02 05:09:59,566] ERROR in app: Exception on /en/auth/forgot-password/ [POST]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/auth.py", line 198, in forgot_password
+    send_email(
+  File "/home/linuxuser/teetimevn/modules/auth.py", line 58, in send_email
+    mail.send(msg)
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 539, in send
+    with self.connect() as connection:
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 127, in __enter__
+    self.host = self.configure_host()
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 144, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 827, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+[2025-07-02 22:29:30,554] ERROR in app: Exception on /author/courses/ [GET]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/courses.py", line 185, in course_list
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/linuxuser/teetimevn/templates/courses.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/home/linuxuser/teetimevn/templates/base.html", line 77, in top-level template code
+    <img src="{{ url_for('static', filename='flags/' ~ current[2] ~ '.svg') }}"
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 471, in getitem
+    return obj[argument]
+           ~~~^^^^^^^^^^
+jinja2.exceptions.UndefinedError: No first item, sequence was empty.
+[2025-07-03 08:06:40,186] ERROR in app: Exception on /en/auth/forgot-password/ [POST]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/auth.py", line 198, in forgot_password
+    send_email(
+  File "/home/linuxuser/teetimevn/modules/auth.py", line 58, in send_email
+    mail.send(msg)
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 539, in send
+    with self.connect() as connection:
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 127, in __enter__
+    self.host = self.configure_host()
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 144, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 827, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+[2025-07-06 16:34:51,887] ERROR in app: Exception on /internal/courses/ [GET]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/courses.py", line 185, in course_list
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/linuxuser/teetimevn/templates/courses.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/home/linuxuser/teetimevn/templates/base.html", line 77, in top-level template code
+    <img src="{{ url_for('static', filename='flags/' ~ current[2] ~ '.svg') }}"
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 471, in getitem
+    return obj[argument]
+           ~~~^^^^^^^^^^
+jinja2.exceptions.UndefinedError: No first item, sequence was empty.
+[2025-07-07 23:32:07,839] ERROR in app: Exception on /en/auth/forgot-password/ [POST]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/auth.py", line 198, in forgot_password
+    send_email(
+  File "/home/linuxuser/teetimevn/modules/auth.py", line 58, in send_email
+    mail.send(msg)
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 539, in send
+    with self.connect() as connection:
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 127, in __enter__
+    self.host = self.configure_host()
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask_mail/__init__.py", line 144, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 341, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/smtplib.py", line 312, in _get_socket
+    return socket.create_connection((host, port), timeout,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 827, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+[2025-07-09 07:15:39,332] ERROR in app: Exception on /internal/courses/ [GET]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/courses.py", line 185, in course_list
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/linuxuser/teetimevn/templates/courses.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/home/linuxuser/teetimevn/templates/base.html", line 77, in top-level template code
+    <img src="{{ url_for('static', filename='flags/' ~ current[2] ~ '.svg') }}"
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 471, in getitem
+    return obj[argument]
+           ~~~^^^^^^^^^^
+jinja2.exceptions.UndefinedError: No first item, sequence was empty.
+[2025-07-09 07:15:57,394] ERROR in app: Exception on /internal/courses/ [GET]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/courses.py", line 185, in course_list
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/linuxuser/teetimevn/templates/courses.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/home/linuxuser/teetimevn/templates/base.html", line 77, in top-level template code
+    <img src="{{ url_for('static', filename='flags/' ~ current[2] ~ '.svg') }}"
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 471, in getitem
+    return obj[argument]
+           ~~~^^^^^^^^^^
+jinja2.exceptions.UndefinedError: No first item, sequence was empty.
+[2025-07-21 16:54:59,757] ERROR in app: Exception on /internal/courses/ [GET]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/courses.py", line 185, in course_list
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/linuxuser/teetimevn/templates/courses.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/home/linuxuser/teetimevn/templates/base.html", line 77, in top-level template code
+    <img src="{{ url_for('static', filename='flags/' ~ current[2] ~ '.svg') }}"
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 471, in getitem
+    return obj[argument]
+           ~~~^^^^^^^^^^
+jinja2.exceptions.UndefinedError: No first item, sequence was empty.
+[2025-07-21 16:55:31,101] ERROR in app: Exception on /internal/courses/ [GET]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/courses.py", line 185, in course_list
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/linuxuser/teetimevn/templates/courses.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/home/linuxuser/teetimevn/templates/base.html", line 77, in top-level template code
+    <img src="{{ url_for('static', filename='flags/' ~ current[2] ~ '.svg') }}"
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 471, in getitem
+    return obj[argument]
+           ~~~^^^^^^^^^^
+jinja2.exceptions.UndefinedError: No first item, sequence was empty.
+[2025-07-24 04:06:50,275] ERROR in app: Exception on /internal/courses/ [GET]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/courses.py", line 185, in course_list
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/linuxuser/teetimevn/templates/courses.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/home/linuxuser/teetimevn/templates/base.html", line 77, in top-level template code
+    <img src="{{ url_for('static', filename='flags/' ~ current[2] ~ '.svg') }}"
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 471, in getitem
+    return obj[argument]
+           ~~~^^^^^^^^^^
+jinja2.exceptions.UndefinedError: No first item, sequence was empty.
+[2025-07-24 04:06:50,484] ERROR in app: Exception on /internal/courses/ [GET]
+Traceback (most recent call last):
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/modules/courses.py", line 185, in course_list
+    return render_template(
+           ^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/linuxuser/teetimevn/templates/courses.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/home/linuxuser/teetimevn/templates/base.html", line 77, in top-level template code
+    <img src="{{ url_for('static', filename='flags/' ~ current[2] ~ '.svg') }}"
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linuxuser/teetimevn/venv/lib/python3.11/site-packages/jinja2/environment.py", line 471, in getitem
+    return obj[argument]
+           ~~~^^^^^^^^^^
+jinja2.exceptions.UndefinedError: No first item, sequence was empty.

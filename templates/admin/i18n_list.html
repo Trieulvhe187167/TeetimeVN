@@ -1,0 +1,32 @@
+{% extends 'admin/dashboard.html' %}
+
+{% block title %}{{ _('Translations') }} | Admin{% endblock %}
+
+{% block admin_content %}
+  <h1>{{ _('Translations') }}</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>{{ _('ID') }}</th>
+        <th>{{ _('Course ID') }}</th>
+        <th>{{ _('Language') }}</th>
+        <th>{{ _('Name') }}</th>
+        <th>{{ _('Actions') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <td>{{ row.id }}</td>
+        <td>{{ row.course_id }}</td>
+        <td>{{ row.lang }}</td>
+        <td>{{ row.name }}</td>
+        <td>
+          <a href="{{ url_for('admin.i18n_edit', lang=lang, id=row.id) }}"
+             class="btn btn-sm btn-secondary">{{ _('Edit') }}</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}{{ _('Login') }} | TEEtimeVN{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">{{ _('Sign In') }}</h5>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          <div class="mb-3">
+            <label class="form-label">{{ _('Username') }}</label>
+            <input type="text" name="username" class="form-control" required placeholder="{{ _('Enter your username') }}">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">{{ _('Password') }}</label>
+            <input type="password" name="password" class="form-control" required placeholder="{{ _('Enter your password') }}">
+          </div>
+          <button type="submit" class="btn btn-primary w-100">{{ _('Login') }}</button>
+        </form>
+        <div class="mt-3 text-center">
+          <a href="{{ url_for('auth.forgot_password', lang=lang) }}">{{ _('Forgot Password?') }}</a><br>
+          <a href="{{ url_for('auth.register', lang=lang) }}">{{ _("Don't have an account? Register") }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

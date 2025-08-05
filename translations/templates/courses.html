@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}{{ _('Course List') }} | TEEtimeVN{% endblock %}
+{% block content %}
+
+<!-- Course Filters -->
+<div class="row mb-4">
+  <form class="row g-3" method="get">
+    <div class="col-md-3">
+      <input
+        type="text"
+        class="form-control"
+        name="location"
+        placeholder="{{ _('Location / City') }}"
+        list="locationSuggestions"
+      >
+      <datalist id="locationSuggestions">
+        {% for loc in locations %}
+          <option value="{{ loc }}"></option>
+        {% endfor %}
+      </datalist>
+    </div>
+    <div class="col-md-3">
+      <select class="form-select" name="discount">
+        <option value="">{{ _('Select Discount') }}</option>
+        <option value="5">≥5%</option>
+        <option value="10">≥10%</option>
+         <option value="15">≥15%</option>
+        <option value="20">≥20%</option>
+       
+     
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select class="form-select" name="rating">
+        <option value="">{{ _('Select Rating') }}</option>
+        <option value="7">≥7.0</option>
+        <option value="8">≥8.0</option>
+        <option value="9">≥9.0</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-success w-100">{{ _('Filter Courses') }}</button>
+    </div>
+  </form>
+</div>
+
+<!-- Course List -->
+<div class="row g-4">
+  {% for row in rows %}
+    {% set img_url = url_for('static', filename='media/' ~ row.slug ~ '.jpg') %}
+    <div class="col-sm-6 col-lg-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="ratio ratio-4x3">
+          <img
+            src="{{ img_url }}"
+            class="card-img-top"
+            alt="{{ row.name }}"
+            onerror="this.src='https://source.unsplash.com/featured/400x300?golf,{{ loop.index }}'"
+            style="object-fit: cover;"
+          >
+        </div>
+        <div class="card-body">
+          <h5 class="card-title mb-0">
+            <a
+              href="{{ url_for('courses.course_detail', lang=lang, slug=row.slug) }}"
+              class="stretched-link text-decoration-none text-dark"
+            >
+              {{ row.name or row.slug }}
+            </a>
+          </h5>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

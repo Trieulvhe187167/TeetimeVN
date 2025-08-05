@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}{{ _('Course List') }} | TEEtimeVN{% endblock %}
+{% block content %}
+
+<!-- Course Filters -->
+<div class="row mb-4">
+  <form class="row g-3" method="get">
+    <div class="col-md-3">
+      <input
+        type="text"
+        class="form-control"
+        name="location"
+        placeholder="{{ _('Location / City') }}"
+        list="locationSuggestions"
+        value="{{ request.args.get('location', '') }}"
+      >
+      <datalist id="locationSuggestions">
+        {% for loc in locations %}
+          <option value="{{ loc }}"></option>
+        {% endfor %}
+      </datalist>
+    </div>
+
+    <div class="col-md-3">
+      <select class="form-select" name="discount">
+        <option value="">{{ _('Select Discount') }}</option>
+        {% for val in [5, 10, 15, 20] %}
+          <option value="{{ val }}" {% if request.args.get('discount')|int == val %}selected{% endif %}>≥{{ val }}%</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <select class="form-select" name="rating">
+        <option value="">{{ _('Select Rating') }}</option>
+        {% for val in [7, 8, 9] %}
+          <option value="{{ val }}" {% if request.args.get('rating')|float == val %}selected{% endif %}>≥{{ val }}.0</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <button type="submit" class="filter-btn w-100">
+        {{ _('Filter Courses') }}
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Course List -->
+<div class="row g-4">
+  {% for row in rows %}
+    {% set img_url = url_for('static', filename='media/' ~ row.slug ~ '.jpg') %}
+    <div class="col-sm-6 col-lg-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="ratio ratio-4x3">
+          <img
+            src="{{ img_url }}"
+            class="card-img-top"
+            alt="{{ row.name }}"
+            onerror="this.src='https://source.unsplash.com/featured/400x300?golf,{{ loop.index }}'"
+            style="object-fit: cover;"
+          >
+        </div>
+        <div class="card-body">
+          <h5 class="card-title mb-0">
+            <a
+              href="{{ url_for('courses.course_detail', lang=lang, slug=row.slug) }}"
+              class="stretched-link text-decoration-none text-dark"
+            >
+              {{ row.name or row.slug }}
+            </a>
+          </h5>
+        {% if row.address %}
+<p class="mb-1 small text-success d-flex align-items-center">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="me-1" style="width: 1rem; height: 1rem;">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+  </svg>
+  <span>{{ row.address }}</span>
+</p>
+{% endif %}
+
+          {% if row.avg_rating %}
+          <p class="mb-0 text-warning">⭐ {{ row.avg_rating }} / 10</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

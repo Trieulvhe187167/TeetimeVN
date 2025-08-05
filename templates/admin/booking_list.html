@@ -1,0 +1,141 @@
+{% extends 'admin/dashboard.html' %}
+
+{% block title %}{{ _('Booking Management') }} - Admin{% endblock %}
+
+{% block admin_content %}
+  <h2 class="mb-4">{{ _('Booking Management') }}</h2>
+
+  <!-- Statistics Cards -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card bg-primary text-white">
+        <div class="card-body">
+          <h5 class="card-title">{{ _('Total Bookings') }}</h5>
+          <h3>{{ stats.total or 0 }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-warning text-dark">
+        <div class="card-body">
+          <h5 class="card-title">{{ _('Pending') }}</h5>
+          <h3>{{ stats.pending or 0 }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-success text-white">
+        <div class="card-body">
+          <h5 class="card-title">{{ _('Confirmed') }}</h5>
+          <h3>{{ stats.confirmed or 0 }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-info text-white">
+        <div class="card-body">
+          <h5 class="card-title">{{ _('Total Revenue') }}</h5>
+          <h3>{{ "{:,.0f}".format(stats.total_revenue or 0) }} VND</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <form method="get" class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label">{{ _('Status') }}</label>
+          <select name="status" class="form-select">
+            <option value="">{{ _('All Status') }}</option>
+            <option value="pending" {% if filters.status == 'pending' %}selected{% endif %}>{{ _('Pending') }}</option>
+            <option value="confirmed" {% if filters.status == 'confirmed' %}selected{% endif %}>{{ _('Confirmed') }}</option>
+            <option value="cancelled" {% if filters.status == 'cancelled' %}selected{% endif %}>{{ _('Cancelled') }}</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">{{ _('Play Date') }}</label>
+          <input type="date" name="date" class="form-control" value="{{ filters.date }}">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">{{ _('Golf Course') }}</label>
+          <select name="course_id" class="form-select">
+            <option value="">{{ _('All Courses') }}</option>
+            {% for course in courses %}
+              <option value="{{ course.id }}" {% if filters.course_id == course.id|string %}selected{% endif %}>
+                {{ course.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">&nbsp;</label>
+          <div>
+            <button type="submit" class="btn btn-primary">{{ _('Filter') }}</button>
+            <a href="{{ url_for('admin.booking_list', lang=lang) }}" class="btn btn-secondary">{{ _('Clear') }}</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bookings Table -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>{{ _('ID') }}</th>
+              <th>{{ _('Customer') }}</th>
+              <th>{{ _('Course') }}</th>
+              <th>{{ _('Play Date') }}</th>
+              <th>{{ _('Time') }}</th>
+              <th>{{ _('Players') }}</th>
+              <th>{{ _('Total') }}</th>
+              <th>{{ _('Status') }}</th>
+              <th>{{ _('Created') }}</th>
+              <th>{{ _('Actions') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for booking in bookings %}
+            <tr>
+              <td>#{{ booking.id }}</td>
+              <td>
+                <strong>{{ booking.fullname or booking.username }}</strong><br>
+                <small class="text-muted">{{ booking.email }}</small>
+              </td>
+              <td>{{ booking.course_name }}</td>
+              <td>{{ booking.play_date }}</td>
+              <td>{{ booking.play_time }}</td>
+              <td>{{ booking.players }}</td>
+              <td>{{ "{:,.0f}".format(booking.total_amount) }} VND</td>
+              <td>
+                <span class="badge 
+                  {% if booking.status == 'confirmed' %}bg-success
+                  {% elif booking.status == 'pending' %}bg-warning text-dark
+                  {% else %}bg-secondary{% endif %}">
+                  {{ _(booking.status.title()) }}
+                </span>
+              </td>
+              <td>{{ booking.created_at_formatted.split(' ')[0] if booking.created_at_formatted else '' }}</td>
+              <td>
+                <a href="{{ url_for('admin.booking_detail_admin', lang=lang, booking_id=booking.id) }}" 
+                   class="btn btn-sm btn-primary">
+                  <i class="bi bi-eye"></i> {{ _('View') }}
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      
+      {% if not bookings %}
+      <p class="text-center text-muted my-4">{{ _('No bookings found') }}</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

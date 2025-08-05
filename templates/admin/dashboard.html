@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-2 d-md-block bg-light sidebar py-3">
+      <div class="position-sticky">
+        <h6 class="sidebar-heading text-muted px-3">{{ _('Admin Menu') }}</h6>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin.dashboard' %}active{% endif %}" 
+               href="{{ url_for('admin.dashboard', lang=lang) }}">
+              <i class="bi bi-speedometer2"></i> {{ _('Dashboard') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'booking' in request.endpoint %}active{% endif %}" 
+               href="{{ url_for('admin.booking_list', lang=lang) }}">
+              <i class="bi bi-calendar-check"></i> {{ _('Bookings') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin.course_list' %}active{% endif %}" 
+               href="{{ url_for('admin.course_list', lang=lang) }}">
+              <i class="bi bi-flag"></i> {{ _('Courses') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin.review_list' %}active{% endif %}" 
+               href="{{ url_for('admin.review_list', lang=lang) }}">
+              <i class="bi bi-star-fill"></i> {{ _('Reviews') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin.price_list' %}active{% endif %}" 
+               href="{{ url_for('admin.price_list', lang=lang) }}">
+              <i class="bi bi-cash-stack"></i> {{ _('Prices') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin.i18n_list' %}active{% endif %}" 
+               href="{{ url_for('admin.i18n_list', lang=lang) }}">
+              <i class="bi bi-translate"></i> {{ _('Translations') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin.evaluation_list' %}active{% endif %}" 
+               href="{{ url_for('admin.evaluation_list', lang=lang) }}">
+              <i class="bi bi-graph-up"></i> {{ _('Evaluations') }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'admin.fx_list' %}active{% endif %}" 
+               href="{{ url_for('admin.fx_list', lang=lang) }}">
+              <i class="bi bi-currency-exchange"></i> {{ _('FX Rates') }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="col-md-10 ms-sm-auto px-md-4 py-3">
+      {% block admin_content %}{% endblock %}
+    </main>
+  </div>
+</div>
+
+<style>
+/* Admin Sidebar - Green Theme */
+.sidebar {
+  min-height: calc(100vh - 200px);
+  border-right: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
+}
+
+.sidebar .sidebar-heading {
+  color: #006400;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #009933;
+}
+
+/* Nav links - Mặc định màu đen */
+.sidebar .nav-link {
+  color: #000000 !important;  /* Chữ màu đen */
+  padding: 0.75rem 1rem;
+  margin: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Hover state - vẫn giữ chữ đen với background xanh nhạt */
+.sidebar .nav-link:hover {
+  background-color: #e8f5e9;
+  color: #000000 !important;  /* Vẫn giữ chữ đen khi hover */
+  transform: translateX(5px);
+  text-decoration: none;
+}
+
+/* Active nav link - Chữ trắng với nền xanh */
+.sidebar .nav-link.active {
+  background: linear-gradient(135deg, #009933, #006400);
+  color: #ffffff !important;  /* Chữ trắng khi active */
+  box-shadow: 0 4px 10px rgba(0, 153, 51, 0.3);
+}
+
+.sidebar .nav-link.active:hover {
+  background: linear-gradient(135deg, #00b33c, #007a00);
+  color: #ffffff !important;  /* Giữ chữ trắng khi hover active */
+  transform: translateX(5px);
+}
+
+/* Icons - Mặc định màu đen */
+.sidebar .nav-link i {
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+  color: inherit;  /* Kế thừa màu từ parent */
+}
+
+/* Icon colors for active state - trắng */
+.sidebar .nav-link.active i {
+  color: #ffffff !important;  /* Icon trắng khi active */
+}
+
+/* Add subtle animation */
+.sidebar .nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar .nav-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #009933;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.sidebar .nav-link:hover::before,
+.sidebar .nav-link.active::before {
+  transform: translateX(0);
+}
+
+.sidebar .nav-link.active::before {
+  background-color: #ffffff;
+}
+</style>
+{% endblock %}

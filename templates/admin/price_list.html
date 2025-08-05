@@ -1,0 +1,36 @@
+{% extends 'admin/dashboard.html' %}
+
+{% block title %}{{ _('Prices') }} | Admin{% endblock %}
+
+{% block admin_content %}
+  <h1>{{ _('Prices') }}</h1>
+  <a href="{{ url_for('admin.price_create', lang=lang) }}"
+     class="btn btn-primary mb-2">{{ _('Create New Price') }}</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>{{ _('ID') }}</th>
+        <th>{{ _('Course') }}</th>
+        <th>{{ _('Tier') }}</th>
+        <th>{{ _('Rack Price (VND)') }}</th>
+        <th>{{ _('Discount Price (VND)') }}</th>
+        <th>{{ _('Actions') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.course_id }}</td>
+        <td>{{ _(r.tier_type|title) }}</td>
+        <td>{{ r.rack_price_vnd }}</td>
+        <td>{{ r.discount_price_vnd }}</td>
+        <td>
+          <a href="{{ url_for('admin.price_edit', lang=lang, id=r.id) }}"
+             class="btn btn-sm btn-secondary">{{ _('Edit') }}</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

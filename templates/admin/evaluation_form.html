@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}{{ _('Edit Evaluation') }} | Admin{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h1>{{ _('Edit Evaluation') }}</h1>
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label">{{ _('Course ID') }}</label>
+      <input name="course_id" type="number" class="form-control"
+             value="{{ row['course_id'] }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ _('Design & Layout') }}</label>
+      <input name="design_layout" type="number" min="0" max="10" class="form-control"
+             value="{{ row['design_layout'] }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ _('Turf Maintenance') }}</label>
+      <input name="turf_maintenance" type="number" min="0" max="10" class="form-control"
+             value="{{ row['turf_maintenance'] }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ _('Facilities & Services') }}</label>
+      <input name="facilities_services" type="number" min="0" max="10" class="form-control"
+             value="{{ row['facilities_services'] }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ _('Landscape & Environment') }}</label>
+      <input name="landscape_environment" type="number" min="0" max="10" class="form-control"
+             value="{{ row['landscape_environment'] }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ _('Playability & Access') }}</label>
+      <input name="playability_access" type="number" min="0" max="10" class="form-control"
+             value="{{ row['playability_access'] }}">
+    </div>
+    <button type="submit" class="btn btn-success">{{ _('Save') }}</button>
+    <a href="{{ url_for('admin.evaluation_list', lang=lang) }}"
+       class="btn btn-secondary">{{ _('Cancel') }}</a>
+  </form>
+</div>
+{% endblock %}

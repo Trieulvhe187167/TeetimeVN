@@ -1,0 +1,245 @@
+<!-- templates/admin/review_list.html -->
+{% extends 'admin/dashboard.html' %}
+
+{% block title %}{{ _('Review Management') }} - Admin{% endblock %}
+
+{% block admin_content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{{ _('Review Management') }}</h2>
+    <a href="{{ url_for('admin.review_create', lang=lang) }}" class="btn btn-primary">
+      <i class="bi bi-plus-circle"></i> {{ _('Create Review') }}
+    </a>
+  </div>
+
+  <!-- Statistics Cards -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card bg-primary text-white">
+        <div class="card-body">
+          <h5 class="card-title">{{ _('Total Reviews') }}</h5>
+          <h3>{{ stats.total or 0 }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-warning text-dark">
+        <div class="card-body">
+          <h5 class="card-title">{{ _('Average Rating') }}</h5>
+          <h3>{{ "%.1f"|format(stats.avg_rating or 0) }} ⭐</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-success text-white">
+        <div class="card-body">
+          <h5 class="card-title">{{ _('5 Star Reviews') }}</h5>
+          <h3>{{ stats.five_star or 0 }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-info text-white">
+        <div class="card-body">
+          <h5 class="card-title">{{ _('Reviews with Images') }}</h5>
+          <h3>{{ reviews|selectattr('images')|list|length }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <form method="get" class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label">{{ _('Search') }}</label>
+          <input type="text" name="q" class="form-control" 
+                 placeholder="{{ _('Search by content, user...') }}" 
+                 value="{{ filters.q }}">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">{{ _('Golf Course') }}</label>
+          <select name="course_id" class="form-select">
+            <option value="">{{ _('All Courses') }}</option>
+            {% for course in courses %}
+              <option value="{{ course.id }}" {% if filters.course_id == course.id|string %}selected{% endif %}>
+                {{ course.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">{{ _('Rating') }}</label>
+          <select name="rating" class="form-select">
+            <option value="">{{ _('All Ratings') }}</option>
+            {% for i in range(5, 0, -1) %}
+              <option value="{{ i }}" {% if filters.rating == i|string %}selected{% endif %}>
+                {{ i }} {{ _('Stars') }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">&nbsp;</label>
+          <div>
+            <button type="submit" class="btn btn-primary">{{ _('Filter') }}</button>
+            <a href="{{ url_for('admin.review_list', lang=lang) }}" class="btn btn-secondary">{{ _('Clear') }}</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Reviews Table with bulk actions -->
+  <form id="bulkForm" method="post" action="{{ url_for('admin.review_bulk_action', lang=lang) }}">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">{{ _('Reviews') }}</h5>
+        <div class="bulk-actions" style="display: none;">
+          <select name="action" class="form-select form-select-sm" style="width: auto; display: inline-block;">
+            <option value="">{{ _('Bulk Actions') }}</option>
+            <option value="delete">{{ _('Delete Selected') }}</option>
+          </select>
+          <button type="submit" class="btn btn-sm btn-danger" 
+                  onclick="return confirm('{{ _('Are you sure?') }}')">
+            {{ _('Apply') }}
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>
+                  <input type="checkbox" id="selectAll" class="form-check-input">
+                </th>
+                <th>{{ _('ID') }}</th>
+                <th>{{ _('User') }}</th>
+                <th>{{ _('Course') }}</th>
+                <th>{{ _('Rating') }}</th>
+                <th style="width: 35%;">{{ _('Comment') }}</th>
+                <th>{{ _('Images') }}</th>
+                <th>{{ _('Helpful') }}</th>
+                <th>{{ _('Date') }}</th>
+                <th>{{ _('Actions') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for review in reviews %}
+              <tr>
+                <td>
+                  <input type="checkbox" name="review_ids[]" value="{{ review.id }}" 
+                         class="form-check-input review-checkbox">
+                </td>
+                <td>#{{ review.id }}</td>
+                <td>
+                  <strong>{{ review.user_name }}</strong><br>
+                  <small class="text-muted">@{{ review.username }}</small>
+                </td>
+                <td>{{ review.course_name }}</td>
+                <td>
+                  <div class="text-warning">
+                    {% for i in range(review.rating) %}⭐{% endfor %}
+                  </div>
+                </td>
+                <td>
+                  <div style="max-width: 350px; overflow: hidden; text-overflow: ellipsis;">
+                    {{ review.comment[:150] }}{% if review.comment|length > 150 %}...{% endif %}
+                  </div>
+                </td>
+                <td>
+                  {% if review.images %}
+                    <span class="badge bg-info">{{ review.images|length }} 📷</span>
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                </td>
+                <td>
+                  <span class="badge bg-secondary">{{ review.helpful_count or 0 }}</span>
+                </td>
+                <td>
+                  <small>{{ review.created_at_formatted.split(' ')[0] if review.created_at_formatted else '' }}</small>
+                </td>
+                <td>
+                  <div class="btn-group btn-group-sm">
+                    <a href="{{ url_for('admin.review_detail_admin', lang=lang, review_id=review.id) }}" 
+                       class="btn btn-info" title="{{ _('View') }}">
+                      <i class="bi bi-eye"></i>
+                    </a>
+                    <a href="{{ url_for('admin.review_edit', lang=lang, review_id=review.id) }}" 
+                       class="btn btn-warning" title="{{ _('Edit') }}">
+                      <i class="bi bi-pencil"></i>
+                    </a>
+                    <form method="post" action="{{ url_for('admin.delete_review_admin', lang=lang, review_id=review.id) }}" 
+                          style="display: inline;"
+                          onsubmit="return confirm('{{ _('Are you sure you want to delete this review?') }}');">
+                      <button type="submit" class="btn btn-danger" title="{{ _('Delete') }}">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        
+        {% if not reviews %}
+        <p class="text-center text-muted my-4">{{ _('No reviews found') }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </form>
+
+  <!-- Rating Distribution -->
+  <div class="card mt-4">
+    <div class="card-header">
+      <h5 class="mb-0">{{ _('Rating Distribution') }}</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        {% for stars in range(5, 0, -1) %}
+          {% set count = stats[['one_star', 'two_star', 'three_star', 'four_star', 'five_star'][stars-1]] or 0 %}
+          {% set percentage = (count / stats.total * 100) if stats.total > 0 else 0 %}
+          <div class="col-12 mb-2">
+            <div class="d-flex align-items-center">
+              <span class="me-2" style="width: 60px;">{{ stars }} ⭐</span>
+              <div class="progress flex-grow-1" style="height: 20px;">
+                <div class="progress-bar bg-warning" style="width: {{ percentage }}%">
+                  {{ count }}
+                </div>
+              </div>
+              <span class="ms-2" style="width: 60px;">{{ "%.1f"|format(percentage) }}%</span>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Select all checkbox
+    document.getElementById('selectAll').addEventListener('change', function() {
+      const checkboxes = document.querySelectorAll('.review-checkbox');
+      checkboxes.forEach(cb => cb.checked = this.checked);
+      toggleBulkActions();
+    });
+
+    // Show/hide bulk actions
+    document.querySelectorAll('.review-checkbox').forEach(cb => {
+      cb.addEventListener('change', toggleBulkActions);
+    });
+
+    function toggleBulkActions() {
+      const checkedBoxes = document.querySelectorAll('.review-checkbox:checked');
+      const bulkActions = document.querySelector('.bulk-actions');
+      if (checkedBoxes.length > 0) {
+        bulkActions.style.display = 'block';
+      } else {
+        bulkActions.style.display = 'none';
+      }
+    }
+  </script>
+{% endblock %}

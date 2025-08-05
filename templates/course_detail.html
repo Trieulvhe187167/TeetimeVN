@@ -1,0 +1,909 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ text.seo_title or text.name }}{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="{{ text.seo_description }}">
+{% endblock %}
+{% block meta_keywords %}
+  <meta name="keywords" content="{{ text.meta_keywords }}">
+{% endblock %}
+ 
+{% block og_tags %}
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ text.seo_title or text.name }}">
+<meta property="og:description" content="{{ text.seo_description }}">
+<meta property="og:url" content="{{ request.url }}">
+<meta property="og:image" content="{{ url_for('static', filename='image/og-default.jpg', _external=True) }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ text.seo_title or text.name }}">
+<meta name="twitter:description" content="{{ text.seo_description }}">
+<meta name="twitter:image" content="{{ url_for('static', filename='image/og-default.jpg', _external=True) }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="row g-5">
+  <div class="col-lg-8">
+
+    {% if embed %}
+      <div class="embed-container mb-4">
+        {{ embed|safe }}
+      </div>
+    {% endif %}
+
+    {% if map_link %}
+      <p>
+        <a href="{{ map_link }}" target="_blank" class="btn btn-outline-primary mb-4">
+          {{ _('View on Google Maps') }}
+        </a>
+      </p>
+    {% endif %}
+
+    <h1 class="fw-bold text-primary mb-3">{{ text.name }}</h1>
+
+    {% if images %}
+      <div id="galleryCarousel" class="carousel slide mb-4 gallery-carousel" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          {% for img in images %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+              <img
+                src="{{ url_for('static', filename='media/' ~ course['slug'] ~ '/gallery/' ~ img) }}"
+                class="d-block w-100 rounded shadow-sm"
+                 style="max-height: 600px; object-fit: contain;"
+                alt="{{ text.name }} image {{ loop.index }}">
+            </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button"
+                data-bs-target="#galleryCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">{{ _('Previous') }}</span>
+        </button>
+        <button class="carousel-control-next" type="button"
+                data-bs-target="#galleryCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">{{ _('Next') }}</span>
+        </button>
+      </div>
+    {% else %}
+      <p class="text-muted">{{ _('No images available.') }}</p>
+    {% endif %}
+
+    <h2 class="h4 fw-semibold text-success mb-3">{{ _('Pricing') }}</h2>
+
+    <table class="table table-hover align-middle">
+      <thead class="table-success">
+        <tr>
+          <th>{{ _('Tier') }}</th>
+          <th>{{ _('Note') }}</th>
+          <th>{{ _('Original Price') }}</th>
+          <th>{{ _('Discounted Price') }}</th>
+          <th style="vertical-align: middle;">
+            {{ _('Select Currency') }}:
+            <select id="currencySelect" class="form-select form-select-sm" style="width:auto; display:inline-block">
+              <option value="VND">VND</option>
+              <option value="USD">USD</option>
+              <option value="CNY">CNY</option>
+              <option value="JPY">JPY</option>
+              <option value="KRW">KRW</option>
+              <option value="TWD">TWD</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in prices %}
+          {% set original = p['rack_price_vnd'] %}
+          {% set discount_text = p['discount_note'] or '0%' %}
+          {% set discount_number = discount_text.replace('%', '').replace('-', '') | float %}
+          {% set discount_rate = discount_number / 100 %}
+          {% set discounted = (original - (original * discount_rate)) | round(0, 'floor') %}
+          <tr data-discounted="{{ discounted }}">
+            <td class="text-capitalize">{{ p['tier_type'] }}</td>
+            <td>{{ discount_text }}</td>
+            <td>
+              {% if original %}
+                {% if discount_rate > 0 %}
+                  <s class="text-muted">{{ "{:,.0f}".format(original) }} đ</s>
+                {% else %}
+                  <span class="text-dark">{{ "{:,.0f}".format(original) }} đ</span>
+                {% endif %}
+              {% else %}
+                {{ _('N/A') }}
+              {% endif %}
+            </td>
+            <td>
+              {% if discount_rate > 0 %}
+                <span class="text-danger fw-bold">{{ "{:,.0f}".format(discounted) }} đ</span>
+              {% else %}
+                <span class="text-dark">{{ "{:,.0f}".format(original) }} đ</span>
+              {% endif %}
+            </td>
+            <td class="converted-price" data-currency="VND">{{ "{:,.0f}".format(discounted) }} đ</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <script>
+      const fxRates = {
+        {% for code, rate in fx_rates.items() %}
+          "{{ code }}": {{ rate }}{% if not loop.last %},{% endif %}
+        {% endfor %}
+      };
+
+      const currencyNames = {
+        VND: 'đ', USD: '$', CNY: '¥', JPY: '¥', KRW: '₩', TWD: 'NT$', EUR: '€'
+      };
+
+      const langToCurrency = {
+        'vi': 'VND', 'en': 'USD', 'zh-CN': 'CNY', 'zh-TW': 'TWD', 'ja': 'JPY', 'ko': 'KRW'
+      };
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const currentLang = '{{ lang }}';
+        const defaultCurrency = langToCurrency[currentLang] || 'VND';
+        const select = document.getElementById('currencySelect');
+        select.value = defaultCurrency;
+        select.dispatchEvent(new Event('change'));
+      });
+
+      document.getElementById('currencySelect').addEventListener('change', function () {
+        const selected = this.value;
+        const rows = document.querySelectorAll('tr[data-discounted]');
+        rows.forEach(row => {
+          const vnd = parseInt(row.getAttribute('data-discounted')) || 0;
+          const rate = fxRates[selected] || 1;
+          const value = vnd / rate;
+          const cell = row.querySelector('.converted-price');
+          cell.textContent = value.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' ' + currencyNames[selected];
+          cell.setAttribute('data-currency', selected);
+        });
+      });
+    </script>
+
+    {% if course.scorecard_pdf %}
+      <a href="{{ course.scorecard_pdf }}" target="_blank" class="btn btn-outline-success mt-2">
+        {{ _('Download Scorecard') }}
+      </a>
+    {% endif %}
+
+    <br><br>
+
+    <h2 class="h4 fw-semibold text-success mb-3">{{ _('Overview') }}</h2>
+    <div class="course-overview">
+      {% for para in text.overview.split('\n\n') %}
+        {% set lines = para.split('\n') %}
+        <p>
+          <strong>{{ lines[0] }}</strong>
+          {% for line in lines[1:] %}
+            <br>{{ line }}
+          {% endfor %}
+        </p>
+      {% endfor %}
+    </div>
+
+    <!-- Review Section -->
+    <br><br>
+    <h2 class="h4 fw-semibold text-success mb-3">{{ _('Reviews') }}</h2>
+
+    <!-- Add Review Button -->
+    {% if session.get('user_id') and session.get('role') != 'admin' %}
+      {% if can_review %}
+        <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#reviewModal">
+          <i class="bi bi-star-fill me-2"></i>{{ _('Write a Review') }}
+        </button>
+      {% else %}
+        <div class="alert alert-info mb-4">
+          <i class="bi bi-info-circle me-2"></i>
+          {{ _('You need to book and play at this course before writing a review.') }}
+        </div>
+      {% endif %}
+    {% elif session.get('role') == 'admin' %}
+      <div class="alert alert-warning mb-4">
+        <i class="bi bi-shield-lock-fill me-2"></i>
+        {{ _('Administrators cannot write reviews.') }}
+      </div>
+    {% else %}
+      <div class="alert alert-info mb-4">
+        <i class="bi bi-lock-fill me-2"></i>
+        {{ _('Please login to write a review.') }}
+        <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="alert-link">
+          {{ _('Login here') }}
+        </a>
+      </div>
+    {% endif %}
+
+    <!-- Reviews Summary -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-md-4 text-center">
+            <h1 class="display-3 mb-0 text-warning">{{ "%.1f"|format(avg_rating) }}</h1>
+            <div class="mb-2">
+              {% for i in range(5) %}
+                {% if i < avg_rating|round|int %}
+                  <i class="bi bi-star-fill text-warning"></i>
+                {% elif i < avg_rating %}
+                  <i class="bi bi-star-half text-warning"></i>
+                {% else %}
+                  <i class="bi bi-star text-warning"></i>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <p class="text-muted mb-0">{{ total_reviews }} {{ _('reviews') }}</p>
+          </div>
+          <div class="col-md-8">
+            <!-- Rating Distribution -->
+            {% for stars in range(5, 0, -1) %}
+              {% set count = rating_distribution.get(stars, 0) %}
+              {% set percentage = (count / total_reviews * 100) if total_reviews > 0 else 0 %}
+              <div class="d-flex align-items-center mb-2">
+                <span class="me-2" style="width: 20px;">{{ stars }}</span>
+                <i class="bi bi-star-fill text-warning me-2"></i>
+                <div class="progress flex-grow-1" style="height: 8px;">
+                  <div class="progress-bar bg-warning" style="width: {{ percentage }}%"></div>
+                </div>
+                <span class="ms-2 text-muted" style="width: 40px;">{{ count }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews List -->
+    <div class="reviews-container">
+      {% if reviews %}
+        {% for review in reviews %}
+          <div class="card border-0 shadow-sm mb-3 review-item">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <h6 class="mb-1">{{ review.user_name }}</h6>
+                  <div class="mb-1">
+                    {% for i in range(5) %}
+                      {% if i < review.rating %}
+                        <i class="bi bi-star-fill text-warning"></i>
+                      {% else %}
+                        <i class="bi bi-star text-warning"></i>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                  <small class="text-muted">
+                    {{ review.created_at_display if review.created_at_display else '' }}
+                    {% if review.verified_booking %}
+                      <span class="badge bg-success ms-2">
+                        <i class="bi bi-check-circle me-1"></i>{{ _('Verified Booking') }}
+                      </span>
+                    {% endif %}
+                  </small>
+                </div>
+                {% if session.get('user_id') == review.user_id %}
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="dropdown">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="dropdown-item" href="#" onclick="editReview({{ review.id }})">
+                          <i class="bi bi-pencil me-2"></i>{{ _('Edit') }}
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item text-danger" href="#" onclick="deleteReview({{ review.id }})">
+                          <i class="bi bi-trash me-2"></i>{{ _('Delete') }}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                {% endif %}
+              </div>
+              
+              <p class="mb-2">{{ review.comment }}</p>
+              
+              {% if review.images %}
+                <div class="review-images mb-2">
+                  {% for img in review.images %}
+                    <img src="{{ url_for('static', filename='media/reviews/' ~ img) }}" 
+                         class="img-thumbnail me-2" 
+                         style="width: 100px; height: 100px; object-fit: cover; cursor: pointer;"
+                         onclick="showImageModal('{{ url_for('static', filename='media/reviews/' ~ img) }}')"
+                         alt="Review image">
+                  {% endfor %}
+                </div>
+              {% endif %}
+              
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <button class="btn btn-sm btn-outline-secondary" onclick="toggleHelpful({{ review.id }})">
+                    <i class="bi bi-hand-thumbs-up{% if review.user_found_helpful %}-fill{% endif %}" id="helpful-icon-{{ review.id }}"></i>
+                    <span id="helpful-count-{{ review.id }}">{{ review.helpful_count or 0 }}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        
+        <!-- Pagination -->
+        {% if total_pages > 1 %}
+          <nav aria-label="Reviews pagination">
+            <ul class="pagination justify-content-center">
+              {% if current_page > 1 %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ current_page - 1 }}#reviews">{{ _('Previous') }}</a>
+                </li>
+              {% endif %}
+              
+              {% for page in range(1, total_pages + 1) %}
+                {% if page == current_page %}
+                  <li class="page-item active">
+                    <span class="page-link">{{ page }}</span>
+                  </li>
+                {% else %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{ page }}#reviews">{{ page }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+              
+              {% if current_page < total_pages %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ current_page + 1 }}#reviews">{{ _('Next') }}</a>
+                </li>
+              {% endif %}
+            </ul>
+          </nav>
+        {% endif %}
+      {% else %}
+        <div class="text-center py-5">
+          <i class="bi bi-chat-square-text text-muted" style="font-size: 3rem;"></i>
+          <p class="mt-3 text-muted">{{ _('No reviews yet. Be the first to review!') }}</p>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-header bg-primary text-white fw-semibold">{{ _('Course Info') }}</div>
+      <ul class="list-group list-group-flush small">
+        <li class="list-group-item">{{ _('Par') }}: {{ course['par'] }}</li>
+        <li class="list-group-item">{{ _('Length') }}: {{ course['length_yards'] }} yards</li>
+        <li class="list-group-item">{{ _('Holes') }}: {{ course['holes'] }}</li>
+        <li class="list-group-item">{{ _('Opened Year') }}: {{ course['opened_year'] }}</li>
+        <li class="list-group-item">{{ _('Designer') }}: {{ text['designer_name'] }}</li>
+      </ul>
+      <div class="card-body text-center">
+        <a href="https://wa.me/84901234567" class="btn btn-success w-100">
+          {{ _('Contact Zalo / WhatsApp') }}
+        </a>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div class="card mb-5 evaluation-card">
+      <div class="card-header bg-success text-white">
+        <h6 class="mb-0">{{ _('Evaluation Scores') }}</h6>
+      </div>
+      {% set eval_items = [
+        ('design_layout', _('Design & Layout')),
+        ('turf_maintenance', _('Turf Maintenance')),
+        ('facilities_services', _('Facilities & Services')),
+        ('landscape_environment', _('Landscape & Environment')),
+        ('playability_access', _('Playability & Access'))
+      ] %}
+      <ul class="list-group list-group-flush evaluation-list">
+        {% if evaluation %}
+          {% for key, label in eval_items %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ label }}</span>
+            <span class="badge bg-success rounded-pill">
+              {{ evaluation[key] }} / 10
+            </span>
+          </li>
+          {% endfor %}
+        {% else %}
+          <li class="list-group-item text-center text-muted">
+            {{ _('No evaluation data available.') }}
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  
+    <!-- Booking Form -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-header bg-success text-white fw-semibold">
+        {{ _('Booking Courses') }}
+      </div>
+      <div class="card-body">
+        {% if session.get('user_id') and session.get('role') != 'admin' %}
+          <!-- Form booking cho user thường -->
+          <form id="booking-form" method="post" action="{{ url_for('booking.booking', lang=lang) }}">
+            <!-- hidden course_id -->
+            <input type="hidden" name="course_id" value="{{ course['id'] }}">
+
+            <!-- Date -->
+            <div class="mb-3">
+              <label class="form-label">{{ _('Play Date') }}</label>
+             <input type="date" id="play_date" name="play_date" class="form-control" required min="{{ today_date }}">
+            </div>
+
+            <!-- Time slots -->
+            <div class="mb-3">
+              <label class="form-label">{{ _('time_slots') }}</label>
+              <div class="time-scroll border rounded p-2">
+                {% for t in time_slots %}
+                <div class="form-check">
+                  <input class="form-check-input" type="radio"
+                         name="play_time" id="time-{{ t }}"
+                         value="{{ t }}" {% if loop.first %}checked{% endif %}>
+                  <label class="form-check-label" for="time-{{ t }}">{{ t }}</label>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Players -->
+            <div class="mb-3">
+              <label class="form-label">{{ _('players') }}</label>
+              <select name="players" id="players-select" class="form-select">
+                {% for n in range(1,5) %}
+                  <option value="{{ n }}">{{ n }} {{ _('people') }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- Amenities -->
+            <div class="mb-3">
+              <label class="form-label">{{ _('Amenities') }}</label>
+              <div class="form-check">
+                <input class="form-check-input svc-checkbox" type="checkbox"
+                       name="caddy" value="caddy" id="caddy" checked>
+                <label class="form-check-label" for="caddy">{{ _('Caddy') }}</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input svc-checkbox" type="checkbox"
+                       name="rent_clubs" value="rent_clubs" id="rent_clubs" checked>
+                <label class="form-check-label" for="rent_clubs">{{ _('Rent golf clubs') }}</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input svc-checkbox" type="checkbox"
+                       name="cart" value="cart" id="cart" checked>
+                <label class="form-check-label" for="cart">{{ _('Golf cart') }}</label>
+              </div>
+            </div>
+          </form>
+        {% elif session.get('role') == 'admin' %}
+          <!-- Admin không được booking -->
+          <div class="text-center py-4">
+            <i class="bi bi-shield-lock-fill text-muted" style="font-size: 3rem;"></i>
+            <p class="mt-3 mb-4">{{ _('Administrators cannot make bookings') }}</p>
+            <p class="small text-muted">
+              {{ _('Please use a regular user account to make bookings') }}
+            </p>
+          </div>
+        {% else %}
+          <!-- Hiển thị thông báo yêu cầu đăng nhập -->
+          <div class="text-center py-4">
+            <i class="bi bi-lock-fill text-muted" style="font-size: 3rem;"></i>
+            <p class="mt-3 mb-4">{{ _('Please login to book a tee time') }}</p>
+            <button type="button" class="btn btn-success w-100" 
+                    data-bs-toggle="modal" data-bs-target="#loginModal">
+              <i class="bi bi-box-arrow-in-right me-2"></i>
+              {{ _('Login to Book') }}
+            </button>
+            <p class="mt-3 small text-muted">
+              {{ _("Don't have an account?") }} 
+              <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" 
+                 data-bs-dismiss="modal" class="text-decoration-none">
+                {{ _('Register here') }}
+              </a>
+            </p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Booking Summary -->
+    {% if session.get('user_id') and session.get('role') != 'admin' %}
+    <div id="booking-summary" class="card border-0 shadow-sm mb-4 p-3">
+      <div class="d-flex justify-content-between">
+        <span>{{ _('Green fee') }}</span><span id="sum-green">0 đ</span>
+      </div>
+      <div class="d-flex justify-content-between">
+        <span>{{ _('Caddy') }} (<span id="sum-caddy-count">0</span>)</span>
+        <span id="sum-caddy">0 đ</span>
+      </div>
+      <div class="d-flex justify-content-between">
+        <span>{{ _('Rent golf clubs') }} (<span id="sum-rent-clubs-count">0</span>)</span>
+        <span id="sum-rent-clubs">0 đ</span>
+      </div>
+      <div class="d-flex justify-content-between">
+        <span>{{ _('Golf cart') }} (<span id="sum-cart-count">0</span>)</span>
+        <span id="sum-cart">0 đ</span>
+      </div>
+      <div class="d-flex justify-content-between">
+        <span>{{ _('Insurance') }}</span><span id="sum-insurance">0 đ</span>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-between">
+        <strong>{{ _('Total') }}</strong><strong id="sum-total">0 đ</strong>
+      </div>
+      <button form="booking-form" type="submit"
+              class="btn btn-success w-100 mt-3">{{ _('Booking Teetime') }}</button>
+    </div>
+
+    <!-- Script tính toán chỉ chạy khi đã login và không phải admin -->
+    <script>
+      // pulled in from Flask
+      const tierPrices    = {{ tier_prices|tojson }};
+      const servicePrices = {{ service_prices|tojson }};
+      const currencySymbol = ' đ';
+
+      function formatVND(x) {
+        return x.toLocaleString('vi') + currencySymbol;
+      }
+      
+      function updateTimeSlots() {
+        const dateInput = document.getElementById('play_date');
+        const selectedDate = dateInput.value;
+        const today = new Date().toISOString().split('T')[0];
+        const now = new Date();
+        const currentHour = now.getHours();
+        const currentMinute = now.getMinutes();
+        
+        // Lấy tất cả radio buttons của time slots
+        const timeRadios = document.querySelectorAll('input[name="play_time"]');
+        let hasAvailableSlot = false;
+        let firstAvailableSlot = null;
+        
+        timeRadios.forEach(radio => {
+          const time = radio.value;
+          const [hour, minute] = time.split(':').map(Number);
+          const label = radio.nextElementSibling;
+          
+          // Nếu chọn ngày hôm nay
+          if (selectedDate === today) {
+            // Disable nếu giờ đã qua (thêm 30 phút buffer để chuẩn bị)
+            if (hour < currentHour || (hour === currentHour && minute <= currentMinute + 30)) {
+              radio.disabled = true;
+              label.style.opacity = '0.5';
+              label.style.textDecoration = 'line-through';
+            } else {
+              radio.disabled = false;
+              label.style.opacity = '1';
+              label.style.textDecoration = 'none';
+              hasAvailableSlot = true;
+              if (!firstAvailableSlot) firstAvailableSlot = radio;
+            }
+          } else {
+            // Ngày tương lai - enable tất cả
+            radio.disabled = false;
+            label.style.opacity = '1';
+            label.style.textDecoration = 'none';
+            hasAvailableSlot = true;
+            if (!firstAvailableSlot) firstAvailableSlot = radio;
+          }
+        });
+        
+        // Nếu không có slot nào available, hiển thị thông báo
+        if (!hasAvailableSlot && selectedDate === today) {
+          alert('{{ _("No available time slots for today. Please select another date.") }}');
+          // Chuyển sang ngày mai
+          const tomorrow = new Date();
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          dateInput.value = tomorrow.toISOString().split('T')[0];
+          updateTimeSlots(); // Gọi lại để update
+        } else if (firstAvailableSlot) {
+          // Auto select slot available đầu tiên
+          firstAvailableSlot.checked = true;
+        }
+      }
+
+      const dateInput = document.getElementById('play_date');
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+        dateInput.min = today; // Chỉ cho phép chọn từ hôm nay trở đi
+        
+        // Update time slots khi load và khi thay đổi ngày
+        updateTimeSlots();
+        dateInput.addEventListener('change', updateTimeSlots);
+      }
+      
+      function updateSummary() {
+        const players = +document.getElementById('players-select').value;
+        const dateVal = document.querySelector('input[name="play_date"]').value;
+        const timeVal = document.querySelector('input[name="play_time"]:checked').value;
+        const dt = new Date(dateVal + 'T' + timeVal);
+        const day = dt.getDay();          // 0=Sun,6=Sat
+
+        // decide tier
+        let tier = (day === 6 || day === 0) ? 'weekend' : 'weekday';
+        if (dt.getHours() >= 14) tier = 'twilight';
+
+        // green
+        const greenFee = (tierPrices[tier]||0) * players;
+        document.getElementById('sum-green').textContent = formatVND(greenFee);
+
+        // caddy
+        const caddyCount = document.getElementById('caddy').checked ? players : 0;
+        const caddyFee   = (servicePrices.caddy||0) * caddyCount;
+        document.getElementById('sum-caddy-count').textContent = caddyCount;
+        document.getElementById('sum-caddy').textContent = formatVND(caddyFee);
+
+        // rent clubs
+        const rentCount = document.getElementById('rent_clubs').checked ? players : 0;
+        const rentFee   = (servicePrices.rent_clubs||0) * rentCount;
+        document.getElementById('sum-rent-clubs-count').textContent = rentCount;
+        document.getElementById('sum-rent-clubs').textContent = formatVND(rentFee);
+
+        // golf cart
+        const cartCount = document.getElementById('cart').checked ? players : 0;
+        const cartFee   = (servicePrices.cart||0) * cartCount;
+        document.getElementById('sum-cart-count').textContent = cartCount;
+        document.getElementById('sum-cart').textContent = formatVND(cartFee);
+
+        // insurance
+        const insFee = (servicePrices.insurance||0) * players;
+        document.getElementById('sum-insurance').textContent = formatVND(insFee);
+
+        // total
+        const total = greenFee + caddyFee + rentFee + cartFee + insFee;
+        document.getElementById('sum-total').textContent = formatVND(total);
+      }
+
+      // wire up events
+      document.querySelectorAll('input[name="play_time"]').forEach(el => el.onchange = updateSummary);
+      document.getElementById('players-select').onchange = updateSummary;
+      document.querySelectorAll('.svc-checkbox').forEach(el => el.onchange = updateSummary);
+      document.querySelector('input[name="play_date"]').onchange = () => {
+        updateTimeSlots();
+        updateSummary();
+      };
+
+      // initial
+      updateSummary();
+    </script>
+    {% endif %}
+
+  </div>
+</div>
+
+<!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="bi bi-star-fill text-warning me-2"></i>
+          {{ _('Review') }} {{ text.name }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="reviewForm" method="post" action="{{ url_for('courses.add_review', lang=lang, slug=course.slug) }}" enctype="multipart/form-data">
+        <div class="modal-body">
+          <input type="hidden" name="course_id" value="{{ course.id }}">
+          <input type="hidden" id="review_id" name="review_id" value="">
+          
+          <!-- Rating -->
+          <div class="mb-3">
+            <label class="form-label">{{ _('Your Rating') }}</label>
+            <div class="star-rating-input" id="reviewStarRating">
+              {% for i in range(1, 6) %}
+                <i class="bi bi-star star-input" data-rating="{{ i }}" style="font-size: 2rem; cursor: pointer;"></i>
+              {% endfor %}
+            </div>
+            <input type="hidden" name="rating" id="reviewRating" required>
+          </div>
+          
+          <!-- Comment -->
+          <div class="mb-3">
+            <label class="form-label">{{ _('Your Review') }}</label>
+            <textarea name="comment" id="reviewComment" class="form-control" rows="4" 
+                      placeholder="{{ _('Share your experience at this golf course...') }}" required></textarea>
+          </div>
+          
+          <!-- Images -->
+          <div class="mb-3">
+            <label class="form-label">{{ _('Add Photos') }} ({{ _('Optional') }})</label>
+            <input type="file" name="images" class="form-control" multiple accept="image/*" id="reviewImages">
+            <small class="text-muted">{{ _('You can upload up to 5 images') }}</small>
+            <div id="imagePreview" class="mt-2 d-flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ _('Cancel') }}</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-send me-2"></i>{{ _('Submit Review') }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Image Preview Modal -->
+<div class="modal fade" id="imagePreviewModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="previewImage" src="" class="img-fluid" alt="Review image">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+  .star-input {
+    color: #ddd;
+    transition: color 0.2s;
+  }
+  
+  .star-input:hover,
+  .star-input.active {
+    color: #ffc107;
+  }
+  
+  .review-item {
+    transition: transform 0.2s;
+  }
+  
+  .review-item:hover {
+    transform: translateY(-2px);
+  }
+  
+  .review-images img:hover {
+    opacity: 0.8;
+  }
+  
+  #imagePreview img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .time-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+</style>
+
+<!-- Scripts for Reviews -->
+<script>
+  // Star rating for review form
+  let selectedReviewRating = 0;
+  const lang = '{{ lang }}';
+  
+  document.querySelectorAll('.star-input').forEach((star, index) => {
+    star.addEventListener('click', function() {
+      selectedReviewRating = index + 1;
+      updateReviewStars(selectedReviewRating);
+      document.getElementById('reviewRating').value = selectedReviewRating;
+    });
+    
+    star.addEventListener('mouseenter', function() {
+      updateReviewStars(index + 1);
+    });
+  });
+  
+  document.getElementById('reviewStarRating').addEventListener('mouseleave', function() {
+    updateReviewStars(selectedReviewRating);
+  });
+  
+  function updateReviewStars(rating) {
+    document.querySelectorAll('.star-input').forEach((star, index) => {
+      if (index < rating) {
+        star.classList.remove('bi-star');
+        star.classList.add('bi-star-fill', 'active');
+      } else {
+        star.classList.remove('bi-star-fill', 'active');
+        star.classList.add('bi-star');
+      }
+    });
+  }
+  
+  // Image preview
+  document.getElementById('reviewImages').addEventListener('change', function(e) {
+    const preview = document.getElementById('imagePreview');
+    preview.innerHTML = '';
+    
+    Array.from(e.target.files).slice(0, 5).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.className = 'img-thumbnail';
+        preview.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+  
+  // Show image modal
+  function showImageModal(src) {
+    document.getElementById('previewImage').src = src;
+    new bootstrap.Modal(document.getElementById('imagePreviewModal')).show();
+  }
+  
+  // Toggle helpful
+  function toggleHelpful(reviewId) {
+    fetch(`/${lang}/courses/api/review/${reviewId}/helpful`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        const countEl = document.getElementById(`helpful-count-${reviewId}`);
+        countEl.textContent = data.helpful_count;
+        const iconEl = document.getElementById(`helpful-icon-${reviewId}`);
+        if (data.is_helpful) {
+          iconEl.classList.remove('bi-hand-thumbs-up');
+          iconEl.classList.add('bi-hand-thumbs-up-fill');
+        } else {
+          iconEl.classList.remove('bi-hand-thumbs-up-fill');
+          iconEl.classList.add('bi-hand-thumbs-up');
+        }
+      }
+    });
+  }
+  
+  // Edit review
+  function editReview(reviewId) {
+    fetch(`/${lang}/courses/api/review/${reviewId}`)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('review_id').value = reviewId;
+        document.getElementById('reviewComment').value = data.comment;
+        selectedReviewRating = data.rating;
+        updateReviewStars(selectedReviewRating);
+        document.getElementById('reviewRating').value = selectedReviewRating;
+        new bootstrap.Modal(document.getElementById('reviewModal')).show();
+      });
+  }
+  
+  // Delete review
+  function deleteReview(reviewId) {
+    if (confirm('{{ _("Are you sure you want to delete this review?") }}')) {
+      fetch(`/${lang}/courses/api/review/${reviewId}`, {
+        method: 'DELETE'
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          location.reload();
+        }
+      });
+    }
+  }
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GolfCourse",
+  "name": "{{ text.name }}",
+  "description": "{{ text.seo_description }}",
+  "url": "{{ request.url }}",
+  "address": "{{ text.address }}",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": {{ course.lat }},
+    "longitude": {{ course.lng }}
+  }
+}
+</script>
+{% endblock %}

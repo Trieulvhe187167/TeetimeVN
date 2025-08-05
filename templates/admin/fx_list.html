@@ -1,0 +1,32 @@
+{% extends 'admin/dashboard.html' %}
+
+{% block title %}{{ _('FX Rates') }} | Admin{% endblock %}
+
+{% block admin_content %}
+  <h1>{{ _('FX Rates') }}</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>{{ _('ID') }}</th>
+        <th>{{ _('Date') }}</th>
+        <th>{{ _('Currency') }}</th>
+        <th>{{ _('Rate to VND') }}</th>
+        <th>{{ _('Actions') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for f in rows %}
+      <tr>
+        <td>{{ f.id }}</td>
+        <td>{{ f.rate_date }}</td>
+        <td>{{ f.currency }}</td>
+        <td>{{ f.rate_to_vnd }}</td>
+        <td>
+          <a href="{{ url_for('admin.fx_edit', lang=lang, id=f.id) }}"
+             class="btn btn-sm btn-secondary">{{ _('Edit') }}</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Courses') }} | Admin{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h1>{{ _('Courses') }}</h1>
+  <a href="{{ url_for('admin.course_create', lang=lang) }}"
+     class="btn btn-primary mb-2">{{ _('Create New Course') }}</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>{{ _('ID') }}</th>
+        <th>{{ _('Name') }}</th>
+        <th>{{ _('Slug') }}</th>
+        <th>{{ _('Holes') }}</th>
+        <th>{{ _('Par') }}</th>
+        <th>{{ _('Actions') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in courses %}
+      <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.name }}</td>
+        <td>{{ c.slug }}</td>
+        <td>{{ c.holes }}</td>
+        <td>{{ c.par }}</td>
+        <td>
+          <a href="{{ url_for('admin.course_edit', lang=lang, id=c.id) }}"
+             class="btn btn-sm btn-secondary">{{ _('Edit') }}</a>
+          <!-- <form method="post"
+                action="{{ url_for('admin.course_delete', lang=lang, id=c.id) }}"
+                style="display:inline;">
+            <button class="btn btn-sm btn-danger"
+                >
+              {{ _('Delete') }}
+            </button>
+          </form> -->
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

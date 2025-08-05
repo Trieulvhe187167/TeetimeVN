@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  {% set course_slugs = {} %}
+  {% for lang, url in urls %}
+    {% set slug = url.rstrip('/').split('/')[-1] %}
+    {% set course_slugs = course_slugs.update({slug: []}) or course_slugs %}
+  {% endfor %}
+
+  {% for slug in course_slugs.keys() %}
+  <url>
+    <loc>{{ request.url_root.rstrip('/') }}/{{ DEFAULT_LANG }}/courses/{{ slug }}/</loc>
+    {% for lang in supported_langs %}
+    <xhtml:link
+      rel="alternate"
+      hreflang="{{ lang }}"
+      href="{{ request.url_root.rstrip('/') }}/{{ lang }}/courses/{{ slug }}/"/>
+    {% endfor %}
+  </url>
+  {% endfor %}
+</urlset>

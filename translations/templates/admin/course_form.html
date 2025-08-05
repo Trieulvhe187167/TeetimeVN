@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}
+  {% if course %}{{ _('Edit Course') }}{% else %}{{ _('New Course') }}{% endif %}
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h1>{% if course %}{{ _('Edit Course') }}{% else %}{{ _('New Course') }}{% endif %}</h1>
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label">{{ _('Slug') }}</label>
+      <input name="slug" type="text" class="form-control" value="{{ course.slug if course else '' }}" required>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">{{ _('Holes') }}</label>
+        <input name="holes" type="number" class="form-control" value="{{ course.holes if course else '' }}">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">{{ _('Par') }}</label>
+        <input name="par" type="number" class="form-control" value="{{ course.par if course else '' }}">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ _('Length (yards)') }}</label>
+      <input name="length_yards" type="number" class="form-control" value="{{ course.length_yards if course else '' }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ _('Opened Year') }}</label>
+      <input name="opened_year" type="number" class="form-control" value="{{ course.opened_year if course else '' }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ _('Embed Code') }}</label>
+      <textarea name="maps_url" class="form-control" rows="4">{{ course.maps_url if course else '' }}</textarea>
+      <div class="form-text">{{ _('Paste your embed HTML/JS code here.') }}</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">{{ _('Scorecard PDF') }}</label>
+      <input name="scorecard_pdf" type="text" class="form-control" value="{{ course.scorecard_pdf if course else '' }}">
+    </div>
+    <button type="submit" class="btn btn-success">{{ _('Save') }}</button>
+    <a href="{{ url_for('admin.course_list', lang=lang) }}" class="btn btn-secondary">{{ _('Cancel') }}</a>
+  </form>
+</div>
+{% endblock %}

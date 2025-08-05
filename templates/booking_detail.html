@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('My Bookings') }} | TEEtimeVN{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-4">{{ _('My Bookings') }}</h2>
+  
+  {% if bookings %}
+    <div class="row g-4">
+      {% for booking in bookings %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm {% if booking.status == 'cancelled' %}border-danger{% endif %}">
+            <div class="card-header {% if booking.status == 'cancelled' %}bg-danger text-white{% else %}bg-success text-white{% endif %}">
+              <h6 class="mb-0">{{ booking.course_name }}</h6>
+            </div>
+            <div class="card-body">
+              <p class="mb-2">
+                <i class="bi bi-calendar3"></i> 
+                <strong>{{ _('Date') }}:</strong> {{ booking.play_date }}
+              </p>
+              <p class="mb-2">
+                <i class="bi bi-clock"></i> 
+                <strong>{{ _('Time') }}:</strong> {{ booking.play_time }}
+              </p>
+              <p class="mb-2">
+                <i class="bi bi-people"></i> 
+                <strong>{{ _('Players') }}:</strong> {{ booking.players }}
+              </p>
+              <p class="mb-2">
+                <i class="bi bi-cash-stack"></i> 
+                <strong>{{ _('Total') }}:</strong> 
+                <span class="{% if booking.status == 'cancelled' %}text-decoration-line-through{% else %}text-success fw-bold{% endif %}">
+                  {{ "{:,.0f}".format(booking.total_amount) }} VND
+                </span>
+              </p>
+              <p class="mb-0">
+                <span class="badge 
+                  {% if booking.status == 'confirmed' %}bg-success
+                  {% elif booking.status == 'pending' %}bg-warning text-dark
+                  {% elif booking.status == 'cancelled' %}bg-danger
+                  {% else %}bg-secondary{% endif %}">
+                  {{ _(booking.status.title()) }}
+                </span>
+              </p>
+            </div>
+            <div class="card-footer bg-light">
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">
+                  {{ _('Booked') }}: {{ booking.created_at_display }}
+                </small>
+                <a href="{{ url_for('booking.booking_detail', lang=lang, booking_id=booking.id) }}" 
+                   class="btn btn-sm btn-outline-success">
+                  {{ _('View Details') }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Legend for statuses -->
+    <div class="mt-5">
+      <h5>{{ _('Booking Status Legend:') }}</h5>
+      <div class="d-flex flex-wrap gap-3">
+        <span class="badge bg-warning text-dark">{{ _('Pending') }}</span> - {{ _('Waiting for confirmation') }}
+        <span class="badge bg-success">{{ _('Confirmed') }}</span> - {{ _('Your booking is confirmed') }}
+        <span class="badge bg-danger">{{ _('Cancelled') }}</span> - {{ _('Booking has been cancelled') }}
+      </div>
+    </div>
+  {% else %}
+    <div class="text-center py-5">
+      <i class="bi bi-calendar-x" style="font-size: 4rem; color: #ccc;"></i>
+      <h4 class="mt-3 text-muted">{{ _('No bookings found') }}</h4>
+      <p class="text-muted">{{ _('You have not made any bookings yet.') }}</p>
+      <a href="{{ url_for('courses.course_list', lang=lang) }}" class="btn btn-success">
+        {{ _('Browse Golf Courses') }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
